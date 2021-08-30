@@ -10,4 +10,5 @@ const handler = async (req: any, res: any) => {
   if (req.method === request.DELETE) await deleteAuthor(req, res);
 };
 
+// 1. Handler inside DB.
 export default connect(handler);

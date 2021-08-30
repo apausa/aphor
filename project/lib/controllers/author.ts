@@ -1,6 +1,7 @@
 import Author from '../models/author';
 import handle from '../../utils/error';
 
+// 2. 'req' and 'res' with TypeScript.
 export const getAuthors = async (req: any, res: any) => {
   try {
     res.status(200);
