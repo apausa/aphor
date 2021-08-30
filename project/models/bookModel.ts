@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { model, Schema } = mongoose;
 
-const bookSchema = Schema({
+const bookSchema = new Schema({
   authorId: { type: Schema.Types.ObjectId, ref: 'Author' },
   bookName: String,
   bookImage: String,
