@@ -10,6 +10,7 @@
     "test": "jest --watchAll --collect-coverage"
   },
   "dependencies": {
+    "debug": "^4.3.2",
     "jest": "^27.1.0",
     "mongoose": "^6.0.2",
     "next": "11.1.0",
@@ -17,6 +18,7 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@types/node": "^16.7.7",
     "@types/react": "17.0.19",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
