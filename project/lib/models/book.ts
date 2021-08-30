@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { model, Schema } = mongoose;
 
-const bookSchema = new Schema({
+const book = new Schema({
   authorId: { type: Schema.Types.ObjectId, ref: 'Author' },
   bookName: String,
   bookImage: String,
@@ -12,5 +12,5 @@ const bookSchema = new Schema({
   }],
 });
 
-const Book = model('Book', bookSchema);
+const Book = model('Book', book);
 export default Book;

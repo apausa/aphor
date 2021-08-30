@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { model, Schema } = mongoose;
 
-const authorSchema = new Schema({
+const author = new Schema({
   authorName: String,
   authorImage: String,
   books: [{
@@ -15,5 +15,5 @@ const authorSchema = new Schema({
   }],
 });
 
-const Author = model('Author', authorSchema);
+const Author = model('Author', author);
 export default Author;
