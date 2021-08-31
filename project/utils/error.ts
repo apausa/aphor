@@ -1,6 +1,4 @@
-export default function handle(
-  this: any, res: any, error: any,
-) {
-  this.status(500);
-  this.send(error);
+export default function handle(error: any, res: any) {
+  res.status(500);
+  res.send(error);
 }

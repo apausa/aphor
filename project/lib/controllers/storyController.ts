@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import Story from '../models/storyModels';
+import Story from '../models/storyModel';
 import handle from '../../utils/error';
 
 export const postStory = async ( // Create a story.
@@ -8,8 +8,9 @@ export const postStory = async ( // Create a story.
   const { body } = req;
   try {
     const createdStory = await Story.create(body);
-    res.status(200).json(createdStory);
-  } catch (error) { handle.call(this, res, error); }
+    res.status(200);
+    res.send(createdStory);
+  } catch (error) { handle(error, res); }
 };
 
 export const getStory = async ( // Retrieves a story.
@@ -18,8 +19,9 @@ export const getStory = async ( // Retrieves a story.
   const { query: { storyId } } = req;
   try {
     const story = await Story.findById(storyId);
-    res.status(200).json(story);
-  } catch (error) { handle.call(this, res, error); }
+    res.status(200);
+    res.send(story);
+  } catch (error) { handle(error, res); }
 };
 
 export const putStory = async ( // Updates a story.
@@ -30,8 +32,9 @@ export const putStory = async ( // Updates a story.
     const updatedStory = await Story.findByIdAndUpdate(
       storyId, body, { new: true },
     );
-    res.status(200).json(updatedStory);
-  } catch (error) { handle.call(this, res, error); }
+    res.status(200);
+    res.send(updatedStory);
+  } catch (error) { handle(error, res); }
 };
 
 export const deleteStory = async ( // Deletes a story.
@@ -40,6 +43,7 @@ export const deleteStory = async ( // Deletes a story.
   const { query: { storyId } } = req;
   try {
     const deletedStory = await Story.findByIdAndDelete(storyId);
-    res.status(204).send(deletedStory);
-  } catch (error) { handle.call(this, res, error); }
+    res.status(204);
+    res.send(deletedStory);
+  } catch (error) { handle(error, res); }
 };
