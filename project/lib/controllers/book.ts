@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import Book from '../models/book';
 import handle from '../../utils/error';
 
-export const postBook = async ( // Creates a book.
+export const postBook = async ( // Creates a book, (from author).
   req: nextApiRequest, res: NextApiResponse,
 ) => {
   try {
