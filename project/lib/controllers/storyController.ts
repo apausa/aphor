@@ -22,7 +22,7 @@ export const getStory = async ( // Retrieves a story.
   } catch (error) { handle.call(this, res, error); }
 };
 
-export const putStory = async ( // Updates an story.
+export const putStory = async ( // Updates a story.
   req: NextApiRequest, res: NextApiResponse,
 ) => {
   const { query: { storyId }, body } = req;
@@ -34,12 +34,12 @@ export const putStory = async ( // Updates an story.
   } catch (error) { handle.call(this, res, error); }
 };
 
-export const deleteStory = async ( // Deletes an story.
+export const deleteStory = async ( // Deletes a story.
   req: NextApiRequest, res: NextApiResponse,
 ) => {
   const { query: { storyId } } = req;
   try {
-    await Story.findByIdAndDelete(storyId);
-    res.status(200);
+    const deletedStory = await Story.findByIdAndDelete(storyId);
+    res.status(204).send(deletedStory);
   } catch (error) { handle.call(this, res, error); }
 };
