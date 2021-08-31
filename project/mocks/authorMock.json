@@ -1,0 +1,13 @@
+[
+    {
+        "password": "password",
+        "mail": "author@mail.com",
+        "authorName": "author",
+        "authorImage": "",
+        "authorStories": [],
+        "authorBooks": [],
+        "libraryStories": [],
+        "libraryBooks": [],
+        "libraryAuthors": []
+    }
+]

@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import mongoose from 'mongoose';
 
-// 3. Check if it works. Atlas > Terminal > Postman.
 const uri: any = process.env.MONGODB_URI;
 const cached: any = mongoose.connections[0].readyState;
 const options: any = {
