@@ -8,7 +8,7 @@ export const postAuthor = async ( // Creates an author.
   const { body } = req;
   try {
     const createdAuthor = await Author.create(body);
-    res.status(200).json(createdAuthor);
+    res.status(200).send(createdAuthor);
   } catch (error) { handle.call(this, res, error); }
 };
 
@@ -25,7 +25,7 @@ export const getAuthor = async ( // Retrieves an author.
       .populate('libraryStories')
       .populate('libraryBooks')
       .populate('libraryAuthors');
-    res.status(200).json(author);
+    res.status(200).send(author);
   } catch (error) { handle.call(this, res, error); }
 };
 
@@ -37,7 +37,7 @@ export const putAuthor = async ( // Updates an author.
     const updatedAuthor = await Author.findByIdAndUpdate(
       authorId, body, { new: true },
     );
-    res.status(200).json(updatedAuthor);
+    res.status(200).send(updatedAuthor);
   } catch (error) { handle.call(this, res, error); }
 };
 
@@ -46,7 +46,7 @@ export const deleteAuthor = async ( // Deletes an author.
 ) => {
   const { query: { authorId } } = req;
   try {
-    await Author.findByIdAndDelete(authorId);
-    res.status(204);
+    const deletedAuthor = await Author.findByIdAndDelete(authorId);
+    res.status(204).send(deletedAuthor);
   } catch (error) { handle.call(this, res, error); }
 };
