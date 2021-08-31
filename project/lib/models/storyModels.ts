@@ -3,11 +3,8 @@ import mongoose from 'mongoose';
 const { model, Schema } = mongoose;
 
 const story = new Schema({
-  storyImage: String,
   storyBody: String,
-  storyDate: Date,
-  bookId: String,
-  userId: String,
+  storyDate: { type: Date, default: new Date() },
 });
 
 const Story = model('Story', story);
