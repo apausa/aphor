@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const { model, Schema } = mongoose;
+const { model, models, Schema } = mongoose;
 
 const book = new Schema({
   bookName: String,
@@ -9,5 +9,5 @@ const book = new Schema({
   bookStories: { type: Schema.Types.ObjectId, ref: 'Story' },
 });
 
-const Book = model('Book', book);
-export default Book;
+// Checks whether the model has already been compiled.
+export default models.Book || model('Book', book);

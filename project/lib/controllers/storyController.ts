@@ -8,8 +8,7 @@ export const postStory = async ( // Create a story.
   const { body } = req;
   try {
     const createdStory = await Story.create(body);
-    res.status(200);
-    res.json(createdStory);
+    res.status(200).json(createdStory);
   } catch (error) { handle.call(this, res, error); }
 };
 
@@ -19,8 +18,7 @@ export const getStory = async ( // Retrieves a story.
   const { query: { storyId } } = req;
   try {
     const story = await Story.findById(storyId);
-    res.status(200);
-    res.json(story);
+    res.status(200).json(story);
   } catch (error) { handle.call(this, res, error); }
 };
 
@@ -32,8 +30,7 @@ export const putStory = async ( // Updates an story.
     const updatedStory = await Story.findByIdAndUpdate(
       storyId, body, { new: true },
     );
-    res.status(200);
-    res.json(updatedStory);
+    res.status(200).json(updatedStory);
   } catch (error) { handle.call(this, res, error); }
 };
 

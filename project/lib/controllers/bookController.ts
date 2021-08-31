@@ -8,8 +8,7 @@ export const postBook = async ( // Creates a book.
   const { body } = req;
   try {
     const createdBook = await Book.create(body);
-    res.status(200);
-    res.json(createdBook);
+    res.status(200).json(createdBook);
   } catch (error) { handle.call(this, res, error); }
 };
 
@@ -21,8 +20,7 @@ export const getBook = async ( // Retrieves a book.
     const book = await Book
       .findById(bookId)
       .populate('bookStories');
-    res.status(200);
-    res.json(book);
+    res.status(200).json(book);
   } catch (error) { handle.call(this, res, error); }
 };
 
@@ -34,8 +32,7 @@ export const putBook = async ( // Updates a book.
     const updatedBook = await Book.findByIdAndUpdate(
       bookId, body, { new: true },
     );
-    res.status(200);
-    res.json(updatedBook);
+    res.status(200).json(updatedBook);
   } catch (error) { handle.call(this, res, error); }
 };
 

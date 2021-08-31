@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const { model, Schema } = mongoose;
+const { model, models, Schema } = mongoose;
 
 const author = new Schema({
   password: String,
@@ -15,5 +15,5 @@ const author = new Schema({
   libraryAuthors: { type: Schema.Types.ObjectId, ref: 'Author' },
 });
 
-const Author = model('Author', author);
-export default Author;
+// Checks whether the model has already been compiled.
+export default models.Author || model('Author', author);
