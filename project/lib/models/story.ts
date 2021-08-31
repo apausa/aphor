@@ -3,11 +3,12 @@ import mongoose from 'mongoose';
 const { model, Schema } = mongoose;
 
 const story = new Schema({
-  authorId: { type: Schema.Types.ObjectId, ref: 'Author' },
-  bookId: { type: Schema.Types.ObjectId, ref: 'Book' },
   storyImage: String,
   storyBody: String,
+  bookStatus: String,
   storyDate: Date,
+  authorId: { type: Schema.Types.ObjectId, ref: 'Author' },
+  bookId: { type: Schema.Types.ObjectId, ref: 'Book' },
 });
 
 const Story = model('Story', story);

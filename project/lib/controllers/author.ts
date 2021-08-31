@@ -18,8 +18,14 @@ export const getAuthor = async ( // Retrieves an author.
 ) => {
   const { query: { authorId } } = req;
   try {
-    const author = await Author.findById(authorId)
-      .populate({ path: 'books' }).populate({ path: 'stories' });
+    const author = await Author
+      .findById(authorId)
+      .populate({ path: 'authorStories' })
+      .populate({ path: 'authorBooks' })
+      .populate({ path: 'authorReaders' })
+      .populate({ path: 'libraryStories' })
+      .populate({ path: 'libraryBooks' })
+      .populate({ path: 'libraryAuthors' });
     res.status(200);
     res.json(author);
   } catch (error) { handle.call(this, res, error); }
@@ -30,9 +36,14 @@ export const putAuthor = async ( // Updates an author.
 ) => {
   const { query: { authorId }, body } = req;
   try {
-    const updatedAuthor = await Author.findByIdAndUpdate(
-      authorId, body, { new: true },
-    ).populate({ path: 'books' }).populate({ path: 'stories' });
+    const updatedAuthor = await Author
+      .findByIdAndUpdate(authorId, body, { new: true })
+      .populate({ path: 'authorStories' })
+      .populate({ path: 'authorBooks' })
+      .populate({ path: 'authorReaders' })
+      .populate({ path: 'libraryStories' })
+      .populate({ path: 'libraryBooks' })
+      .populate({ path: 'libraryAuthors' });
     res.status(200);
     res.json(updatedAuthor);
   } catch (error) { handle.call(this, res, error); }
@@ -44,6 +55,6 @@ export const deleteAuthor = async ( // Deletes an author.
   const { query: { authorId } } = req;
   try {
     await Author.findByIdAndDelete(authorId);
-    res.status(200);
+    res.status(204);
   } catch (error) { handle.call(this, res, error); }
 };
