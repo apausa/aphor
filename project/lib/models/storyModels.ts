@@ -7,7 +7,6 @@ const story = new Schema({
   storyBody: String,
   bookStatus: String,
   storyDate: Date,
-  authorId: { type: Schema.Types.ObjectId, ref: 'Author' },
   bookId: { type: Schema.Types.ObjectId, ref: 'Book' },
 });
 

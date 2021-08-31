@@ -5,7 +5,7 @@ const { model, Schema } = mongoose;
 const book = new Schema({
   bookName: String,
   bookImage: String,
-  authorId: { type: Schema.Types.ObjectId, ref: 'Author' },
+  authorId: String,
   bookStories: { type: Schema.Types.ObjectId, ref: 'Story' },
 });
 
