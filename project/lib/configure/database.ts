@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import mongoose from 'mongoose';
 
 // 3. Check if it works. Atlas > Terminal > Postman.
@@ -10,7 +11,9 @@ const options: any = {
 
 // Maintains a cached connection across hot reloads.
 const connection = (handler: any) => async (req: any, res: any) => {
-  if (cached) await mongoose.connect(uri, options);
+  if (!cached) {
+    await mongoose.connect(uri, options);
+  }
   return handler(req, res);
 };
 
