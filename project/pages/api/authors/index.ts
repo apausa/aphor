@@ -1,8 +1,9 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import connect from '../../../lib/configure/database';
 import request from '../../../utils/methods';
 import { postAuthor } from '../../../lib/controllers/author';
 
-const handler = async (req: any, res: any) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === request.POST) await postAuthor(req, res);
 };
 

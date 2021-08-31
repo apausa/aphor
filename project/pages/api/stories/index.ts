@@ -1,9 +1,9 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import connect from '../../../lib/configure/database';
 import request from '../../../utils/methods';
-import { getStories, postStory } from '../../../lib/controllers/story';
+import { postStory } from '../../../lib/controllers/story';
 
-const handler = async (req: any, res: any) => {
-  if (req.method === request.GET) await getStories(req, res);
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === request.POST) await postStory(req, res);
 };
 
