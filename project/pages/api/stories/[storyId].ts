@@ -3,7 +3,7 @@ import connect from '../../../lib/configure/database';
 import request from '../../../utils/methods';
 import {
   getStory, postStory, deleteStory,
-} from '../../../lib/controllers/story';
+} from '../../../lib/controllers/storyController';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === request.GET) await getStory(req, res);

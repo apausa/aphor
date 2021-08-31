@@ -6,7 +6,7 @@ const book = new Schema({
   bookName: String,
   bookImage: String,
   authorId: { type: Schema.Types.ObjectId, ref: 'Author' },
-  stories: { type: Schema.Types.ObjectId, ref: 'Story' },
+  bookStories: { type: Schema.Types.ObjectId, ref: 'Story' },
 });
 
 const Book = model('Book', book);

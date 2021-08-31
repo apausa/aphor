@@ -1,33 +1,33 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import Book from '../models/book';
+import Story from '../models/storyModels';
 import handle from '../../utils/error';
 
-export const postBook = async ( // Creates a book, (from author).
-  req: nextApiRequest, res: NextApiResponse,
+export const postStory = async ( // Create a story, (from book).
+  req: NextApiRequest, res: NextApiResponse,
 ) => {
   try {
     res.status(200);
   } catch (error) { handle.call(this, res, error); }
 };
 
-export const getBook = async ( // Retrieves a book.
-  req: nextApiRequest, res: NextApiResponse,
+export const getStory = async ( // Retrieves a story.
+  req: NextApiRequest, res: NextApiResponse,
 ) => {
   try {
     res.status(200);
   } catch (error) { handle.call(this, res, error); }
 };
 
-export const putBook = async ( // Updates a book.
-  req: nextApiRequest, res: NextApiResponse,
+export const putStory = async ( // Updates an story.
+  req: NextApiRequest, res: NextApiResponse,
 ) => {
   try {
     res.status(200);
   } catch (error) { handle.call(this, res, error); }
 };
 
-export const deleteBook = async ( // Deletes a book.
-  req: nextApiRequest, res: NextApiResponse,
+export const deleteStory = async ( // Deletes an story.
+  req: NextApiRequest, res: NextApiResponse,
 ) => {
   try {
     res.status(200);

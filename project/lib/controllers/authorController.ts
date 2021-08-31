@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import Author from '../models/author';
+import Author from '../models/authorModels';
 import handle from '../../utils/error';
 
 export const postAuthor = async ( // Creates an author.
