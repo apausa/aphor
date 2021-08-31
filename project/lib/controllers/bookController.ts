@@ -41,7 +41,7 @@ export const deleteBook = async ( // Deletes a book.
 ) => {
   const { query: { bookId } } = req;
   try {
-    await Book.findByIdAndDelete(bookId);
-    res.status(204);
+    const deletedBook = await Book.findByIdAndDelete(bookId);
+    res.status(204).send(deletedBook);
   } catch (error) { handle.call(this, res, error); }
 };
