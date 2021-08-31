@@ -2,12 +2,11 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import Story from '../models/storyModels';
 import handle from '../../utils/error';
 
-export const postStory = async ( // Create a story, (from book).
+export const postStory = async ( // Create a story.
   req: NextApiRequest, res: NextApiResponse,
 ) => {
-  const { query: { bookId }, body } = req;
+  const { body } = req;
   try {
-    body.bookId = bookId;
     const createdStory = await Story.create(body);
     res.status(200);
     res.json(createdStory);
@@ -43,7 +42,7 @@ export const deleteStory = async ( // Deletes an story.
 ) => {
   const { query: { storyId } } = req;
   try {
-    await Story.findByIdAndUpdate(storyId);
+    await Story.findByIdAndDelete(storyId);
     res.status(200);
   } catch (error) { handle.call(this, res, error); }
 };

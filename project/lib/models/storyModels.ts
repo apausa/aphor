@@ -5,9 +5,9 @@ const { model, Schema } = mongoose;
 const story = new Schema({
   storyImage: String,
   storyBody: String,
-  bookStatus: String,
   storyDate: Date,
   bookId: String,
+  userId: String,
 });
 
 const Story = model('Story', story);
