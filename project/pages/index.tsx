@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { getSession, signIn } from 'next-auth/client';
 
-export default function Book() {
+export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const secure = async () => {
+    // Returns a promise with an user object.
     const session = await getSession();
     if (session) return setLoading(false);
     return signIn();
