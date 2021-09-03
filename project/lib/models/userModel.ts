@@ -9,9 +9,6 @@ const user = new Schema({
   userStories: { type: Schema.Types.ObjectId, ref: 'Story' },
   userBooks: { type: Schema.Types.ObjectId, ref: 'Book' },
   userReaders: { type: Schema.Types.ObjectId, ref: 'User' },
-  libraryStories: { type: Schema.Types.ObjectId, ref: 'Story' },
-  libraryBooks: { type: Schema.Types.ObjectId, ref: 'Book' },
-  libraryAuthors: { type: Schema.Types.ObjectId, ref: 'User' },
 });
 
 // Checks whether the model has already been compiled.

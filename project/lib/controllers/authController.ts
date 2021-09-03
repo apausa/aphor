@@ -7,7 +7,10 @@ export default async function signIn(
   req: NextApiRequest, res: NextApiResponse,
 ) {
   try {
-    console.log('FUNCIÓN DEL CONTROLADOR');
+    const { body: { email } } = req;
+    const user = await User.findOne({ email });
+    res.status(200);
+    res.send(user);
   } catch (error) {
     res.send(error);
   }
