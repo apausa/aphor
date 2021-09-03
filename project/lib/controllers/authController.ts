@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
 import type { NextApiRequest, NextApiResponse } from 'next';
 import User from '../models/userModel';
 
