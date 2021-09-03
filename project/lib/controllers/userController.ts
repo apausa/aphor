@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/naming-convention */
 import type { NextApiRequest, NextApiResponse } from 'next';
 import User from '../models/userModel';
 import handle from '../../utils/error';

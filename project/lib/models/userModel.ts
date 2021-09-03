@@ -4,8 +4,7 @@ const { model, models, Schema } = mongoose;
 
 const user = new Schema({
   password: String,
-  mail: String,
-  name: String,
+  email: String,
   image: { type: String, default: 'http://placehold.it/32x32' },
   userStories: { type: Schema.Types.ObjectId, ref: 'Story' },
   userBooks: { type: Schema.Types.ObjectId, ref: 'Book' },
