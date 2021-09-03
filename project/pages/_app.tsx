@@ -6,7 +6,7 @@ import React from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Provider>
+    <Provider session={pageProps.session}>
       <Component {...pageProps} />
     </Provider>
   );
