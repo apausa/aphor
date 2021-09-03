@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { useSession, getSession, signIn } from 'next-auth/client';
@@ -8,14 +9,14 @@ export default function About() {
   return <h1>About</h1>;
 }
 
-// Client and server side page secured.
+// Secure pages server side.
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
-
   if (!session) {
     return {
       redirect: {
-        destination: '/api/auth/signin?callbackUrl=http://localhost:3000/',
+        destination: process.env.DASHBOARD,
+        redirect: false,
       },
     };
   }

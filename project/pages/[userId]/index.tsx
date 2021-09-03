@@ -8,14 +8,15 @@ export default function User() {
   return <h1>Profile</h1>;
 }
 
-// Client and server side page secured.
+// Secure pages server side.
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
 
   if (!session) {
     return {
       redirect: {
-        destination: '/api/auth/signin?callbackUrl=http://localhost:3000/',
+        destination: process.env.DASHBOARD,
+        redirect: false,
       },
     };
   }
