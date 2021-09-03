@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getSession, signIn } from 'next-auth/client';
 
-export default function User() {
+export default function Book() {
   // Sets loading initial state to true.
   const [loading, setLoading] = useState(true);
   const secure = async () => {
@@ -15,5 +15,5 @@ export default function User() {
   // Runs once for every page reload.
   useEffect(() => { secure(); }, []);
   if (loading) return <h1>Loading</h1>;
-  return <h1>Profile</h1>;
+  return <h1>Books</h1>;
 }
