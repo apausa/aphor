@@ -1,5 +1,5 @@
 {
-    "password": "password",
-    "mail": "author@mail.com",
-    "authorName": "author"
+    "password": "admin",
+    "email": "admin@mail.com",
+    "name": "pablo"
 }

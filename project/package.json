@@ -10,6 +10,7 @@
     "test": "jest --watchAll --collect-coverage"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "debug": "^4.3.2",
     "mongoose": "^6.0.2",
     "next": "11.1.0",
