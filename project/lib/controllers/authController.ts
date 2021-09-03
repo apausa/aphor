@@ -12,6 +12,7 @@ export default async function signIn(
     res.status(200);
     res.send(user);
   } catch (error) {
+    res.status(500);
     res.send(error);
   }
 }

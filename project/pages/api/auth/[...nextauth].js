@@ -1,5 +1,8 @@
+/* eslint-disable no-debugger */
+/* eslint-disable no-console */
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
+import axios from 'axios';
 
 const providers = [
   Providers.Credentials({
@@ -10,11 +13,10 @@ const providers = [
     },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async authorize(credentials, req) {
-      const res = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        body: JSON.stringify(credentials),
-      });
-      const user = await res.json();
+      const res = await axios.post(
+        'http://localhost:3000/api/auth/login', credentials,
+      );
+      const user = await res.data;
       if (user) return user;
       return null;
     },
