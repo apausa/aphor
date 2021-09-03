@@ -1,27 +1,18 @@
 import React from 'react';
 import { useSession, getSession, signIn } from 'next-auth/client';
 
-export default function Dashboard({ data }: any) {
+// Client side page secured.
+export default function Dashboard() {
   const [session, loading] = useSession();
-  // Secure client route.
+
   if (loading) return null;
   if (!session) return signIn();
-  return (
-    <h1>
-      Dashboard -
-      {' '}
-      {data}
-    </h1>
-  );
+  return <h1>Dashboard</h1>;
 }
 
-// Authenthicate server side.
+// Server side page secured.
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
-  return {
-    props: {
-      session,
-      data: session ? 'Server side authenthicaed' : null,
-    },
-  };
+
+  return { props: { session } };
 }
