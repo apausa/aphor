@@ -9,7 +9,7 @@ export default function Stories() {
     const session = await getSession();
     // Sets loading state to false.
     if (session) return setLoading(false);
-    return signIn;
+    return signIn();
   };
 
   // Runs once for every page reload.

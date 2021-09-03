@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { getSession, signIn } from 'next-auth/client';
+import React from 'react';
+import { useSession, signIn } from 'next-auth/client';
 
 export default function User() {
-  // Sets loading initial state to true.
-  const [loading, setLoading] = useState(true);
+  // Sets loading initial state.
+  const [session, loading] = useSession();
   const secure = async () => {
     // Returns a promise with an user object.
     const session = await getSession();
