@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { useSession, getSession, signIn } from 'next-auth/client';
+import { getSession } from 'next-auth/client';
 
 export default function Dashboard() {
-  const [session] = useSession();
-
   return <h1>Dashboard</h1>;
 }
 
