@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { getSession } from 'next-auth/client';
 
-export default function Dashboard() {
-  return <h1>Dashboard</h1>;
+export default function Stories() {
+  return <h1>Stories</h1>;
 }
 
 // Secure pages server side.
