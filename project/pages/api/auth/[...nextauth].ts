@@ -13,7 +13,7 @@ const providers = [
       email: { label: 'Email', type: 'email' },
       password: { label: 'Password', type: 'password' },
     },
-    async authorize(credentials, req) {
+    async authorize(credentials) {
       const res = await axios.post(
         'http://localhost:3000/api/auth/login', credentials,
       );

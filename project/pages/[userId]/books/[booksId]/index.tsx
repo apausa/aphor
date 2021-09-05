@@ -3,7 +3,7 @@ import React from 'react';
 import { getSession } from 'next-auth/client';
 
 export default function Book() {
-  return <h1>Books</h1>;
+  return <h1>Book</h1>;
 }
 
 // Secure pages server side.
