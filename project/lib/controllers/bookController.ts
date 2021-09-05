@@ -20,7 +20,7 @@ export const getBook = async ( // Retrieves a book.
   try {
     const book = await Book
       .findById(bookId)
-      .populate('bookStories');
+      .populate('stories');
     res.status(200);
     res.send(book);
   } catch (error) { handle(error, res); }

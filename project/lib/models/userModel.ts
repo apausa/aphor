@@ -6,9 +6,7 @@ const user = new Schema({
   password: String,
   email: String,
   image: { type: String, default: 'http://placehold.it/32x32' },
-  userStories: { type: Schema.Types.ObjectId, ref: 'Story' },
-  userBooks: { type: Schema.Types.ObjectId, ref: 'Book' },
-  userReaders: { type: Schema.Types.ObjectId, ref: 'User' },
+  books: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
 });
 
 // Checks whether the model has already been compiled.

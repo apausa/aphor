@@ -20,9 +20,7 @@ export const getUser = async ( // Retrieves an user.
   try {
     const user = await User
       .findById(userId)
-      .populate('userStories')
-      .populate('userBooks')
-      .populate('userReaders');
+      .populate('books');
     res.status(200);
     res.send(user);
   } catch (error) { handle(error, res); }
