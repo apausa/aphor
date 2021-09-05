@@ -5,12 +5,12 @@ export default async function signIn(
   req: NextApiRequest, res: NextApiResponse,
 ) {
   try {
-    const { body: { email } } = req;
-    const user = await User.findOne({ email });
+    const { body: { email, password } } = req;
+    const user = await User.findOne({ email, password });
     res.status(200);
     res.send(user);
   } catch (error) {
-    res.status(500);
+    res.status(401);
     res.send(error);
   }
 }

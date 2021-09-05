@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { getSession } from 'next-auth/client';
+import { getSession, useSession } from 'next-auth/client';
 
 export default function Books() {
   return <h1>Books</h1>;
