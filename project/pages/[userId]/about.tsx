@@ -2,8 +2,13 @@
 import React from 'react';
 import axios from 'axios';
 
-export default function About() {
-  return <h1>About</h1>;
+export default function About({ data }: any) {
+  console.log(data);
+  return (
+    <>
+      <p>{data.about}</p>
+    </>
+  );
 }
 
 export async function getServerSideProps(context: any) {
