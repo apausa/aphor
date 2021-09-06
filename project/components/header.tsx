@@ -1,13 +1,29 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 import React from 'react';
-import { getSession } from 'next-auth/client';
+import { useSession, signOut } from 'next-auth/client';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function Header() {
-  return <div className="header">Works</div>;
-}
+export default function Header({ data }: any) {
+  const [session, loading] = useSession();
+  const router = useRouter();
+  console.log(router);
+  return (
+    <header>
+      <div />
+      <ul>
+        <li>Name</li>
+        <li>Profile</li>
+        <li>Books</li>
+      </ul>
+      <ul>
+        <li />
+        <li />
+        <li />
+      </ul>
 
-export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
-  console.log('>>>>>>>>', session);
-  return { props: { session } };
+    </header>
+  );
 }
