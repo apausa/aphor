@@ -3,6 +3,7 @@
 import React from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import { getSession } from 'next-auth/client';
 
 export default function Books({ data }: any) {
   const { _id, name, image } = data;
@@ -32,8 +33,9 @@ export default function Books({ data }: any) {
 }
 
 export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
   const { params: { userId } } = context;
   const { data } = await axios
     .get(`http://localhost:3000/api/user/${userId}`);
-  return { props: { data } };
+  return { props: { session, data } };
 }

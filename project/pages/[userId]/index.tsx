@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import Link from 'next/link';
 import axios from 'axios';
+import { getSession } from 'next-auth/client';
 
 export default function User({ data, userId }: any) {
   const { books, name, image } = data;
@@ -39,8 +39,9 @@ export default function User({ data, userId }: any) {
 }
 
 export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
   const { params: { userId } } = context;
   const { data } = await axios
     .get(`http://localhost:3000/api/user/${userId}`);
-  return { props: { data, userId } };
+  return { props: { session, data, userId } };
 }
