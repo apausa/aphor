@@ -1,26 +1,38 @@
+/* eslint-disable no-console */
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { getSession } from 'next-auth/client';
+import Link from 'next/link';
+import axios from 'axios';
 
-export default function User() {
-  return <h1>Profile</h1>;
+export default function User({ data, userId }: any) {
+  const { books } = data;
+  return (
+    <>
+      <h1>User, dashboard</h1>
+      <ul>
+        {books.map((book: any) => book.stories.map((story: any) => (
+          <li>
+            <Link href={`/${userId}/books/${book._id}`}>
+              {book.name}
+            </Link>
+            <Link href={`/${userId}/books/${book._id}/${story._id}`}>
+              <ul>
+                <li>{story.title}</li>
+                <li>{story.date}</li>
+                <li>{story.body}</li>
+              </ul>
+            </Link>
+          </li>
+        )))}
+      </ul>
+    </>
+  );
 }
 
-// Secure pages server side.
 export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: process.env.DASHBOARD,
-        redirect: false,
-      },
-    };
-  }
-  return {
-    props: {
-      session,
-    },
-  };
+  const { params: { userId } } = context;
+  const { data } = await axios
+    .get(`http://localhost:3000/api/user/${userId}`);
+  return { props: { data, userId } };
 }

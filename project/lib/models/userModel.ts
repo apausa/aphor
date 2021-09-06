@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const { model, models, Schema } = mongoose;
 
 const user = new Schema({
+  about: String,
   password: String,
   email: String,
   image: { type: String, default: 'http://placehold.it/32x32' },

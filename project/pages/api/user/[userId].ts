@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 import type { NextApiRequest, NextApiResponse } from 'next';
+
 import connect from '../../../lib/configure/database';
 import request from '../../../utils/methods';
 import User from '../../../lib/models/userModel';
@@ -11,7 +13,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const user = await User
         .findById(userId)
-        .populate('books');
+        .populate({
+          path: 'books',
+          populate: {
+            path: 'stories',
+            model: 'Story',
+          },
+        });
       res.status(200);
       res.send(user);
     } catch (error) { handle(error, res); }
