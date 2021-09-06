@@ -8,7 +8,10 @@ export default function Books({ data }: any) {
   const { _id, name, image } = data;
   return (
     <>
-      <h1>User, books</h1>
+      <h1>
+        {name}
+        , books
+      </h1>
       <ul>
         {data.books.map((book: any) => (
           <Link href={`/${_id}/books/${book._id}`}>
@@ -17,7 +20,7 @@ export default function Books({ data }: any) {
                 <li>{name}</li>
                 <li>{image}</li>
                 <li>{book.image}</li>
-                <li>{book.name}</li>
+                <li>{book.title}</li>
                 <li>{book.date}</li>
               </ul>
             </li>

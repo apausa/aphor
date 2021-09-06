@@ -1,14 +1,25 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import axios from 'axios';
 
-export default function Story({ data }: any) {
+export default function Story({ data, bookId, storyId }: any) {
+  const { books, name, image } = data;
+  const { stories } = books
+    .filter((book: any) => book._id === bookId)[0];
+  const { title, date, body } = stories
+    .filter((story: any) => story._id === storyId)[0];
   return (
     <>
-      <h1>User, story</h1>
+      <h1>
+        {name}
+        , story
+      </h1>
       <ul>
-        <li>{data.title}</li>
-        <li>{data.date}</li>
-        <li>{data.body}</li>
+        <li>{name}</li>
+        <li>{image}</li>
+        <li>{title}</li>
+        <li>{date}</li>
+        <li>{body}</li>
       </ul>
     </>
   );

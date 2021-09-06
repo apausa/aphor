@@ -8,12 +8,15 @@ export default function User({ data, userId }: any) {
   const { books, name, image } = data;
   return (
     <>
-      <h1>User, dashboard</h1>
+      <h1>
+        {name}
+        , Dashboard
+      </h1>
       <ul>
         {books.map((book: any) => book.stories.map((story: any) => (
           <li>
             <Link href={`/${userId}/books/${book._id}`}>
-              {book.name}
+              {book.title}
             </Link>
             <Link href={`/${userId}/books/${book._id}/${story._id}`}>
               <ul>

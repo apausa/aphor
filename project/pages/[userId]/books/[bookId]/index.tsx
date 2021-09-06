@@ -5,10 +5,14 @@ import Link from 'next/link';
 
 export default function Book({ data, userId, bookId }: any) {
   const { books, name, image } = data;
-  const { stories } = books.filter((book: any) => book._id === bookId)[0];
+  const { stories, title } = books
+    .filter((book: any) => book._id === bookId)[0];
   return (
     <>
-      <h1>User, book</h1>
+      <h1>
+        {title}
+        , Book
+      </h1>
       <ul>
         {stories.map((story: any) => (
           <Link href={`/${userId}/books/${bookId}/${story._id}`}>

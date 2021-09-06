@@ -5,10 +5,13 @@ export default function About({ data }: any) {
   const { about, image, name } = data;
   return (
     <>
+      <h1>
+        {name}
+        , About
+      </h1>
       <ul>
         <li>{about}</li>
         <li>{image}</li>
-        <li>{name}</li>
       </ul>
     </>
   );
