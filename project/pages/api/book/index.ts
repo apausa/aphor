@@ -1,19 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connect from '../../../lib/configure/database';
 import request from '../../../utils/methods';
-import User from '../../../lib/models/userModel';
+import Book from '../../../lib/models/bookModel';
+import handle from '../../../utils/error';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  // Creates a book.
   if (req.method === request.POST) {
+    const { body } = req;
     try {
-      const { body: { email, password } } = req;
-      const user = await User.findOne({ email, password });
+      const createdBook = await Book.create(body);
       res.status(200);
-      res.send(user);
-    } catch (error) {
-      res.status(401);
-      res.send(error);
-    }
+      res.send(createdBook);
+    } catch (error) { handle(error, res); }
   }
 };
 

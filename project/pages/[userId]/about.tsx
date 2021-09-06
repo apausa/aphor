@@ -1,25 +1,25 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { getSession } from 'next-auth/client';
+import axios from 'axios';
 
-export default function About() {
-  return <h1>About</h1>;
+export default function About({ data }: any) {
+  const { about, image, name } = data;
+  return (
+    <>
+      <h1>
+        {name}
+        , About
+      </h1>
+      <ul>
+        <li>{about}</li>
+        <li>{image}</li>
+      </ul>
+    </>
+  );
 }
 
-// Secure pages server side.
 export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
-  if (!session) {
-    return {
-      redirect: {
-        destination: process.env.DASHBOARD,
-        redirect: false,
-      },
-    };
-  }
-  return {
-    props: {
-      session,
-    },
-  };
+  const { params: { userId } } = context;
+  const { data } = await axios
+    .get(`http://localhost:3000/api/user/${userId}`);
+  return { props: { data, userId } };
 }

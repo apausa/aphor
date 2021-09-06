@@ -1,13 +1,13 @@
-import Book from '../models/bookModel';
-import handle from '../../utils/error';
+/* import Story from '../lib/models/storyModel';
+import handle from '../utils/error';
 import {
-  postBook, getBook, putBook, deleteBook,
-} from './bookController';
+  postStory, getStory, putStory, deleteStory,
+} from './storyController';
 
-jest.mock('../models/bookModel');
+jest.mock('../models/storyModel');
 jest.mock('../../utils/error');
 
-describe('Given a postBook function', () => {
+describe('Given a postStory function', () => {
   describe('When is invoked', () => {
     const req: any = {
       body: {},
@@ -18,18 +18,18 @@ describe('Given a postBook function', () => {
     };
     describe('And resolves', () => {
       test('Then "res.send" is called', async () => {
-        (Book.create as jest.Mock)
+        (Story.create as jest.Mock)
           .mockResolvedValue({});
-        await postBook(req, res);
+        await postStory(req, res);
 
         expect(res.send).toHaveBeenCalled();
       });
     });
     describe('And revokes', () => {
       test('Then "handle" is called', async () => {
-        (Book.create as jest.Mock)
+        (Story.create as jest.Mock)
           .mockRejectedValue({});
-        await postBook(req, res);
+        await postStory(req, res);
 
         expect(handle).toHaveBeenCalled();
       });
@@ -37,7 +37,7 @@ describe('Given a postBook function', () => {
   });
 });
 
-describe('Given a getBook function', () => {
+describe('Given a getStory function', () => {
   describe('When is invoked', () => {
     const req: any = { query: { authorId: '' } };
     const res: any = {
@@ -46,18 +46,18 @@ describe('Given a getBook function', () => {
     };
     describe('And resolves', () => {
       test('Then "res.send" is called', async () => {
-        (Book.findById as jest.Mock)
+        (Story.findById as jest.Mock)
           .mockResolvedValue({});
-        await getBook(req, res);
+        await getStory(req, res);
 
         expect(res.send).toHaveBeenCalled();
       });
     });
     describe('And revokes', () => {
       test('Then "handle" is called', async () => {
-        (Book.findById as jest.Mock)
+        (Story.findById as jest.Mock)
           .mockRejectedValue({});
-        await getBook(req, res);
+        await getStory(req, res);
 
         expect(handle).toHaveBeenCalled();
       });
@@ -65,7 +65,7 @@ describe('Given a getBook function', () => {
   });
 });
 
-describe('Given a putBook function', () => {
+describe('Given a putStory function', () => {
   describe('When is invoked', () => {
     const req: any = {
       body: {},
@@ -77,18 +77,18 @@ describe('Given a putBook function', () => {
     };
     describe('And resolves', () => {
       test('Then "res.send" is called', async () => {
-        (Book.findByIdAndUpdate as jest.Mock)
+        (Story.findByIdAndUpdate as jest.Mock)
           .mockResolvedValue({});
-        await putBook(req, res);
+        await putStory(req, res);
 
         expect(res.send).toHaveBeenCalled();
       });
     });
     describe('And revokes', () => {
       test('Then "handle" is called', async () => {
-        (Book.findByIdAndUpdate as jest.Mock)
+        (Story.findByIdAndUpdate as jest.Mock)
           .mockRejectedValue({});
-        await putBook(req, res);
+        await putStory(req, res);
 
         expect(handle).toHaveBeenCalled();
       });
@@ -96,7 +96,7 @@ describe('Given a putBook function', () => {
   });
 });
 
-describe('Given a deleteBook function', () => {
+describe('Given a deleteStory function', () => {
   describe('When is invoked', () => {
     const req: any = { query: { authorId: '' } };
     const res: any = {
@@ -105,21 +105,22 @@ describe('Given a deleteBook function', () => {
     };
     describe('And resolves', () => {
       test('Then "res.send" is called', async () => {
-        (Book.findByIdAndDelete as jest.Mock)
+        (Story.findByIdAndDelete as jest.Mock)
           .mockResolvedValue({});
-        await deleteBook(req, res);
+        await deleteStory(req, res);
 
         expect(res.send).toHaveBeenCalled();
       });
     });
     describe('And revokes', () => {
       test('Then "handle" is called', async () => {
-        (Book.findByIdAndDelete as jest.Mock)
+        (Story.findByIdAndDelete as jest.Mock)
           .mockRejectedValue({});
-        await deleteBook(req, res);
+        await deleteStory(req, res);
 
         expect(handle).toHaveBeenCalled();
       });
     });
   });
 });
+*/
