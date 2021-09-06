@@ -3,7 +3,6 @@ import React from 'react';
 import axios from 'axios';
 
 export default function About({ data }: any) {
-  console.log(data);
   return (
     <>
       <p>{data.about}</p>
