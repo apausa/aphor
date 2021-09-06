@@ -4,7 +4,7 @@ import Link from 'next/link';
 import axios from 'axios';
 
 export default function User({ data, userId }: any) {
-  const { books } = data;
+  const { books, name, image } = data;
   return (
     <>
       <h1>User, dashboard</h1>
@@ -16,6 +16,8 @@ export default function User({ data, userId }: any) {
             </Link>
             <Link href={`/${userId}/books/${book._id}/${story._id}`}>
               <ul>
+                <li>{name}</li>
+                <li>{image}</li>
                 <li>{story.title}</li>
                 <li>{story.date}</li>
                 <li>{story.body}</li>

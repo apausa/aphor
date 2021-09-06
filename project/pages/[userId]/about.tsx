@@ -3,9 +3,14 @@ import React from 'react';
 import axios from 'axios';
 
 export default function About({ data }: any) {
+  const { about, image, name } = data;
   return (
     <>
-      <p>{data.about}</p>
+      <ul>
+        <li>{about}</li>
+        <li>{image}</li>
+        <li>{name}</li>
+      </ul>
     </>
   );
 }
