@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import axios from 'axios';
@@ -7,7 +6,6 @@ import Link from 'next/link';
 export default function Book({ data, userId, bookId }: any) {
   const { books, name, image } = data;
   const { stories } = books.filter((book: any) => book._id === bookId)[0];
-  console.log('>>>>>>>>', stories);
   return (
     <>
       <h1>User, book</h1>
