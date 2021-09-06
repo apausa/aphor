@@ -11,13 +11,12 @@ export default function Story({ data, bookId, storyId }: any) {
   return (
     <>
       <h1>
-        {name}
+        {title}
         , story
       </h1>
       <ul>
         <li>{name}</li>
         <li>{image}</li>
-        <li>{title}</li>
         <li>{date}</li>
         <li>{body}</li>
       </ul>

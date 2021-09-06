@@ -17,10 +17,10 @@ export default function Book({ data, userId, bookId }: any) {
         {stories.map((story: any) => (
           <Link href={`/${userId}/books/${bookId}/${story._id}`}>
             <li>
+              {story.title}
               <ul>
                 <li>{name}</li>
                 <li>{image}</li>
-                <li>{story.title}</li>
                 <li>{story.date}</li>
                 <li>{story.body}</li>
               </ul>

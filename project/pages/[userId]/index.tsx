@@ -20,11 +20,15 @@ export default function User({ data, userId }: any) {
             </Link>
             <Link href={`/${userId}/books/${book._id}/${story._id}`}>
               <ul>
-                <li>{name}</li>
-                <li>{image}</li>
-                <li>{story.title}</li>
-                <li>{story.date}</li>
-                <li>{story.body}</li>
+                <li>
+                  {story.title}
+                  <ul>
+                    <li>{name}</li>
+                    <li>{image}</li>
+                    <li>{story.date}</li>
+                    <li>{story.body}</li>
+                  </ul>
+                </li>
               </ul>
             </Link>
           </li>
