@@ -16,9 +16,8 @@ export default function Story({ data }: any) {
 
 export async function getServerSideProps(context: any) {
   const { params: { userId, bookId, storyId } } = context;
-  const { data } = await axios.get(
-    `http://localhost:3000/api/story/${storyId}`,
-  );
+  const { data } = await axios
+    .get(`http://localhost:3000/api/user/${userId}`);
   return {
     props: {
       userId, bookId, storyId, data,
