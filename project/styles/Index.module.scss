@@ -16,6 +16,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 4px;
+    padding-right: 16px;
 }
 
 .first__information {
@@ -39,31 +40,21 @@
 .information__story {
     margin-left: 4px;
     text-decoration: none;
-    color: $gray;
+    color: $black;
     font-size: 16px;
     font-weight: bold;
-}
-
-.information__story:hover {
-    color: $black;
 }
 
 .information__book {
     margin-left: 4px;
     text-decoration: none;
     font-size: 16px;
-    color: $gray;
-}
-
-.information__book:hover {
     color: $black;
 }
 
 .second {
     margin-left: 32px;
     margin-bottom: 16px;
-    text-align: justify;
-    text-justify: inter-word;
     font-size: 16px;
 }
 

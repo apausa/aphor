@@ -9,10 +9,6 @@ export default function Books({ data }: any) {
   const { _id, name, image } = data;
   return (
     <main>
-      <h1>
-        {name}
-        , books
-      </h1>
       <ul>
         {data.books.map((book: any) => (
           <Link href={`/${_id}/books/${book._id}`}>
