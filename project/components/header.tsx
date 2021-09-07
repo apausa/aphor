@@ -1,13 +1,12 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { useSession, signIn } from 'next-auth/client';
+import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Header({ data }: any) {
+export default function Header() {
   const [session, loading] = useSession();
   const { route } = useRouter();
   const userPage = () => (
@@ -31,7 +30,7 @@ export default function Header({ data }: any) {
   );
   const loggedIn = () => (
     <ul>
-      <li>Explore</li>
+      <li><Image src="http://placehold.it/32x32" width="32" height="32" /></li>
       <li>
         <Link href="/library">
           <a><Image src="http://placehold.it/32x32" width="32" height="32" /></a>
