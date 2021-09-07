@@ -8,7 +8,7 @@ import { getSession } from 'next-auth/client';
 export default function Books({ data }: any) {
   const { _id, name, image } = data;
   return (
-    <>
+    <main>
       <h1>
         {name}
         , books
@@ -28,7 +28,7 @@ export default function Books({ data }: any) {
           </Link>
         ))}
       </ul>
-    </>
+    </main>
   );
 }
 

@@ -9,7 +9,7 @@ export default function Book({ data, userId, bookId }: any) {
   const { stories, title } = books
     .filter((book: any) => book._id === bookId)[0];
   return (
-    <>
+    <main>
       <h1>
         {title}
         , Book
@@ -29,7 +29,7 @@ export default function Book({ data, userId, bookId }: any) {
           </Link>
         ))}
       </ul>
-    </>
+    </main>
   );
 }
 

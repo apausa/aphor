@@ -1,0 +1,13 @@
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    background-color: beige;
+    font-family:'Times New Roman', Times, serif;
+}
+
+main {
+    margin: 0vw 30.2vw 0vw 25vw;
+}

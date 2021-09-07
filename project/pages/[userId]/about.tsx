@@ -5,7 +5,7 @@ import { getSession } from 'next-auth/client';
 export default function About({ data }: any) {
   const { about, image, name } = data;
   return (
-    <>
+    <main>
       <h1>
         {name}
         , About
@@ -14,7 +14,7 @@ export default function About({ data }: any) {
         <li>{about}</li>
         <li>{image}</li>
       </ul>
-    </>
+    </main>
   );
 }
 

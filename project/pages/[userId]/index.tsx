@@ -7,7 +7,7 @@ import { getSession } from 'next-auth/client';
 export default function User({ data, userId }: any) {
   const { books, name, image } = data;
   return (
-    <>
+    <main>
       <h1>
         {name}
         , Dashboard
@@ -34,7 +34,7 @@ export default function User({ data, userId }: any) {
           </li>
         )))}
       </ul>
-    </>
+    </main>
   );
 }
 

@@ -10,7 +10,7 @@ export default function Story({ data, bookId, storyId }: any) {
   const { title, date, body } = stories
     .filter((story: any) => story._id === storyId)[0];
   return (
-    <>
+    <main>
       <h1>
         {title}
         , story
@@ -21,7 +21,7 @@ export default function Story({ data, bookId, storyId }: any) {
         <li>{date}</li>
         <li>{body}</li>
       </ul>
-    </>
+    </main>
   );
 }
 
