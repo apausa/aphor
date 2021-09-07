@@ -49,7 +49,11 @@ export default function Header() {
   return (
     <header>
       <ul>
-        <li><Link href="/"><a>Project</a></Link></li>
+        <li>
+          <Link href="/">
+            <a><Image src="http://placehold.it/32x32" width="32" height="32" /></a>
+          </Link>
+        </li>
         <li>
           {session && (route === '/') && dashboardPage()}
           {session && (route.startsWith('/[userId]')) && userPage()}
