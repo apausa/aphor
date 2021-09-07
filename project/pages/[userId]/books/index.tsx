@@ -4,26 +4,34 @@ import React from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import { getSession } from 'next-auth/client';
+import Image from 'next/image';
+import styles from '../../../styles/index.module.scss';
 
-export default function Books({ data }: any) {
-  const { _id, name, image } = data;
+export default function Books({ data, userId }: any) {
+  const { name, image } = data;
   return (
     <main>
-      <ul>
+      <ul className={styles.main}>
         {data.books.map((book: any) => (
-          <Link href={`/${_id}/books/${book._id}`}>
-            <li>
-              <ul>
-                <li>{image}</li>
-                <li>{name}</li>
-                <li>{book.date}</li>
-              </ul>
-              <ul>
-                <li>{book.image}</li>
-                <li>{book.title}</li>
-              </ul>
-            </li>
-          </Link>
+          <li>
+            <ul className={styles.story}>
+              <li>
+                <ul className={styles.first}>
+                  <li>
+                    <ul>
+                      <li><Image className={styles.information__image} src={image} width="16" height="16" /></li>
+                      <Link href={`/${userId}`}>
+                        <li className={styles.information__name}>
+                          {name}
+                          .
+                        </li>
+                      </Link>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
         ))}
       </ul>
     </main>
