@@ -4,7 +4,7 @@ import { Provider } from 'next-auth/client';
 import React from 'react';
 import Head from 'next/head';
 import Header from '../components/header';
-import '../styles/global.css';
+import '../styles/global.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -18,11 +18,13 @@ export default function Books({ data }: any) {
           <Link href={`/${_id}/books/${book._id}`}>
             <li>
               <ul>
-                <li>{name}</li>
                 <li>{image}</li>
+                <li>{name}</li>
+                <li>{book.date}</li>
+              </ul>
+              <ul>
                 <li>{book.image}</li>
                 <li>{book.title}</li>
-                <li>{book.date}</li>
               </ul>
             </li>
           </Link>

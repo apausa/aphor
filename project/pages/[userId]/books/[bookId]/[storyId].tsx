@@ -15,12 +15,17 @@ export default function Story({ data, bookId, storyId }: any) {
         {title}
         , story
       </h1>
+
       <ul>
-        <li>{name}</li>
         <li>{image}</li>
+        <li>{name}</li>
         <li>{date}</li>
+      </ul>
+      <ul>
+        <li>{title}</li>
         <li>{body}</li>
       </ul>
+
     </main>
   );
 }
