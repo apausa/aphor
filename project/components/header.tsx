@@ -19,7 +19,7 @@ export default function Header({ data }: any) {
   );
   const dashboardPage = () => (
     <ul>
-      <li>Dashboard</li>
+      <li><Link href="/"><a>Dashboard</a></Link></li>
     </ul>
   );
   const libraryPage = () => (
@@ -32,8 +32,16 @@ export default function Header({ data }: any) {
   const loggedIn = () => (
     <ul>
       <li>Explore</li>
-      <li><Link href="/library"><a>Library</a></Link></li>
-      <li><Link href={`/${session?.user.id}`}><a>Profile</a></Link></li>
+      <li>
+        <Link href="/library">
+          <a><Image src="http://placehold.it/32x32" width="32" height="32" /></a>
+        </Link>
+      </li>
+      <li>
+        <Link href={`/${session?.user.id}`}>
+          <a><Image src="http://placehold.it/32x32" width="32" height="32" /></a>
+        </Link>
+      </li>
     </ul>
   );
   const loggedOut = () => (
