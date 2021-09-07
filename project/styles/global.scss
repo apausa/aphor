@@ -6,10 +6,17 @@
     border: 0;
     font-size: 100%;
     font: inherit;
-    background-color: $beige;
     font-family:'Times New Roman', Times, serif;
+    background-color: $beige;
+}
+
+header { 
+    position: fixed;
+    width: 100vw;
+    top: 0px;
+    border-bottom: 1px solid $black;
 }
 
 main {
-    margin: 0vw 30.2vw 0vw 25vw;
+    margin: 65px 30.2vw 0vw 25vw;
 }

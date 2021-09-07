@@ -1,0 +1,58 @@
+@import 'colors';
+
+.ulMain {
+    display: flex; 
+    margin: 16px 12.5vw 8px 12.5vw;
+    font-size: 32px;
+    color: black;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.liMain {
+    background-color: transparent;
+    position: absolute;
+    margin-left: 12.5vw;
+}
+
+.ulUser {
+    list-style: none;
+    display: flex;
+}
+
+.aUserOther {
+    text-decoration: none;
+    color: $gray;
+}
+
+.liUserOther {
+    margin-left: 16px;
+}
+
+.aUserMain {
+    text-decoration: none;
+    color: $gray;
+    font-weight: bold;
+}
+
+.aUserOther:focus {
+    color: $black;
+}
+
+.aUserMain:focus {
+    color: $black;
+}
+
+.ulLoggedIn {
+    list-style: none;
+    display: flex;  
+}
+
+.liLoggedIn {
+    margin-right: 16px;
+}
+
+.image {
+    border-radius: 50%;
+}
+
