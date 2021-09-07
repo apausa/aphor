@@ -1,54 +1,55 @@
 @import 'colors';
 
-.ulMain {
+.main {
     display: flex; 
     margin: 16px 12.5vw 8px 12.5vw;
     font-size: 32px;
-    color: black;
+    color: $black;
     list-style: none;
     justify-content: space-between;
 }
 
-.liMain {
+.page {
     background-color: transparent;
     position: absolute;
     margin-left: 12.5vw;
 }
 
-.ulUser {
+.page__user {
     list-style: none;
     display: flex;
+    margin-left: 8px;
 }
 
-.aUserOther {
-    text-decoration: none;
-    color: $gray;
-}
-
-.liUserOther {
-    margin-left: 16px;
-}
-
-.aUserMain {
+.user__main {
     text-decoration: none;
     color: $gray;
     font-weight: bold;
 }
 
-.aUserOther:focus {
+.user__main:focus {
     color: $black;
 }
 
-.aUserMain:focus {
+.user__other {
+    margin-left: 16px;
+}
+
+.other__link {
+    text-decoration: none;
+    color: $gray;
+}
+
+.other__link:focus {
     color: $black;
 }
 
-.ulLoggedIn {
+.logged {
     list-style: none;
     display: flex;  
 }
 
-.liLoggedIn {
+.logged__component {
     margin-right: 16px;
 }
 

@@ -1,0 +1,73 @@
+@import 'colors';
+
+.main {
+    list-style: none;
+}
+
+.story {
+    list-style: none;
+    border-bottom: 1px solid black;
+    margin-top: 16px;
+}
+
+.first {
+    margin-left: 8px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.first__information {
+    list-style: none;
+    display: flex;
+}
+
+.first__date {
+    margin-left: 8px;
+}
+
+.information__image {
+    border-radius: 50%;
+}
+
+.information__name {
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+.information__story {
+    margin-left: 4px;
+    text-decoration: none;
+    color: $gray;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.information__story:hover {
+    color: $black;
+}
+
+.information__book {
+    margin-left: 4px;
+    text-decoration: none;
+    font-size: 16px;
+    color: $gray;
+}
+
+.information__book:hover {
+    color: $black;
+}
+
+.second {
+    margin-left: 32px;
+    margin-bottom: 16px;
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 16px;
+}
+
+.second__element {
+    text-decoration: none;
+    color: $black;
+}

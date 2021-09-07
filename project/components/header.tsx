@@ -11,22 +11,22 @@ export default function Header() {
   const [session, loading] = useSession();
   const { route } = useRouter();
   const userPage = () => (
-    <ul className={styles.ulUser}>
+    <ul className={styles.page__user}>
       <li>
         <Link href={`/${session?.user.id}`}>
-          <a className={styles.aUserMain}>{session?.user.name}</a>
+          <a className={styles.user__main}>{session?.user.name}</a>
         </Link>
 
       </li>
-      <li className={styles.liUserOther}>
+      <li className={styles.user__other}>
         <Link href={`/${session?.user.id}/books`}>
-          <a className={styles.aUserOther}>Books</a>
+          <a className={styles.other__link}>Books</a>
         </Link>
 
       </li>
-      <li className={styles.liUserOther}>
+      <li className={styles.user__other}>
         <Link href={`/${session?.user.id}/about`}>
-          <a className={styles.aUserOther}>About</a>
+          <a className={styles.other__link}>About</a>
         </Link>
 
       </li>
@@ -45,16 +45,16 @@ export default function Header() {
     </ul>
   );
   const loggedIn = () => (
-    <ul className={styles.ulLoggedIn}>
-      <li className={styles.liLoggedIn}><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></li>
-      <li className={styles.liLoggedIn}>
+    <ul className={styles.logged}>
+      <li className={styles.logged__component}><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></li>
+      <li className={styles.logged__component}>
         <Link href="/library">
           <a><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></a>
         </Link>
       </li>
       <li>
         <Link href={`/${session?.user.id}`}>
-          <a className={styles.aLoggedIn}><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></a>
+          <a><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></a>
         </Link>
       </li>
     </ul>
@@ -64,13 +64,13 @@ export default function Header() {
   );
   return (
     <header>
-      <ul className={styles.ulMain}>
+      <ul className={styles.main}>
         <li>
           <Link href="/">
             <a><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></a>
           </Link>
         </li>
-        <li className={styles.liMain}>
+        <li className={styles.page}>
           {session && (route === '/') && dashboardPage()}
           {session && (route.startsWith('/[userId]')) && userPage()}
           {session && (route === '/library') && libraryPage()}
