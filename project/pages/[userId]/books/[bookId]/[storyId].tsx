@@ -32,7 +32,7 @@ export async function getServerSideProps(context: any) {
     .get(`http://localhost:3000/api/user/${userId}`);
   return {
     props: {
-      session, bookId, storyId, data,
+      session, userId, bookId, storyId, data,
     },
   };
 }
