@@ -4,8 +4,9 @@ import Image from 'next/image';
 import axios from 'axios';
 import aboutStyles from '../../styles/About.module.scss';
 
-export default function About({ data, userId }: any) {
-  const { about, image, name } = data;
+export default function About({
+  about, image, name, userId,
+}: any) {
   return (
     <main>
       <ul className={aboutStyles.about}>
@@ -30,7 +31,11 @@ export default function About({ data, userId }: any) {
 
 export async function getServerSideProps(context: any) {
   const { params: { userId } } = context;
-  const { data } = await axios
+  const { data: { about, image, name } } = await axios
     .get(`http://localhost:3000/api/user/${userId}`);
-  return { props: { data, userId } };
+  return {
+    props: {
+      about, image, name, userId,
+    },
+  };
 }

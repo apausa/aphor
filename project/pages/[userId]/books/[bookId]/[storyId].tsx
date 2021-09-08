@@ -7,9 +7,8 @@ import Image from 'next/image';
 import styles from '../../../../styles/Index.module.scss';
 
 export default function Story({
-  data, userId, bookId, storyId,
+  books, name, image, userId, bookId, storyId,
 }: any) {
-  const { books, name, image } = data;
   const something = books
     .filter((book: any) => book._id === bookId)[0];
   const { title, date, body } = something.stories
@@ -61,11 +60,11 @@ export default function Story({
 
 export async function getServerSideProps(context: any) {
   const { params: { userId, bookId, storyId } } = context;
-  const { data } = await axios
+  const { data: { books, name, image } } = await axios
     .get(`http://localhost:3000/api/user/${userId}`);
   return {
     props: {
-      userId, bookId, storyId, data,
+      userId, bookId, storyId, books, name, image,
     },
   };
 }
