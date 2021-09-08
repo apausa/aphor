@@ -6,42 +6,42 @@ import axios from 'axios';
 import Link from 'next/link';
 import { getSession } from 'next-auth/client';
 import Image from 'next/image';
-import styles from '../../../styles/index.module.scss';
+import booksStyles from '../../../styles/index.module.scss';
 
 export default function Books({ data, userId }: any) {
   const { name, image, books } = data;
   return (
     <main>
-      <ul className={styles.main}>
+      <ul className={booksStyles.main}>
         {books.map((book: any) => (
           <li>
-            <ul className={styles.story}>
+            <ul className={booksStyles.story}>
               <li>
-                <ul className={styles.first}>
+                <ul className={booksStyles.first}>
                   <li>
-                    <ul className={styles.first__information}>
-                      <li><Image className={styles.information__image} src={image} width="18" height="18" /></li>
+                    <ul className={booksStyles.first__information}>
+                      <li><Image className={booksStyles.information__image} src={image} width="18" height="18" /></li>
                       <Link href={`/${userId}`}>
-                        <li className={styles.information__name}>
+                        <li className={booksStyles.information__name}>
                           {name}
                           .
                         </li>
                       </Link>
                       <Link href={`/${userId}/books/${book._id}`}>
-                        <li className={styles.information__book}>
+                        <li className={booksStyles.information__book}>
                           {book.title}
                         </li>
                       </Link>
                     </ul>
                   </li>
                   <Link href={`/${userId}/books/${book._id}/`}>
-                    <li className={styles.first__date}>{book.date}</li>
+                    <li className={booksStyles.first__date}>{book.date}</li>
                   </Link>
                 </ul>
               </li>
-              <li className={styles.second}>
+              <li className={booksStyles.second}>
                 <Link href={`/${userId}/books/${book._id}`}>
-                  <a className={styles.second__element}><Image src={book.image} width="180" height="180" /></a>
+                  <a className={booksStyles.second__element}><Image src={book.image} width="180" height="180" /></a>
                 </Link>
               </li>
             </ul>

@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 import type { AppProps } from 'next/app';
 import { Provider } from 'next-auth/client';
 import React from 'react';
 import Head from 'next/head';
 import Header from '../components/header';
+
 import '../styles/global.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
