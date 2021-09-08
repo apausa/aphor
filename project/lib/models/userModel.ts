@@ -9,7 +9,7 @@ const user = new Schema({
   email: String,
   image: { type: String, default: 'http://placehold.it/32x32' },
   books: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
-  authors: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  authors: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
 });
 
 // Checks whether the model has already been compiled.

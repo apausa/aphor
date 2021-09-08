@@ -19,6 +19,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             path: 'stories',
             model: 'Story',
           },
+        })
+        .populate({
+          path: 'authors',
+          select: ['_id', 'image', 'title', 'date'],
         });
       res.status(200);
       res.send(user);
