@@ -1,17 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 import type { AppProps } from 'next/app';
 import { Provider } from 'next-auth/client';
 import React from 'react';
 import Head from 'next/head';
 import Header from '../components/header';
-import '../styles/layout.css';
+
+import '../styles/global.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider session={pageProps.session}>
       <Head>
         <title>Project</title>
-        <meta name="descr iption" content="Description" />
+        <meta name="description" content="Description" />
         <meta property="og:title" content="Project" />
         <meta property="og:description" content="Description" />
         <meta property="og:image" content="" />

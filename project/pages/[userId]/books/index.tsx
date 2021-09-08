@@ -1,34 +1,54 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import { getSession } from 'next-auth/client';
+import Image from 'next/image';
+import styles from '../../../styles/Index.module.scss';
 
-export default function Books({ data }: any) {
-  const { _id, name, image } = data;
+export default function Books({ data, userId }: any) {
+  const { name, image, books } = data;
   return (
-    <>
-      <h1>
-        {name}
-        , books
-      </h1>
-      <ul>
-        {data.books.map((book: any) => (
-          <Link href={`/${_id}/books/${book._id}`}>
-            <li>
-              <ul>
-                <li>{name}</li>
-                <li>{image}</li>
-                <li>{book.image}</li>
-                <li>{book.title}</li>
-                <li>{book.date}</li>
-              </ul>
-            </li>
-          </Link>
+    <main>
+      <ul className={styles.main}>
+        {books.map((book: any) => (
+          <li>
+            <ul className={styles.story}>
+              <li>
+                <ul className={styles.first}>
+                  <li>
+                    <ul className={styles.first__information}>
+                      <li><Image className={styles.information__image} src={image} width="18" height="18" /></li>
+                      <Link href={`/${userId}`}>
+                        <li className={styles.information__name}>
+                          {name}
+                          .
+                        </li>
+                      </Link>
+                      <Link href={`/${userId}/books/${book._id}`}>
+                        <li className={styles.information__book}>
+                          {book.title}
+                        </li>
+                      </Link>
+                    </ul>
+                  </li>
+                  <Link href={`/${userId}/books/${book._id}/`}>
+                    <li className={styles.first__date}>{book.date}</li>
+                  </Link>
+                </ul>
+              </li>
+              <li className={styles.second}>
+                <Link href={`/${userId}/books/${book._id}`}>
+                  <a className={styles.second__element}><Image src={book.image} width="180" height="180" /></a>
+                </Link>
+              </li>
+            </ul>
+          </li>
         ))}
       </ul>
-    </>
+    </main>
   );
 }
 

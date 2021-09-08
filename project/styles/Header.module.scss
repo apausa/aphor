@@ -1,0 +1,69 @@
+@import 'colors';
+
+.main {
+    display: flex; 
+    margin: 16px 12.5vw 8px 12.5vw;
+    font-size: 32px;
+    color: $black;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.page {
+    background-color: transparent;
+    position: absolute;
+    margin-left: 12.5vw;
+}
+
+.page__user {
+    list-style: none;
+    display: flex;
+    margin-left: 8px;
+}
+
+.user__main {
+    text-decoration: none;
+    color: $gray;
+    font-weight: bold;
+}
+
+.user__main:focus {
+    color: $black;
+}
+
+.user__other {
+    margin-left: 16px;
+}
+
+.other__link {
+    text-decoration: none;
+    color: $gray;
+}
+
+.other__link:focus {
+    color: $black;
+}
+
+.logged {
+    list-style: none;
+    display: flex;  
+}
+
+.logged__component {
+    margin-right: 16px;
+}
+
+.image {
+    border-radius: 50%;
+}
+
+.page__dashboard {
+    list-style: none;
+    margin-left: 8px;
+}
+
+.dashboard__link {
+    text-decoration: none;
+    color: $black;
+    font-weight: bold;
+}
