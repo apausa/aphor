@@ -21,7 +21,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           },
         })
         .populate({
-          path: 'authors',
+          path: 'library',
           select: ['_id', 'image', 'title', 'date'],
         });
       res.status(200);
