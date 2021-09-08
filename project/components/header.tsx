@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
@@ -10,22 +11,22 @@ import styles from '../styles/Header.module.scss';
 export default function Header() {
   // Obtain params instead of session.
   const [session, loading] = useSession();
-  const { route, query } = useRouter();
+  const { route, query: { userId } } = useRouter();
   // eslint-disable-next-line no-console
   const userPage = () => (
     <ul className={styles.page__user}>
       <li>
-        <Link href={`/${query}`}>
+        <Link href={`/${userId}`}>
           <a className={styles.user__main}>Profile</a>
         </Link>
       </li>
       <li className={styles.user__other}>
-        <Link href={`/${query}/books`}>
+        <Link href={`/${userId}/books`}>
           <a className={styles.other__link}>Books</a>
         </Link>
       </li>
       <li className={styles.user__other}>
-        <Link href={`/${query}/about`}>
+        <Link href={`/${userId}/about`}>
           <a className={styles.other__link}>About</a>
         </Link>
 
@@ -42,10 +43,25 @@ export default function Header() {
     </ul>
   );
   const libraryPage = () => (
-    <ul>
-      <li><Link href="/library"><a>Library</a></Link></li>
-      <li><Link href="/library/books"><a>Books</a></Link></li>
-      <li><Link href="/library/authors"><a>Authors</a></Link></li>
+    <ul className={styles.page__user}>
+      <li>
+        <Link href="/library">
+          <a className={styles.user__main}>Library</a>
+        </Link>
+
+      </li>
+      <li className={styles.user__other}>
+        <Link href="/library/books">
+          <a className={styles.other__link}>Books</a>
+        </Link>
+
+      </li>
+      <li className={styles.user__other}>
+        <Link href="/library/authors">
+          <a className={styles.other__link}>Authors</a>
+        </Link>
+
+      </li>
     </ul>
   );
   const loggedIn = () => (
