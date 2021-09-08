@@ -16,13 +16,11 @@ export default function Header() {
         <Link href={`/${session?.user.id}`}>
           <a className={styles.user__main}>{session?.user.name}</a>
         </Link>
-
       </li>
       <li className={styles.user__other}>
         <Link href={`/${session?.user.id}/books`}>
           <a className={styles.other__link}>Books</a>
         </Link>
-
       </li>
       <li className={styles.user__other}>
         <Link href={`/${session?.user.id}/about`}>
@@ -33,8 +31,12 @@ export default function Header() {
     </ul>
   );
   const dashboardPage = () => (
-    <ul>
-      <li><Link href="/"><a>Dashboard</a></Link></li>
+    <ul className={styles.page__dashboard}>
+      <li>
+        <Link href="/">
+          <a className={styles.dashboard__link}>Dashboard</a>
+        </Link>
+      </li>
     </ul>
   );
   const libraryPage = () => (
