@@ -2,7 +2,6 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import axios from 'axios';
-import { getSession } from 'next-auth/client';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../../../../styles/Index.module.scss';
@@ -61,13 +60,12 @@ export default function Story({
 }
 
 export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
   const { params: { userId, bookId, storyId } } = context;
   const { data } = await axios
     .get(`http://localhost:3000/api/user/${userId}`);
   return {
     props: {
-      session, userId, bookId, storyId, data,
+      userId, bookId, storyId, data,
     },
   };
 }

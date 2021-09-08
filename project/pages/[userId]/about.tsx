@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios';
-import { getSession } from 'next-auth/client';
 import aboutStyles from '../../styles/About.module.scss';
 
 export default function About({ data, userId }: any) {
@@ -30,9 +29,8 @@ export default function About({ data, userId }: any) {
 }
 
 export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
   const { params: { userId } } = context;
   const { data } = await axios
     .get(`http://localhost:3000/api/user/${userId}`);
-  return { props: { session, data, userId } };
+  return { props: { data, userId } };
 }

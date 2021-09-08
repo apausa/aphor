@@ -4,7 +4,6 @@
 import React from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import { getSession } from 'next-auth/client';
 import Image from 'next/image';
 import styles from '../../../styles/Index.module.scss';
 
@@ -53,9 +52,8 @@ export default function Books({ data, userId }: any) {
 }
 
 export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
   const { params: { userId } } = context;
   const { data } = await axios
     .get(`http://localhost:3000/api/user/${userId}`);
-  return { props: { session, userId, data } };
+  return { props: { userId, data } };
 }
