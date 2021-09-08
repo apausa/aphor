@@ -5,7 +5,7 @@ import axios from 'axios';
 import { getSession } from 'next-auth/client';
 import Link from 'next/link';
 import Image from 'next/image';
-import storyStyles from '../../../../styles/index.module.scss';
+import styles from '../../../../styles/Index.module.scss';
 
 export default function Story({
   data, userId, bookId, storyId,
@@ -17,25 +17,25 @@ export default function Story({
     .filter((story: any) => story._id === storyId)[0];
   return (
     <main>
-      <ul className={storyStyles.story}>
+      <ul className={styles.story}>
         <li>
-          <ul className={storyStyles.first}>
+          <ul className={styles.first}>
             <li>
-              <ul className={storyStyles.first__information}>
-                <li><Image className={storyStyles.information__image} src={image} width="18" height="18" /></li>
+              <ul className={styles.first__information}>
+                <li><Image className={styles.information__image} src={image} width="18" height="18" /></li>
                 <Link href={`/${userId}`}>
-                  <li className={storyStyles.information__name}>
+                  <li className={styles.information__name}>
                     {name}
                     .
                   </li>
                 </Link>
                 <Link href={`/${userId}/books/${bookId}/${storyId}`}>
-                  <li className={storyStyles.information__story}>
+                  <li className={styles.information__story}>
                     {title}
                   </li>
                 </Link>
                 <Link href={`/${userId}/books/${bookId}`}>
-                  <li className={storyStyles.information__book}>
+                  <li className={styles.information__book}>
                     from,
                     {' '}
                     {something.title}
@@ -44,13 +44,13 @@ export default function Story({
               </ul>
             </li>
             <Link href={`/${userId}/books/${bookId}/${storyId}`}>
-              <li className={storyStyles.first__date}>{date}</li>
+              <li className={styles.first__date}>{date}</li>
             </Link>
           </ul>
         </li>
-        <li className={storyStyles.second}>
+        <li className={styles.second}>
           <Link href={`/${userId}/books/${bookId}/${storyId}`}>
-            <a className={storyStyles.second__element}>
+            <a className={styles.second__element}>
               {body}
             </a>
           </Link>

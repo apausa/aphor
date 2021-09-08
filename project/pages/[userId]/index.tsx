@@ -5,34 +5,34 @@ import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios';
 import { getSession } from 'next-auth/client';
-import userStyles from '../../styles/Index.module.scss';
+import styles from '../../styles/Index.module.scss';
 
 export default function User({ data, userId }: any) {
   const { books, name, image } = data;
   return (
     <main>
-      <ul className={userStyles.main}>
+      <ul className={styles.main}>
         {books.map((book: any) => book.stories.map((story: any) => (
           <li>
-            <ul className={userStyles.story}>
+            <ul className={styles.story}>
               <li>
-                <ul className={userStyles.first}>
+                <ul className={styles.first}>
                   <li>
-                    <ul className={userStyles.first__information}>
-                      <li><Image className={userStyles.information__image} src={image} width="18" height="18" /></li>
+                    <ul className={styles.first__information}>
+                      <li><Image className={styles.information__image} src={image} width="18" height="18" /></li>
                       <Link href={`/${userId}`}>
-                        <li className={userStyles.information__name}>
+                        <li className={styles.information__name}>
                           {name}
                           .
                         </li>
                       </Link>
                       <Link href={`/${userId}/books/${book._id}/${story._id}`}>
-                        <li className={userStyles.information__story}>
+                        <li className={styles.information__story}>
                           {story.title}
                         </li>
                       </Link>
                       <Link href={`/${userId}/books/${book._id}`}>
-                        <li className={userStyles.information__book}>
+                        <li className={styles.information__book}>
                           from,
                           {' '}
                           {book.title}
@@ -41,13 +41,13 @@ export default function User({ data, userId }: any) {
                     </ul>
                   </li>
                   <Link href={`/${userId}/books/${book._id}/${story._id}`}>
-                    <li className={userStyles.first__date}>{story.date}</li>
+                    <li className={styles.first__date}>{story.date}</li>
                   </Link>
                 </ul>
               </li>
-              <li className={userStyles.second}>
+              <li className={styles.second}>
                 <Link href={`/${userId}/books/${book._id}/${story._id}`}>
-                  <a className={userStyles.second__element}>
+                  <a className={styles.second__element}>
                     {story.body}
                   </a>
                 </Link>
