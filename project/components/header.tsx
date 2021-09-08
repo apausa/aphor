@@ -8,22 +8,24 @@ import Link from 'next/link';
 import styles from '../styles/Header.module.scss';
 
 export default function Header() {
+  // Obtain params instead of session.
   const [session, loading] = useSession();
-  const { route } = useRouter();
+  const { route, query } = useRouter();
+  // eslint-disable-next-line no-console
   const userPage = () => (
     <ul className={styles.page__user}>
       <li>
-        <Link href={`/${session?.user.id}`}>
-          <a className={styles.user__main}>{session?.user.name}</a>
+        <Link href={`/${query}`}>
+          <a className={styles.user__main}>Profile</a>
         </Link>
       </li>
       <li className={styles.user__other}>
-        <Link href={`/${session?.user.id}/books`}>
+        <Link href={`/${query}/books`}>
           <a className={styles.other__link}>Books</a>
         </Link>
       </li>
       <li className={styles.user__other}>
-        <Link href={`/${session?.user.id}/about`}>
+        <Link href={`/${query}/about`}>
           <a className={styles.other__link}>About</a>
         </Link>
 
@@ -75,7 +77,7 @@ export default function Header() {
         <li className={styles.page}>
           {session && (route === '/') && dashboardPage()}
           {session && (route.startsWith('/[userId]')) && userPage()}
-          {session && (route === '/library') && libraryPage()}
+          {session && (route.startsWith('/library')) && libraryPage()}
         </li>
         <li>
           {session && loggedIn()}
