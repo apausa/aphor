@@ -4,14 +4,17 @@
     list-style: none;
 }
 
+
+.story {
+    list-style: none;
+    border-bottom: 1px solid black;
+}
+
 .first {
-    margin-top: 16px;
-    margin-left: 8px;
+    margin: 16px 8px 4px 8px;
     list-style: none;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 4px;
-    padding-right: 8px;
 }
 
 .first__information {
@@ -21,6 +24,7 @@
 
 .first__date {
     margin-left: 8px;
+    font-size: 18px;
 }
 
 .information__image {
@@ -29,33 +33,31 @@
 
 .information__name {
     margin-left: 8px;
+    font-size: 18px;
     font-weight: bold;
 }
 
 .information__story {
     margin-left: 4px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
 }
 
 .information__book {
     margin-left: 4px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .second {
-    margin-left: 32px;
-    margin-bottom: 16px;
-    font-size: 16px;
-    padding-right: 8px;
-    border-bottom: 1px solid black;
+    margin: 0px 8px 16px 32px;
+    font-size: 18px;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .second__element {
     text-decoration: none;
-    text-align: justify;
-    text-justify: inter-word;
     color: $black;
 }

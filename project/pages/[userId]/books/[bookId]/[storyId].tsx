@@ -22,7 +22,7 @@ export default function Story({
           <ul className={styles.first}>
             <li>
               <ul className={styles.first__information}>
-                <li><Image className={styles.information__image} src={image} width="16" height="16" /></li>
+                <li><Image className={styles.information__image} src={image} width="18" height="18" /></li>
                 <Link href={`/${userId}`}>
                   <li className={styles.information__name}>
                     {name}
