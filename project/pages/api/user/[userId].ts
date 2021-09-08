@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import connect from '../../../lib/configure/database';
@@ -19,6 +18,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             path: 'stories',
             model: 'Story',
           },
+        })
+        .populate({
+          path: 'authors',
+          select: ['_id', 'name', 'image'],
         });
       res.status(200);
       res.send(user);

@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function Library() {
-  return <h1>Library</h1>;
+  return <h1>Library, on development...</h1>;
 }
