@@ -1,16 +1,19 @@
+/* eslint-disable no-console */
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connect from '../../../lib/configure/database';
 import request from '../../../utils/methods';
-import Story from '../../../lib/models/storyModel';
+import User from '../../../lib/models/userModel';
 import handle from '../../../utils/error';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  // Creates a story.
   if (req.method === request.POST) {
+    const { body: { value } } = req;
     try {
-      const createdStory = await Story.create({ title: req.body });
+      const user = await User.find({
+        name: { $regex: value, $options: 'i' },
+      });
       res.status(200);
-      res.send(createdStory);
+      res.send(user);
     } catch (error) { handle(error, res); }
   }
 };
