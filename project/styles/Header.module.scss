@@ -23,12 +23,8 @@
 
 .user__main {
     text-decoration: none;
-    color: $gray;
-    font-weight: bold;
-}
-
-.user__main:focus {
     color: $black;
+    font-weight: bold;
 }
 
 .user__other {
