@@ -26,18 +26,20 @@ export default function Library({ users }: any) {
                           .
                         </li>
                       </Link>
+                      <Link href={`/${user._id}/books/${book._id}`}>
+                        <li className={styles.information__book}>
+                          {book.title}
+                          {' '}
+                          /
+                        </li>
+                      </Link>
                       <Link href={`/${user._id}/books/${book._id}/${story._id}`}>
                         <li className={styles.information__story}>
                           {story.title}
+                          .
                         </li>
                       </Link>
-                      <Link href={`/${user._id}/books/${book._id}`}>
-                        <li className={styles.information__book}>
-                          from,
-                          {' '}
-                          {book.title}
-                        </li>
-                      </Link>
+
                     </ul>
                   </li>
                   <Link href={`/${user._id}/books/${book._id}/${story._id}`}>

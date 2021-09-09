@@ -20,15 +20,17 @@ export default function Books({ users }: any) {
                   <li>
                     <ul className={styles.first__information}>
                       <li><Image className={styles.information__image} src={user.image} width="18" height="18" /></li>
+                      <Link href={`/${user._id}/books/${book._id}`}>
+                        <li className={styles.information__book}>
+                          {book.title}
+                          {' '}
+                          /
+                        </li>
+                      </Link>
                       <Link href={`/${user._id}`}>
                         <li className={styles.information__name}>
                           {user.name}
                           .
-                        </li>
-                      </Link>
-                      <Link href={`/${user._id}/books/${book._id}`}>
-                        <li className={styles.information__book}>
-                          {book.title}
                         </li>
                       </Link>
                     </ul>

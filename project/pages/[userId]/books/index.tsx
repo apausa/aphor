@@ -30,6 +30,7 @@ export default function Books({
                       <Link href={`/${userId}/books/${book._id}`}>
                         <li className={styles.information__book}>
                           {book.title}
+                          .
                         </li>
                       </Link>
                     </ul>

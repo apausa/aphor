@@ -27,16 +27,17 @@ export default function Story({
                     .
                   </li>
                 </Link>
+                <Link href={`/${userId}/books/${bookId}`}>
+                  <li className={styles.information__book}>
+                    {something.title}
+                    {' '}
+                    /
+                  </li>
+                </Link>
                 <Link href={`/${userId}/books/${bookId}/${storyId}`}>
                   <li className={styles.information__story}>
                     {title}
-                  </li>
-                </Link>
-                <Link href={`/${userId}/books/${bookId}`}>
-                  <li className={styles.information__book}>
-                    from,
-                    {' '}
-                    {something.title}
+                    .
                   </li>
                 </Link>
               </ul>
