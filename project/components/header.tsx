@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
@@ -10,9 +11,9 @@ import styles from '../styles/Header.module.scss';
 
 export default function Header() {
   const [session, loading] = useSession();
-  const handle = ({ which, target: { value } }: any) => {
+  const handle = async ({ which, target: { value } }: any) => {
     if (which === 13 && value) {
-      const manin = axios
+      const manin = await axios
         .post('http://localhost:3000/api/search', { value });
     }
   };

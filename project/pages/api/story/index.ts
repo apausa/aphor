@@ -7,8 +7,9 @@ import handle from '../../../utils/error';
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   // Creates a story.
   if (req.method === request.POST) {
+    const { body } = req;
     try {
-      const createdStory = await Story.create({ title: req.body });
+      const createdStory = await Story.create(body);
       res.status(200);
       res.send(createdStory);
     } catch (error) { handle(error, res); }
