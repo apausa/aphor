@@ -6,7 +6,6 @@ import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
-import axios from 'axios';
 import styles from '../styles/Header.module.scss';
 
 export default function Header() {

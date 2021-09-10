@@ -6,13 +6,17 @@ import handle from '../../../utils/error';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === request.POST) {
-    const { body: { value } } = req;
+    const { body: { query } } = req;
     try {
       const user = await User.find({
-        name: { $regex: value, $options: 'i' },
+        $or: [
+          { fullName: { $regex: query, $options: ‘i’ } },
+          { userName: { $regex: query, $options: ‘i’ } }
+        ],
       });
       res.status(200);
       res.send(user);
+
     } catch (error) { handle(error, res); }
   }
 };
