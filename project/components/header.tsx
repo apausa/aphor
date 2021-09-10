@@ -8,14 +8,13 @@ import Link from 'next/link';
 import styles from '../styles/Header.module.scss';
 
 export default function Header() {
-  const SEARCH = 'http://localhost:3000/search/';
   const [session, loading] = useSession();
-  const handle = async ({ which, target: { value } }: any) => {
-    if (which === 13 && value) {
-      window.location.href = SEARCH + value;
-    }
-  };
   const { route, query: { userId } } = useRouter();
+  const router = useRouter();
+  const handle = async ({ which, target: { value } }: any) => {
+    if (which === 13 && value) router.push(`/search/${value}`);
+  };
+
   const userPage = () => (
     <ul className={styles.page__user}>
       <li>
