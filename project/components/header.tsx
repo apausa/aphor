@@ -71,7 +71,7 @@ export default function Header() {
         <input
           type="search"
           name="q"
-          placeholder="search"
+          placeholder="Search"
           onKeyPress={handle}
         />
       </li>
