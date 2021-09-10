@@ -25,16 +25,25 @@ export default function Dashboard({
             />
           </a>
         </Link>
-        <form action="http://localhost:3000/api/story" method="POST">
-          <textarea name="story" placeholder="Write your story." />
+        <form name="write" id="write">
+          <textarea name="body" placeholder="Write your story." />
           <fieldset>
-            <input list="book" name="book" placeholder="Select a book" />
+            <input list="book" name="bookId" placeholder="Select a book" />
             <datalist id="book">
               {books.map((book: any) => (
                 <option value={book._id}>{book.title}</option>
               ))}
             </datalist>
-            <input type="submit" value="Publish." />
+            <button
+              form="write"
+              type="submit"
+              formAction="http://localhost:3000/api/story"
+              formMethod="POST"
+              name="userId"
+              value={id}
+            >
+              Hola
+            </button>
           </fieldset>
         </form>
       </div>
