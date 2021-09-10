@@ -10,13 +10,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const user = await User.find({
         $or: [
-          { fullName: { $regex: query, $options: ‘i’ } },
-          { userName: { $regex: query, $options: ‘i’ } }
+          { fullName: { $regex: query, $options: 'i' } },
+          { userName: { $regex: query, $options: 'i' } },
         ],
       });
       res.status(200);
       res.send(user);
-
     } catch (error) { handle(error, res); }
   }
 };
