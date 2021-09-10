@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react';
+import React from 'react';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -103,7 +103,7 @@ export default function Header() {
           <a>
             <Image
               className={styles.image}
-              src="http://placehold.it/32x32"
+              src={`${session?.user.image}`}
               width="32"
               height="32"
             />

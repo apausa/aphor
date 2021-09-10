@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
@@ -8,9 +10,34 @@ import Image from 'next/image';
 import redirect from '../utils/redirect';
 import styles from '../styles/Index.module.scss';
 
-export default function Dashboard({ users }: any) {
+export default function Dashboard({
+  id, users, books, image,
+}: any) {
   return (
     <main>
+      <div>
+        <Link href={`/${id}`}>
+          <a>
+            <Image
+              src={image}
+              width="16"
+              height="16"
+            />
+          </a>
+        </Link>
+        <form action="http://localhost:3000/api/story" method="POST">
+          <textarea name="story" placeholder="Write your story." />
+          <fieldset>
+            <input list="book" name="book" placeholder="Select a book" />
+            <datalist id="book">
+              {books.map((book: any) => (
+                <option value={book._id}>{book.title}</option>
+              ))}
+            </datalist>
+            <input type="submit" value="Publish." />
+          </fieldset>
+        </form>
+      </div>
       <ul className={styles.main}>
         {users.map((user: any) => user.books.map((book: any) => book.stories.map((story: any) => (
           <li>
@@ -19,7 +46,14 @@ export default function Dashboard({ users }: any) {
                 <ul className={styles.first}>
                   <li>
                     <ul className={styles.first__information}>
-                      <li><Image className={styles.information__image} src={user.image} width="18" height="18" /></li>
+                      <li>
+                        <Image
+                          className={styles.information__image}
+                          src={user.image}
+                          width="18"
+                          height="18"
+                        />
+                      </li>
                       <Link href={`/${user._id}`}>
                         <li className={styles.information__name}>
                           {user.fullName}
@@ -68,8 +102,9 @@ export async function getServerSideProps(context: any) {
   // Retrieve logged user.
   const { user: { id } } = session;
   // Retrieve followed authors.
-  const { data: { authors } } = await axios
+  const { data: { authors, books, image } } = await axios
     .get(`http://localhost:3000/api/user/${id}`);
+
   const promises = authors.map(({ _id }: any) => axios
     .get(`http://localhost:3000/api/user/${_id}`));
   const keep: any = await Promise.allSettled(promises);
@@ -82,5 +117,9 @@ export async function getServerSideProps(context: any) {
   }: any) => ({
     _id, image, books, fullName,
   }));
-  return { props: { users } };
+  return {
+    props: {
+      id, users, books, image,
+    },
+  };
 }
