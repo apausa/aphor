@@ -34,6 +34,16 @@ export default function Header() {
       </li>
     </ul>
   );
+  const notFoundPage = () => (
+    <ul className={styles.page__dashboard}>
+      <li>404, not found.</li>
+    </ul>
+  );
+  const searchPage = () => (
+    <ul className={styles.page__dashboard}>
+      <li>Search.</li>
+    </ul>
+  );
   const dashboardPage = () => (
     <ul className={styles.page__dashboard}>
       <li>
@@ -69,6 +79,7 @@ export default function Header() {
     <ul className={styles.logged}>
       <li className={styles.logged__component}>
         <input
+          className={styles.component__input}
           type="search"
           name="q"
           placeholder="Search"
@@ -120,6 +131,8 @@ export default function Header() {
           </Link>
         </li>
         <li className={styles.page}>
+          {session && (route.startsWith('/search')) && searchPage()}
+          {session && (route === '/404') && notFoundPage()}
           {session && (route === '/') && dashboardPage()}
           {session && (route.startsWith('/[userId]')) && userPage()}
           {session && (route.startsWith('/library')) && libraryPage()}
