@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connect from '../../../lib/configure/database';
 import request from '../../../utils/methods';
@@ -18,10 +19,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
   // Updates a book.
   if (req.method === request.PUT) {
-    const { query: { bookId }, body } = req;
+    const { body: { data } } = req;
     try {
       const updatedBook = await Book.findByIdAndUpdate(
-        bookId, body, { new: true },
+        data._id, data, { new: true },
       );
       res.status(200);
       res.send(updatedBook);

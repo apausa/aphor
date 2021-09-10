@@ -31,7 +31,11 @@ export default function Dashboard({
             <input list="book" name="bookId" placeholder="Select a book" />
             <datalist id="book">
               {books.map((book: any) => (
-                <option value={book._id}>{book.title}</option>
+                <option
+                  value={book._id}
+                >
+                  {book.title}
+                </option>
               ))}
             </datalist>
             <button
