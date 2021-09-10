@@ -10,11 +10,11 @@ import axios from 'axios';
 import styles from '../styles/Header.module.scss';
 
 export default function Header() {
+  const SEARCH = 'http://localhost:3000/search/';
   const [session, loading] = useSession();
   const handle = async ({ which, target: { value } }: any) => {
     if (which === 13 && value) {
-      const manin = await axios
-        .post('http://localhost:3000/api/search', { value });
+      window.location.href = SEARCH + value;
     }
   };
   const { route, query: { userId } } = useRouter();
@@ -80,12 +80,26 @@ export default function Header() {
       </li>
       <li className={styles.logged__component}>
         <Link href="/library">
-          <a><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></a>
+          <a>
+            <Image
+              className={styles.image}
+              src="http://placehold.it/32x32"
+              width="32"
+              height="32"
+            />
+          </a>
         </Link>
       </li>
       <li>
         <Link href={`/${session?.user.id}`}>
-          <a><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></a>
+          <a>
+            <Image
+              className={styles.image}
+              src="http://placehold.it/32x32"
+              width="32"
+              height="32"
+            />
+          </a>
         </Link>
       </li>
     </ul>
@@ -98,7 +112,14 @@ export default function Header() {
       <ul className={styles.main}>
         <li>
           <Link href="/">
-            <a><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></a>
+            <a>
+              <Image
+                className={styles.image}
+                src="http://placehold.it/32x32"
+                width="32"
+                height="32"
+              />
+            </a>
           </Link>
         </li>
         <li className={styles.page}>
