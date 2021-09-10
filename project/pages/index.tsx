@@ -43,6 +43,7 @@ export default function Dashboard({
               type="submit"
               formAction="http://localhost:3000/api/story"
               formMethod="POST"
+              formTarget="_blank"
               name="userId"
               value={id}
             >
