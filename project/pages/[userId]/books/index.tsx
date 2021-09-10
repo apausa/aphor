@@ -40,11 +40,6 @@ export default function Books({
                   </Link>
                 </ul>
               </li>
-              <li className={styles.second}>
-                <Link href={`/${userId}/books/${book._id}`}>
-                  <a className={styles.second__element}><Image src={book.image} width="180" height="180" /></a>
-                </Link>
-              </li>
             </ul>
           </li>
         ))}
