@@ -7,7 +7,7 @@ import axios from 'axios';
 import styles from '../../styles/Index.module.scss';
 
 export default function User({
-  books, name, image, userId,
+  books, fullName, image, userId,
 }: any) {
   return (
     <main>
@@ -22,7 +22,7 @@ export default function User({
                       <li><Image className={styles.information__image} src={image} width="18" height="18" /></li>
                       <Link href={`/${userId}`}>
                         <li className={styles.information__name}>
-                          {name}
+                          {fullName}
                           .
                         </li>
                       </Link>
@@ -64,11 +64,11 @@ export default function User({
 
 export async function getServerSideProps(context: any) {
   const { params: { userId } } = context;
-  const { data: { books, name, image } } = await axios
+  const { data: { books, fullName, image } } = await axios
     .get(`http://localhost:3000/api/user/${userId}`);
   return {
     props: {
-      books, name, image, userId,
+      books, fullName, image, userId,
     },
   };
 }

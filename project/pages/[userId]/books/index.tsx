@@ -8,7 +8,7 @@ import Image from 'next/image';
 import styles from '../../../styles/Index.module.scss';
 
 export default function Books({
-  name, image, books, userId,
+  fullName, image, books, userId,
 }: any) {
   return (
     <main>
@@ -23,7 +23,7 @@ export default function Books({
                       <li><Image className={styles.information__image} src={image} width="18" height="18" /></li>
                       <Link href={`/${userId}`}>
                         <li className={styles.information__name}>
-                          {name}
+                          {fullName}
                           .
                         </li>
                       </Link>
@@ -55,11 +55,11 @@ export default function Books({
 
 export async function getServerSideProps(context: any) {
   const { params: { userId } } = context;
-  const { data: { name, image, books } } = await axios
+  const { data: { fullName, image, books } } = await axios
     .get(`http://localhost:3000/api/user/${userId}`);
   return {
     props: {
-      userId, name, image, books,
+      userId, fullName, image, books,
     },
   };
 }

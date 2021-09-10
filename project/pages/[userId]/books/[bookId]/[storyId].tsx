@@ -7,7 +7,7 @@ import Image from 'next/image';
 import styles from '../../../../styles/Index.module.scss';
 
 export default function Story({
-  books, name, image, userId, bookId, storyId,
+  books, fullName, image, userId, bookId, storyId,
 }: any) {
   const something = books
     .filter((book: any) => book._id === bookId)[0];
@@ -23,7 +23,7 @@ export default function Story({
                 <li><Image className={styles.information__image} src={image} width="18" height="18" /></li>
                 <Link href={`/${userId}`}>
                   <li className={styles.information__name}>
-                    {name}
+                    {fullName}
                     .
                   </li>
                 </Link>
@@ -61,11 +61,11 @@ export default function Story({
 
 export async function getServerSideProps(context: any) {
   const { params: { userId, bookId, storyId } } = context;
-  const { data: { books, name, image } } = await axios
+  const { data: { books, fullName, image } } = await axios
     .get(`http://localhost:3000/api/user/${userId}`);
   return {
     props: {
-      userId, bookId, storyId, books, name, image,
+      userId, bookId, storyId, books, fullName, image,
     },
   };
 }

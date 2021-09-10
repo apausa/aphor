@@ -22,7 +22,7 @@ export default function Library({ users }: any) {
                       <li><Image className={styles.information__image} src={user.image} width="18" height="18" /></li>
                       <Link href={`/${user._id}`}>
                         <li className={styles.information__name}>
-                          {user.name}
+                          {user.fullName}
                           .
                         </li>
                       </Link>
@@ -77,11 +77,11 @@ export async function getServerSideProps(context: any) {
   const users = keep.map(({
     value: {
       data: {
-        _id, image, books, name,
+        _id, image, books, fullName,
       },
     },
   }: any) => ({
-    _id, image, books, name,
+    _id, image, books, fullName,
   }));
   return { props: { users } };
 }

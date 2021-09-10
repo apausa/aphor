@@ -17,7 +17,7 @@ export default function Authors({ authors }: any) {
               <li><Image className={styles.author__image} src={author.image} width="18" height="18" /></li>
               <Link href={`/${author._id}`}>
                 <li className={styles.author__name}>
-                  {author.name}
+                  {author.fullName}
                   .
                 </li>
               </Link>
