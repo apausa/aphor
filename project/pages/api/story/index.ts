@@ -22,7 +22,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const newStoryId = createdStory._id.toString();
       const { data } = await axios // Get the book.
         .get(`http://localhost:3000/api/book/${bookId}`);
-      if (data) { // Update book.
+      console.log('MAKE THE CONDITION CORRECT', data);
+      if (!data) { // Update book.
         data.stories.unshift(newStoryId);
         await axios
           .put(`http://localhost:3000/api/book/${bookId}`, { data });
