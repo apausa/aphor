@@ -41,6 +41,7 @@ export default function Dashboard({
         <Link href={`/${id}`}>
           <a>
             <Image
+              className={write.image}
               src={image}
               width="18"
               height="18"

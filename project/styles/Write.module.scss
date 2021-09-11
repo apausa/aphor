@@ -18,7 +18,7 @@
 }
 
 .story__title {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     font-size: 18px;
     color: rgb(0, 0, 255);
     font-weight: bold;
@@ -31,6 +31,7 @@
 .story__body {
     font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
     font-size: 16px;
+    resize: none;
 }
 
 .story__body:focus {
@@ -46,14 +47,14 @@
     border: 1px solid $gray;
     border-radius: 8px;
     height: 28px;
-    padding-left: 8px;
-    font-size: 16px;
-    font-weight: bold;
+    padding-left: 6px;
+    font-size: 18px;
+    border: 1px solid $gray; 
 }
 
 .book__title:focus {
     outline: none;
-    border: 2px solid rgb(0, 0, 255);
+    border: 1px solid rgb(0, 0, 255);
 }
 
 .book__button {
@@ -64,4 +65,8 @@
     font-size: 18px;
     font-weight: bold;
     background-color: rgb(0, 0, 255);
+}
+
+.image {
+    border-radius: 50%;
 }

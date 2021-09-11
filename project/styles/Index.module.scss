@@ -42,6 +42,8 @@
     margin-left: 4px;
     text-decoration: none;
     font-size: 18px;
+    color: rgb(0, 0, 255);
+    font-weight: bold;
 }
 
 .information__book {
@@ -60,9 +62,5 @@
 .second__element {
     text-decoration: none;
     color: $black;
-}
-
-.display {
-    display: flex;
-    border: 1px solid black
+    font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 }
