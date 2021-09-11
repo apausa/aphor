@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-underscore-dangle */
@@ -9,6 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import redirect from '../utils/redirect';
 import styles from '../styles/Index.module.scss';
+import write from '../styles/Write.module.scss';
 import api from '../utils/apiRoutes';
 
 export default function Dashboard({
@@ -37,30 +37,39 @@ export default function Dashboard({
   };
   return (
     <main>
-      <div>
+      <div className={write.write}>
         <Link href={`/${id}`}>
-          <a><Image src={image} width="16" height="16" /></a>
+          <a>
+            <Image
+              src={image}
+              width="18"
+              height="18"
+            />
+          </a>
         </Link>
-        <form>
-          <fieldset>
+        <form className={write.write__form}>
+          <fieldset className={write.form__story}>
             <input
               type="text"
               value={storyTitle}
+              className={write.story__title}
               onChange={handleStoryTitle}
-              placeholder="Story title."
+              placeholder="Title"
               required
             />
             <textarea
               value={storyBody}
+              className={write.story__body}
               onChange={handleStoryBody}
-              placeholder="Story body."
+              placeholder="Write your story!"
               required
             />
           </fieldset>
-          <fieldset>
+          <fieldset className={write.form__book}>
             <input
               list="bookId"
               value={bookId}
+              className={write.book__title}
               onChange={handleBookId}
               placeholder="Book title."
               required
@@ -70,7 +79,7 @@ export default function Dashboard({
                 <option value={book._id}>{book.title}</option>
               ))}
             </datalist>
-            <button onClick={onSubmit} type="button">Publish.</button>
+            <button onClick={onSubmit} className={write.book__button} type="button">Publish.</button>
           </fieldset>
         </form>
       </div>
