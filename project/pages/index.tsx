@@ -1,6 +1,4 @@
-/* eslint-disable no-alert */
 /* eslint-disable no-console */
-/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-underscore-dangle */
@@ -12,19 +10,33 @@ import Image from 'next/image';
 import redirect from '../utils/redirect';
 import styles from '../styles/Index.module.scss';
 
+const API_STORY = 'http://localhost:3000/api/story/';
+const API_USER = 'http://localhost:3000/api/user/';
+const API_BOOK = 'http://localhost:3000/api/book/';
+
 export default function Dashboard({
   id, users, books, image,
 }: any) {
   const [storyTitle, setStoryTitle] = useState('');
   const [storyBody, setstoryBody] = useState('');
-  const [bookTitle, setbookTitle] = useState('');
+  const [bookId, setBookId] = useState('');
   const handleStoryTitle = (event: any) => setStoryTitle(event.target.value);
   const handleStoryBody = (event: any) => setstoryBody(event.target.value);
-  const handleBookTitle = (event: any) => setbookTitle(event.target.value);
+  const handleBookId = (event: any) => setBookId(event.target.value);
   const onSubmit = async () => {
-    const createdStory = await axios
-      .post('http://localhost:3000/api/story', { storyTitle, storyBody });
-    console.log(createdStory);
+    const createdStory = await axios.post(API_STORY,
+      { storyTitle, storyBody });
+    const { data } = await axios.get(API_BOOK + bookId);
+    if (data) {
+      data.stories.unshift(createdStory.data._id);
+      await axios.put(API_BOOK + bookId, { data });
+    } else {
+      const createdBook = await axios.post(API_BOOK,
+        { title: bookId, stories: [createdStory.data._id] });
+      const { data } = await axios.get(API_USER + id);
+      data.books.unshift(createdBook.data._id);
+      await axios.put(API_USER + id, { data });
+    }
   };
   return (
     <main>
@@ -50,13 +62,13 @@ export default function Dashboard({
           </fieldset>
           <fieldset>
             <input
-              list="bookTitle"
-              value={bookTitle}
-              onChange={handleBookTitle}
+              list="bookId"
+              value={bookId}
+              onChange={handleBookId}
               placeholder="Book title."
               required
             />
-            <datalist id="bookTitle">
+            <datalist id="bookId">
               {books.map((book: any) => (
                 <option value={book._id}>{book.title}</option>
               ))}
@@ -150,3 +162,15 @@ export async function getServerSideProps(context: any) {
     },
   };
 }
+
+/*
+
+      console.log('THE PROBLEM IS IN THE CONDITION, FIND VALUE OF DATA', data);
+      if (data) { // Update book.
+        data.stories.unshift(newStoryId);
+        await axios
+          .put(`http://localhost:3000/api/book/${bookId}`, { data });
+      } else { // Create book.
+
+      }
+      */

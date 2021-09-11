@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-underscore-dangle */
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connect from '../../../lib/configure/database';
@@ -15,7 +16,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         .populate('stories');
       res.status(200);
       res.send(book);
-    } catch (error) { handle(error, res); }
+    } catch {
+      res.send(null);
+    }
   }
   // Updates a book.
   if (req.method === request.PUT) {
