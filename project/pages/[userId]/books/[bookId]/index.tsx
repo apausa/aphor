@@ -5,6 +5,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../../../../styles/Index.module.scss';
+import api from '../../../../utils/apiRoutes';
 
 export default function Book({
   books, fullName, image, userId, bookId,
@@ -65,8 +66,7 @@ export default function Book({
 
 export async function getServerSideProps(context: any) {
   const { params: { userId, bookId } } = context;
-  const { data: { books, fullName, image } } = await axios
-    .get(`http://localhost:3000/api/user/${userId}`);
+  const { data: { books, fullName, image } } = await axios.get(api.USER + userId);
   return {
     props: {
       userId, bookId, books, fullName, image,

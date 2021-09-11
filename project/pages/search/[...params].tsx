@@ -8,6 +8,7 @@ import Image from 'next/image';
 import axios from 'axios';
 import redirect from '../../utils/redirect';
 import styles from '../../styles/Authors.module.scss';
+import api from '../../utils/apiRoutes';
 
 export default function Search({ data }: any) {
   const router = useRouter();
@@ -40,9 +41,6 @@ export async function getServerSideProps(context: any) {
   if (!session) return redirect;
   const { params: { params } } = context;
   const query = params[0];
-  const { data } = await axios
-    .post('http://localhost:3000/api/search', { query });
-  return {
-    props: { data },
-  };
+  const { data } = await axios.post(api.SEARCH + query);
+  return { props: { data } };
 }

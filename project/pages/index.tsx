@@ -9,10 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import redirect from '../utils/redirect';
 import styles from '../styles/Index.module.scss';
-
-const API_STORY = 'http://localhost:3000/api/story/';
-const API_USER = 'http://localhost:3000/api/user/';
-const API_BOOK = 'http://localhost:3000/api/book/';
+import api from '../utils/apiRoutes';
 
 export default function Dashboard({
   id, users, books, image,
@@ -24,18 +21,18 @@ export default function Dashboard({
   const handleStoryBody = (event: any) => setstoryBody(event.target.value);
   const handleBookId = (event: any) => setBookId(event.target.value);
   const onSubmit = async () => {
-    const createdStory = await axios.post(API_STORY,
+    const createdStory = await axios.post(api.STORY,
       { storyTitle, storyBody });
-    const { data } = await axios.get(API_BOOK + bookId);
+    const { data } = await axios.get(api.BOOK + bookId);
     if (data) {
       data.stories.unshift(createdStory.data._id);
-      await axios.put(API_BOOK + bookId, { data });
+      await axios.put(api.BOOK + bookId, { data });
     } else {
-      const createdBook = await axios.post(API_BOOK,
+      const createdBook = await axios.post(api.BOOK,
         { title: bookId, stories: [createdStory.data._id] });
-      const { data } = await axios.get(API_USER + id);
+      const { data } = await axios.get(api.USER + id);
       data.books.unshift(createdBook.data._id);
-      await axios.put(API_USER + id, { data });
+      await axios.put(api.USER + id, { data });
     }
   };
   return (
@@ -141,11 +138,8 @@ export async function getServerSideProps(context: any) {
   // Retrieve logged user.
   const { user: { id } } = session;
   // Retrieve followed authors.
-  const { data: { authors, books, image } } = await axios
-    .get(`http://localhost:3000/api/user/${id}`);
-
-  const promises = authors.map(({ _id }: any) => axios
-    .get(`http://localhost:3000/api/user/${_id}`));
+  const { data: { authors, books, image } } = await axios.get(api.USER + id);
+  const promises = authors.map(({ _id }: any) => axios.get(api.USER + _id));
   const keep: any = await Promise.allSettled(promises);
   const users = keep.map(({
     value: {
@@ -162,15 +156,3 @@ export async function getServerSideProps(context: any) {
     },
   };
 }
-
-/*
-
-      console.log('THE PROBLEM IS IN THE CONDITION, FIND VALUE OF DATA', data);
-      if (data) { // Update book.
-        data.stories.unshift(newStoryId);
-        await axios
-          .put(`http://localhost:3000/api/book/${bookId}`, { data });
-      } else { // Create book.
-
-      }
-      */
