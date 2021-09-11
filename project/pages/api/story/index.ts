@@ -18,7 +18,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     } = req;
     try {
       // Creates a story.
+      console.log(req);
       const createdStory = await Story.create({ title, body });
+      /*
       const newStoryId = createdStory._id.toString();
       const { data } = await axios // Get the book.
         .get(`http://localhost:3000/api/book/${bookId}`);
@@ -40,6 +42,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         await axios // Update the user.
           .put(`http://localhost:3000/api/user/${userId}`, { data });
       }
+      */
       res.status(200);
       res.send(createdStory);
     } catch (error) { handle(error, res); }

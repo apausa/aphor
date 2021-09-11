@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -13,42 +14,28 @@ import styles from '../styles/Index.module.scss';
 export default function Dashboard({
   id, users, books, image,
 }: any) {
+  const postStory = async (event: any) => {
+    event.preventDefault();
+    console.log(JSON.stringify(event.target.bookId));
+    console.log('HELP');
+    console.log('===========', event.target);
+  };
   return (
     <main>
       <div>
         <Link href={`/${id}`}>
-          <a>
-            <Image
-              src={image}
-              width="16"
-              height="16"
-            />
-          </a>
+          <a><Image src={image} width="16" height="16" /></a>
         </Link>
-        <form name="write" id="write">
-          <textarea name="body" placeholder="Write your story." />
+        <form onSubmit={postStory}>
+          <textarea name="body" placeholder="Write your story." required />
           <fieldset>
-            <input list="book" name="bookId" placeholder="Select a book" />
+            <input list="book" name="bookId" placeholder="Select a book" required />
             <datalist id="book">
               {books.map((book: any) => (
-                <option
-                  value={book._id}
-                >
-                  {book.title}
-                </option>
+                <option value={book._id}>{book.title}</option>
               ))}
             </datalist>
-            <button
-              form="write"
-              type="submit"
-              formAction="http://localhost:3000/api/story"
-              formMethod="POST"
-              formTarget="_blank"
-              name="userId"
-              value={id}
-            >
-              Hola
-            </button>
+            <button name="userId" value={id} type="submit">Publish.</button>
           </fieldset>
         </form>
       </div>
