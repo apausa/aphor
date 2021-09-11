@@ -1,9 +1,10 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React, { useState } from 'react';
 import { getSession } from 'next-auth/client';
 import axios from 'axios';
 import Link from 'next/link';
@@ -14,11 +15,16 @@ import styles from '../styles/Index.module.scss';
 export default function Dashboard({
   id, users, books, image,
 }: any) {
-  const postStory = async (event: any) => {
-    event.preventDefault();
-    console.log(JSON.stringify(event.target.bookId));
-    console.log('HELP');
-    console.log('===========', event.target);
+  const [storyTitle, setStoryTitle] = useState('');
+  const [storyBody, setstoryBody] = useState('');
+  const [bookTitle, setbookTitle] = useState('');
+  const handleStoryTitle = (event: any) => setStoryTitle(event.target.value);
+  const handleStoryBody = (event: any) => setstoryBody(event.target.value);
+  const handleBookTitle = (event: any) => setbookTitle(event.target.value);
+  const onSubmit = async () => {
+    const createdStory = await axios
+      .post('http://localhost:3000/api/story', { storyTitle, storyBody });
+    console.log(createdStory);
   };
   return (
     <main>
@@ -26,16 +32,36 @@ export default function Dashboard({
         <Link href={`/${id}`}>
           <a><Image src={image} width="16" height="16" /></a>
         </Link>
-        <form onSubmit={postStory}>
-          <textarea name="body" placeholder="Write your story." required />
+        <form>
           <fieldset>
-            <input list="book" name="bookId" placeholder="Select a book" required />
-            <datalist id="book">
+            <input
+              type="text"
+              value={storyTitle}
+              onChange={handleStoryTitle}
+              placeholder="Story title."
+              required
+            />
+            <textarea
+              value={storyBody}
+              onChange={handleStoryBody}
+              placeholder="Story body."
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <input
+              list="bookTitle"
+              value={bookTitle}
+              onChange={handleBookTitle}
+              placeholder="Book title."
+              required
+            />
+            <datalist id="bookTitle">
               {books.map((book: any) => (
                 <option value={book._id}>{book.title}</option>
               ))}
             </datalist>
-            <button name="userId" value={id} type="submit">Publish.</button>
+            <button onClick={onSubmit} type="button">Publish.</button>
           </fieldset>
         </form>
       </div>

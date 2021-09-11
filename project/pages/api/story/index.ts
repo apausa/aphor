@@ -3,7 +3,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable no-underscore-dangle */
 import type { NextApiRequest, NextApiResponse } from 'next';
-import axios from 'axios';
 import connect from '../../../lib/configure/database';
 import request from '../../../utils/methods';
 import Story from '../../../lib/models/storyModel';
@@ -11,16 +10,19 @@ import handle from '../../../utils/error';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === request.POST) {
-    const {
-      body: {
-        title, body, bookId, userId,
-      },
-    } = req;
+    const { body: { storyTitle, storyBody } } = req;
     try {
-      // Creates a story.
-      console.log(req);
-      const createdStory = await Story.create({ title, body });
-      /*
+      const createdStory = await Story
+        .create({ title: storyTitle, body: storyBody });
+      res.status(200);
+      res.send(createdStory);
+    } catch (error) { handle(error, res); }
+  }
+};
+
+export default connect(handler);
+
+/*
       const newStoryId = createdStory._id.toString();
       const { data } = await axios // Get the book.
         .get(`http://localhost:3000/api/book/${bookId}`);
@@ -43,10 +45,3 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           .put(`http://localhost:3000/api/user/${userId}`, { data });
       }
       */
-      res.status(200);
-      res.send(createdStory);
-    } catch (error) { handle(error, res); }
-  }
-};
-
-export default connect(handler);
