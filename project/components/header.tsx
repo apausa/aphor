@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
@@ -9,10 +8,13 @@ import Link from 'next/link';
 import styles from '../styles/Header.module.scss';
 
 export default function Header() {
-  // Obtain params instead of session.
   const [session, loading] = useSession();
   const { route, query: { userId } } = useRouter();
-  // eslint-disable-next-line no-console
+  const router = useRouter();
+  const handle = async ({ which, target: { value } }: any) => {
+    if (which === 13 && value) router.push(`/search/${value}`);
+  };
+
   const userPage = () => (
     <ul className={styles.page__user}>
       <li>
@@ -29,8 +31,17 @@ export default function Header() {
         <Link href={`/${userId}/about`}>
           <a className={styles.other__link}>About</a>
         </Link>
-
       </li>
+    </ul>
+  );
+  const notFoundPage = () => (
+    <ul className={styles.page__dashboard}>
+      <li>404, not found.</li>
+    </ul>
+  );
+  const searchPage = () => (
+    <ul className={styles.page__dashboard}>
+      <li>Search.</li>
     </ul>
   );
   const dashboardPage = () => (
@@ -66,15 +77,37 @@ export default function Header() {
   );
   const loggedIn = () => (
     <ul className={styles.logged}>
-      <li className={styles.logged__component}><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></li>
+      <li className={styles.logged__component}>
+        <input
+          className={styles.component__input}
+          type="search"
+          name="q"
+          placeholder="Search"
+          onKeyPress={handle}
+        />
+      </li>
       <li className={styles.logged__component}>
         <Link href="/library">
-          <a><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></a>
+          <a>
+            <Image
+              className={styles.image}
+              src="http://placehold.it/32x32"
+              width="32"
+              height="32"
+            />
+          </a>
         </Link>
       </li>
       <li>
         <Link href={`/${session?.user.id}`}>
-          <a><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></a>
+          <a>
+            <Image
+              className={styles.image}
+              src={`${session?.user.image}`}
+              width="32"
+              height="32"
+            />
+          </a>
         </Link>
       </li>
     </ul>
@@ -87,10 +120,19 @@ export default function Header() {
       <ul className={styles.main}>
         <li>
           <Link href="/">
-            <a><Image className={styles.image} src="http://placehold.it/32x32" width="32" height="32" /></a>
+            <a>
+              <Image
+                className={styles.image}
+                src="http://placehold.it/32x32"
+                width="32"
+                height="32"
+              />
+            </a>
           </Link>
         </li>
         <li className={styles.page}>
+          {session && (route.startsWith('/search')) && searchPage()}
+          {session && (route === '/404') && notFoundPage()}
           {session && (route === '/') && dashboardPage()}
           {session && (route.startsWith('/[userId]')) && userPage()}
           {session && (route.startsWith('/library')) && libraryPage()}

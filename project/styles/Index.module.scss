@@ -19,11 +19,13 @@
 .first__information {
     list-style: none;
     display: flex;
+    font-size: 18px;
 }
 
 .first__date {
     margin-left: 8px;
     font-size: 18px;
+    color: $gray;
 }
 
 .information__image {
@@ -40,6 +42,7 @@
     margin-left: 4px;
     text-decoration: none;
     font-size: 18px;
+    color: rgb(0, 0, 255);
     font-weight: bold;
 }
 
@@ -51,7 +54,7 @@
 
 .second {
     margin: 0px 8px 16px 32px;
-    font-size: 18px;
+    font-size: 16px;
     text-align: justify;
     text-justify: inter-word;
 }
@@ -59,4 +62,5 @@
 .second__element {
     text-decoration: none;
     color: $black;
+    font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 }

@@ -5,9 +5,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios';
 import styles from '../../styles/Index.module.scss';
+import api from '../../utils/apiRoutes';
 
 export default function User({
-  books, name, image, userId,
+  books, fullName, image, userId,
 }: any) {
   return (
     <main>
@@ -22,22 +23,24 @@ export default function User({
                       <li><Image className={styles.information__image} src={image} width="18" height="18" /></li>
                       <Link href={`/${userId}`}>
                         <li className={styles.information__name}>
-                          {name}
+                          {fullName}
                           .
+                        </li>
+                      </Link>
+                      <Link href={`/${userId}/books/${book._id}`}>
+                        <li className={styles.information__book}>
+                          {book.title}
+                          {' '}
+                          /
                         </li>
                       </Link>
                       <Link href={`/${userId}/books/${book._id}/${story._id}`}>
                         <li className={styles.information__story}>
                           {story.title}
+                          .
                         </li>
                       </Link>
-                      <Link href={`/${userId}/books/${book._id}`}>
-                        <li className={styles.information__book}>
-                          from,
-                          {' '}
-                          {book.title}
-                        </li>
-                      </Link>
+
                     </ul>
                   </li>
                   <Link href={`/${userId}/books/${book._id}/${story._id}`}>
@@ -62,11 +65,10 @@ export default function User({
 
 export async function getServerSideProps(context: any) {
   const { params: { userId } } = context;
-  const { data: { books, name, image } } = await axios
-    .get(`http://localhost:3000/api/user/${userId}`);
+  const { data: { books, fullName, image } } = await axios.get(api.USER + userId);
   return {
     props: {
-      books, name, image, userId,
+      books, fullName, image, userId,
     },
   };
 }

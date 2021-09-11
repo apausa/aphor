@@ -1,0 +1,72 @@
+@import 'colors';
+
+.write {
+    display: flex;
+    border-bottom: 1px solid black;
+    padding: 0px 8px 16px 8px;
+}
+
+.write__form {
+    margin-left: 8px;
+}
+
+.form__story{
+    width: 41.25vw;
+    margin-bottom: 16px;
+    display: flex;  
+    flex-direction: column;
+}
+
+.story__title {
+    margin-bottom: 4px;
+    font-size: 18px;
+    color: rgb(0, 0, 255);
+    font-weight: bold;
+}
+
+.story__title:focus {
+    outline: none;
+}
+
+.story__body {
+    font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+    font-size: 16px;
+    resize: none;
+}
+
+.story__body:focus {
+    outline: none;
+}
+
+.form__book{
+    display: flex;
+    justify-content: space-between;
+}
+
+.book__title {
+    border: 1px solid $gray;
+    border-radius: 8px;
+    height: 28px;
+    padding-left: 6px;
+    font-size: 18px;
+    border: 1px solid $gray; 
+}
+
+.book__title:focus {
+    outline: none;
+    border: 1px solid rgb(0, 0, 255);
+}
+
+.book__button {
+    width: 6.5vw;
+    height: 32px;
+    color: $beige;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgb(0, 0, 255);
+}
+
+.image {
+    border-radius: 50%;
+}

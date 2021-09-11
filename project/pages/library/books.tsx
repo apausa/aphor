@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import redirect from '../../utils/redirect';
 import styles from '../../styles/Index.module.scss';
+import api from '../../utils/apiRoutes';
 
 export default function Books({ users }: any) {
   return (
@@ -22,7 +23,7 @@ export default function Books({ users }: any) {
                       <li><Image className={styles.information__image} src={user.image} width="18" height="18" /></li>
                       <Link href={`/${user._id}`}>
                         <li className={styles.information__name}>
-                          {user.name}
+                          {user.fullName}
                           .
                         </li>
                       </Link>
@@ -38,11 +39,6 @@ export default function Books({ users }: any) {
                   </Link>
                 </ul>
               </li>
-              <li className={styles.second}>
-                <Link href={`/${user._id}/books/${book._id}`}>
-                  <a className={styles.second__element}><Image src={book.image} width="180" height="180" /></a>
-                </Link>
-              </li>
             </ul>
           </li>
         )))}
@@ -53,24 +49,19 @@ export default function Books({ users }: any) {
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
-  // Secure pages server side.
   if (!session) return redirect;
-  // Retrieve logged user.
   const { user: { id } } = session;
-  // Retrieve followed authors.
-  const { data: { authors } } = await axios
-    .get(`http://localhost:3000/api/user/${id}`);
-  const promises = authors.map(({ _id }: any) => axios
-    .get(`http://localhost:3000/api/user/${_id}`));
+  const { data: { authors } } = await axios.get(api.USER + id);
+  const promises = authors.map(({ _id }: any) => axios.get(api.USER + _id));
   const keep: any = await Promise.allSettled(promises);
   const users = keep.map(({
     value: {
       data: {
-        _id, image, books, name,
+        _id, image, books, fullName,
       },
     },
   }: any) => ({
-    _id, image, books, name,
+    _id, image, books, fullName,
   }));
   return { props: { users } };
 }

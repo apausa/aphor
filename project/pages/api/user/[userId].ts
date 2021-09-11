@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import connect from '../../../lib/configure/database';
@@ -21,7 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         })
         .populate({
           path: 'authors',
-          select: ['_id', 'name', 'image'],
+          select: ['_id', 'fullName', 'image'],
         });
       res.status(200);
       res.send(user);
@@ -29,10 +30,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
   // Updates an user.
   if (req.method === request.PUT) {
-    const { query: { userId }, body } = req;
+    const { body: { data } } = req;
     try {
       const updatedUser = await User.findByIdAndUpdate(
-        userId, body, { new: true },
+        data._id, data, { new: true },
       );
       res.status(200);
       res.send(updatedUser);

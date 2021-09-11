@@ -1,4 +1,4 @@
-@import 'colors';
+ @import 'colors';
 
 .main {
     display: flex; 
@@ -49,6 +49,23 @@
     margin-right: 16px;
 }
 
+.component__input {
+    width: 18.75vw;
+    height: 32px;
+    border: 1px solid $gray;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    padding: 6px;
+    bottom: 6px;
+}
+
+.component__input:focus {
+    outline: none;
+    border: 1px solid rgb(0, 0, 255);
+}
+
 .image {
     border-radius: 50%;
 }
@@ -56,6 +73,8 @@
 .page__dashboard {
     list-style: none;
     margin-left: 8px;
+    color: $black;
+    font-weight: bold;
 }
 
 .dashboard__link {
