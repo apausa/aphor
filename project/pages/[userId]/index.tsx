@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getSession } from 'next-auth/client';
@@ -12,6 +12,7 @@ import slice from '../../utils/date';
 export default function User({
   session, books, fullName, image, userId,
 }: any) {
+  const [list, setList] = useState(null);
   const loggedUser = (session.user.id === userId);
   const storyDelete = (id: any) => (
     <li>
