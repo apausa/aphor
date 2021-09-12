@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -15,16 +15,7 @@ export default function Header() {
   const { route, query: { userId } } = useRouter();
   const handleSearch = async ({ which, target: { value } }: any) => {
     if (which === 13 && value) router.push(`/search/${value}`);
-  }; // If the user is 'following'. I'll maybe have to fix this.
-  let loggedUser: boolean = false;
-  let reading: any = false;
-  if (session && route.startsWith('/[userId]')) {
-    loggedUser = (session.user.id === userId);
-    reading = async () => {
-      const { data: { authors } } = await axios.get(api.USER + session.user.id);
-      return authors.find(({ _id }: any) => _id === userId);
-    };
-  } // If the user 'follows'.
+  }; // If the user 'follows'.
   const handleRead = async () => {
     const { data } = await axios.get(api.USER + session?.user.id);
     data.authors.unshift(userId);
@@ -37,7 +28,16 @@ export default function Header() {
     data.authors.splice(index, 1);
     await axios.put(api.USER + session?.user.id, { data });
     window.location.reload();
-  }; // User page, structure.
+  }; // User page, logic.
+  const user = (session?.user.id === userId);
+  const [reading, setReading] = useState('');
+  useEffect(() => {
+    (async () => {
+      const { data: { authors } } = await axios.get(api.USER + session?.user.id);
+      const author = authors.find(({ _id }: any) => _id === userId);
+      setReading(author);
+    })();
+  }, []); // User page, structure.
   const userPage = () => (
     <ul className={styles.page__user}>
       <li>
@@ -50,7 +50,7 @@ export default function Header() {
           <a className={styles.other__link}>Books</a>
         </Link>
       </li>
-      {!loggedUser && session && !reading && (
+      {!user && session && !reading && (
         <li>
           <button
             onClick={handleRead}
@@ -60,15 +60,15 @@ export default function Header() {
           </button>
         </li>
       )}
-      {!loggedUser && session && reading && (
-      <li>
-        <button
-          onClick={handleReading}
-          type="submit"
-        >
-          Reading
-        </button>
-      </li>
+      {!user && session && reading && (
+        <li>
+          <button
+            onClick={handleReading}
+            type="submit"
+          >
+            Reading
+          </button>
+        </li>
       )}
     </ul>
   ); // Not found page, structure.
