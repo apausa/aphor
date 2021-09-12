@@ -12,7 +12,6 @@ import slice from '../../utils/date';
 export default function User({
   session, books, fullName, image, userId,
 }: any) {
-  const [list, setList] = useState(null);
   const loggedUser = (session.user.id === userId);
   const storyDelete = (id: any) => (
     <li>
