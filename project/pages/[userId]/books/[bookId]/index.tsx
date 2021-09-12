@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { getSession } from 'next-auth/client';
 import styles from '../../../../styles/Index.module.scss';
 import api from '../../../../utils/apiRoutes';
+import slice from '../../../../utils/date';
 
 export default function Book({
   session, books, fullName, image, userId, bookId,
@@ -60,7 +61,7 @@ export default function Book({
                     </ul>
                   </li>
                   <Link href={`/${userId}/books/${bookId}/${story._id}`}>
-                    <li className={styles.first__date}>{story.date}</li>
+                    <li className={styles.first__date}>{slice(story.date)}</li>
                   </Link>
                 </ul>
               </li>
