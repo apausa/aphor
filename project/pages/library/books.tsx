@@ -8,6 +8,7 @@ import Image from 'next/image';
 import redirect from '../../utils/redirect';
 import styles from '../../styles/Index.module.scss';
 import api from '../../utils/apiRoutes';
+import slice from '../../utils/date';
 
 export default function Books({ users }: any) {
   return (
@@ -35,7 +36,7 @@ export default function Books({ users }: any) {
                     </ul>
                   </li>
                   <Link href={`/${user._id}/books/${book._id}/`}>
-                    <li className={styles.first__date}>{book.date}</li>
+                    <li className={styles.first__date}>{slice(book.date)}</li>
                   </Link>
                 </ul>
               </li>
