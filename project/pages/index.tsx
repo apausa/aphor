@@ -10,6 +10,7 @@ import redirect from '../utils/redirect';
 import styles from '../styles/Index.module.scss';
 import write from '../styles/Write.module.scss';
 import api from '../utils/apiRoutes';
+import slice from '../utils/date';
 
 export default function Dashboard({
   id, users, books, image,
@@ -128,7 +129,7 @@ export default function Dashboard({
                     </ul>
                   </li>
                   <Link href={`/${user._id}/books/${book._id}/${story._id}`}>
-                    <li className={styles.first__date}>{story.date}</li>
+                    <li className={styles.first__date}>{slice(story.date)}</li>
                   </Link>
                 </ul>
               </li>
