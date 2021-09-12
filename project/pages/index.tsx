@@ -80,7 +80,13 @@ export default function Dashboard({
                 <option value={book._id}>{book.title}</option>
               ))}
             </datalist>
-            <button onClick={onSubmit} className={write.book__button} type="button">Publish.</button>
+            <button
+              onClick={onSubmit}
+              className={write.book__button}
+              type="button"
+            >
+              Publish.
+            </button>
           </fieldset>
         </form>
       </div>

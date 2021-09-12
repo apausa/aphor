@@ -5,16 +5,39 @@ import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
+import axios from 'axios';
 import styles from '../styles/Header.module.scss';
+import api from '../utils/apiRoutes';
 
 export default function Header() {
   const [session, loading] = useSession();
-  const { route, query: { userId } } = useRouter();
   const router = useRouter();
-  const handle = async ({ which, target: { value } }: any) => {
+  const { route, query: { userId } } = useRouter();
+  const handleSearch = async ({ which, target: { value } }: any) => {
     if (which === 13 && value) router.push(`/search/${value}`);
-  };
-
+  }; // If the user is 'following'. I'll maybe have to fix this.
+  let loggedUser: boolean = false;
+  let reading: any = false;
+  if (session && route.startsWith('/[userId]')) {
+    loggedUser = (session.user.id === userId);
+    reading = async () => {
+      const { data: { authors } } = await axios.get(api.USER + session.user.id);
+      return authors.find(({ _id }: any) => _id === userId);
+    };
+  } // If the user 'follows'.
+  const handleRead = async () => {
+    const { data } = await axios.get(api.USER + session?.user.id);
+    data.authors.unshift(userId);
+    await axios.put(api.USER + session?.user.id, { data });
+    window.location.reload();
+  }; // If the user 'unfollows'.
+  const handleReading = async () => {
+    const { data } = await axios.get(api.USER + session?.user.id);
+    const index = data.authors.indexOf(userId);
+    data.authors.splice(index, 1);
+    await axios.put(api.USER + session?.user.id, { data });
+    window.location.reload();
+  }; // User page, structure.
   const userPage = () => (
     <ul className={styles.page__user}>
       <li>
@@ -27,23 +50,38 @@ export default function Header() {
           <a className={styles.other__link}>Books</a>
         </Link>
       </li>
-      <li className={styles.user__other}>
-        <Link href={`/${userId}/about`}>
-          <a className={styles.other__link}>About</a>
-        </Link>
+      {!loggedUser && session && !reading && (
+        <li>
+          <button
+            onClick={handleRead}
+            type="submit"
+          >
+            Read
+          </button>
+        </li>
+      )}
+      {!loggedUser && session && reading && (
+      <li>
+        <button
+          onClick={handleReading}
+          type="submit"
+        >
+          Reading
+        </button>
       </li>
+      )}
     </ul>
-  );
+  ); // Not found page, structure.
   const notFoundPage = () => (
     <ul className={styles.page__dashboard}>
       <li>404, not found.</li>
     </ul>
-  );
+  ); // Search page, structure.
   const searchPage = () => (
     <ul className={styles.page__dashboard}>
       <li>Search.</li>
     </ul>
-  );
+  ); // Dashboard page, structure.
   const dashboardPage = () => (
     <ul className={styles.page__dashboard}>
       <li>
@@ -52,7 +90,7 @@ export default function Header() {
         </Link>
       </li>
     </ul>
-  );
+  ); // Library page, structure.
   const libraryPage = () => (
     <ul className={styles.page__user}>
       <li>
@@ -74,7 +112,7 @@ export default function Header() {
 
       </li>
     </ul>
-  );
+  ); // Logged in user, structure.
   const loggedIn = () => (
     <ul className={styles.logged}>
       <li className={styles.logged__component}>
@@ -83,7 +121,7 @@ export default function Header() {
           type="search"
           name="q"
           placeholder="Search"
-          onKeyPress={handle}
+          onKeyPress={handleSearch}
         />
       </li>
       <li className={styles.logged__component}>
@@ -111,7 +149,7 @@ export default function Header() {
         </Link>
       </li>
     </ul>
-  );
+  ); // Logged out user, structure.
   const loggedOut = () => (
     <Link href="/api/auth/signin"><a>Sign in</a></Link>
   );
