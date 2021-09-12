@@ -74,6 +74,17 @@ export default function Story({
         <li>
           <ul>
             {loggedUser && storyDelete(storyId)}
+            <li>
+              <button
+                onClick={async () => {
+                  const link = `http://localhost:3000/${userId}/books/${bookId}/${storyId}`;
+                  await navigator.clipboard.writeText(link);
+                }}
+                type="submit"
+              >
+                Share.
+              </button>
+            </li>
           </ul>
         </li>
       </ul>

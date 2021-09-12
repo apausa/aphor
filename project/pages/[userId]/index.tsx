@@ -78,9 +78,8 @@ export default function User({
                   <li>
                     <button
                       onClick={async () => {
-                        const link = `/${userId}/books/${book._id}/${story._id}`;
+                        const link = `http://localhost:3000/${userId}/books/${book._id}/${story._id}`;
                         await navigator.clipboard.writeText(link);
-                        alert(link);
                       }}
                       type="submit"
                     >
