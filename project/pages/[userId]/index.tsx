@@ -1,6 +1,7 @@
+/* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-underscore-dangle */
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getSession } from 'next-auth/client';
@@ -71,7 +72,24 @@ export default function User({
                   </a>
                 </Link>
               </li>
-              {loggedUser && storyDelete(story._id)}
+              <li>
+                <ul>
+                  {loggedUser && storyDelete(story._id)}
+                  <li>
+                    <button
+                      onClick={async () => {
+                        const link = `/${userId}/books/${book._id}/${story._id}`;
+                        await navigator.clipboard.writeText(link);
+                        alert(link);
+                      }}
+                      type="submit"
+                    >
+                      Share.
+                    </button>
+                  </li>
+                </ul>
+              </li>
+
             </ul>
           </li>
         )))}
