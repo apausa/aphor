@@ -16,41 +16,44 @@ export default function Header() {
   const handleSearch = async ({ which, target: { value } }: any) => {
     if (which === 13 && value) router.push(`/search/${value}`);
   }; // If the user 'follows'.
+  const [reading, setReading] = useState(false);
   const handleRead = async () => {
     const { data } = await axios.get(api.USER + session?.user.id);
     data.authors.unshift(userId);
     await axios.put(api.USER + session?.user.id, { data });
-    window.location.reload();
+    setReading(true);
   }; // If the user 'unfollows'.
   const handleReading = async () => {
     const { data } = await axios.get(api.USER + session?.user.id);
     const index = data.authors.indexOf(userId);
     data.authors.splice(index, 1);
     await axios.put(api.USER + session?.user.id, { data });
-    window.location.reload();
-  }; // User page, logic.
-  const user = (session?.user.id === userId);
-  const [reading, setReading] = useState('');
+    setReading(false);
+  };
+  // ERROR 500, WHEN NOT IN USER PAGE. If (route.startsWith('/[userId]'))
   useEffect(() => {
     (async () => {
       const { data: { authors } } = await axios.get(api.USER + session?.user.id);
-      const author = authors.find(({ _id }: any) => _id === userId);
+      const author = !!(authors.find(({ _id }: any) => _id === userId));
       setReading(author);
     })();
-  }, []); // User page, structure.
-  const userPage = () => (
-    <ul className={styles.page__user}>
-      <li>
-        <Link href={`/${userId}`}>
-          <a className={styles.user__main}>Profile</a>
-        </Link>
-      </li>
-      <li className={styles.user__other}>
-        <Link href={`/${userId}/books`}>
-          <a className={styles.other__link}>Books</a>
-        </Link>
-      </li>
-      {!user && session && !reading && (
+  }, [reading]);
+  // User page, structure.
+  const userPage = () => {
+    const user = (session?.user.id === userId);
+    return (
+      <ul className={styles.page__user}>
+        <li>
+          <Link href={`/${userId}`}>
+            <a className={styles.user__main}>Profile</a>
+          </Link>
+        </li>
+        <li className={styles.user__other}>
+          <Link href={`/${userId}/books`}>
+            <a className={styles.other__link}>Books</a>
+          </Link>
+        </li>
+        {!user && session && !reading && (
         <li>
           <button
             onClick={handleRead}
@@ -59,8 +62,8 @@ export default function Header() {
             Read
           </button>
         </li>
-      )}
-      {!user && session && reading && (
+        )}
+        {!user && session && reading && (
         <li>
           <button
             onClick={handleReading}
@@ -69,9 +72,10 @@ export default function Header() {
             Reading
           </button>
         </li>
-      )}
-    </ul>
-  ); // Not found page, structure.
+        )}
+      </ul>
+    );
+  }; // Not found page, structure.
   const notFoundPage = () => (
     <ul className={styles.page__dashboard}>
       <li>404, not found.</li>
