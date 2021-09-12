@@ -7,6 +7,7 @@ import { getSession } from 'next-auth/client';
 import axios from 'axios';
 import styles from '../../styles/Index.module.scss';
 import api from '../../utils/apiRoutes';
+import slice from '../../utils/date';
 
 export default function User({
   session, books, fullName, image, userId,
@@ -59,7 +60,7 @@ export default function User({
                     </ul>
                   </li>
                   <Link href={`/${userId}/books/${book._id}/${story._id}`}>
-                    <li className={styles.first__date}>{story.date}</li>
+                    <li className={styles.first__date}>{slice(story.date)}</li>
                   </Link>
                 </ul>
               </li>
