@@ -23,6 +23,19 @@ export default function Authors({ authors }: any) {
                 </li>
               </Link>
             </ul>
+            <ul>
+              <li>
+                <button
+                  onClick={async () => {
+                    const link = `http://localhost:3000/${author._id}`;
+                    await navigator.clipboard.writeText(link);
+                  }}
+                  type="submit"
+                >
+                  Share.
+                </button>
+              </li>
+            </ul>
           </li>
         ))}
       </ul>

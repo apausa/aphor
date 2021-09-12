@@ -56,6 +56,17 @@ export default function Library({ users }: any) {
                   </a>
                 </Link>
               </li>
+              <li>
+                <button
+                  onClick={async () => {
+                    const link = `http://localhost:3000/${userId}/books/${book._id}/${story._id}`;
+                    await navigator.clipboard.writeText(link);
+                  }}
+                  type="submit"
+                >
+                  Share.
+                </button>
+              </li>
             </ul>
           </li>
         ))))}
