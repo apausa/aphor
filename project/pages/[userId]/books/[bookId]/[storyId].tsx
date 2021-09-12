@@ -4,16 +4,31 @@ import React from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getSession } from 'next-auth/client';
 import styles from '../../../../styles/Index.module.scss';
 import api from '../../../../utils/apiRoutes';
 
 export default function Story({
-  books, fullName, image, userId, bookId, storyId,
+  session, books, fullName, image, userId, bookId, storyId,
 }: any) {
   const something = books
     .filter((book: any) => book._id === bookId)[0];
   const { title, date, body } = something.stories
     .filter((story: any) => story._id === storyId)[0];
+  const loggedUser = (session.user.id === userId);
+  const storyDelete = (id: any) => (
+    <li>
+      <button
+        onClick={async () => {
+          await axios.delete(api.STORY + id);
+          window.location.reload();
+        }}
+        type="submit"
+      >
+        Delete.
+      </button>
+    </li>
+  );
   return (
     <main>
       <ul className={styles.story}>
@@ -55,18 +70,24 @@ export default function Story({
             </a>
           </Link>
         </li>
+        <li>
+          <ul>
+            {loggedUser && storyDelete(storyId)}
+          </ul>
+        </li>
       </ul>
     </main>
   );
 }
 
 export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
   const { params: { userId, bookId, storyId } } = context;
   const { data: { books, fullName, image } } = await axios
     .get(api.USER + userId);
   return {
     props: {
-      userId, bookId, storyId, books, fullName, image,
+      session, userId, bookId, storyId, books, fullName, image,
     },
   };
 }

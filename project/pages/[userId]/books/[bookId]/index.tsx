@@ -4,14 +4,29 @@ import React from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getSession } from 'next-auth/client';
 import styles from '../../../../styles/Index.module.scss';
 import api from '../../../../utils/apiRoutes';
 
 export default function Book({
-  books, fullName, image, userId, bookId,
+  session, books, fullName, image, userId, bookId,
 }: any) {
   const { stories, title } = books
     .filter((book: any) => book._id === bookId)[0];
+  const loggedUser = (session.user.id === userId);
+  const storyDelete = (id: any) => (
+    <li>
+      <button
+        onClick={async () => {
+          await axios.delete(api.STORY + id);
+          window.location.reload();
+        }}
+        type="submit"
+      >
+        Delete.
+      </button>
+    </li>
+  );
   return (
     <main>
       <ul className={styles.main}>
@@ -56,6 +71,11 @@ export default function Book({
                   </a>
                 </Link>
               </li>
+              <li>
+                <ul>
+                  {loggedUser && storyDelete(story._id)}
+                </ul>
+              </li>
             </ul>
           </li>
         ))}
@@ -65,11 +85,12 @@ export default function Book({
 }
 
 export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
   const { params: { userId, bookId } } = context;
   const { data: { books, fullName, image } } = await axios.get(api.USER + userId);
   return {
     props: {
-      userId, bookId, books, fullName, image,
+      session, userId, bookId, books, fullName, image,
     },
   };
 }

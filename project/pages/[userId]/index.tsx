@@ -3,13 +3,28 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getSession } from 'next-auth/client';
 import axios from 'axios';
 import styles from '../../styles/Index.module.scss';
 import api from '../../utils/apiRoutes';
 
 export default function User({
-  books, fullName, image, userId,
+  session, books, fullName, image, userId,
 }: any) {
+  const loggedUser = (session.user.id === userId);
+  const storyDelete = (id: any) => (
+    <li>
+      <button
+        onClick={async () => {
+          await axios.delete(api.STORY + id);
+          window.location.reload();
+        }}
+        type="submit"
+      >
+        Delete.
+      </button>
+    </li>
+  );
   return (
     <main>
       <ul className={styles.main}>
@@ -55,6 +70,7 @@ export default function User({
                   </a>
                 </Link>
               </li>
+              {loggedUser && storyDelete(story._id)}
             </ul>
           </li>
         )))}
@@ -64,11 +80,12 @@ export default function User({
 }
 
 export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
   const { params: { userId } } = context;
   const { data: { books, fullName, image } } = await axios.get(api.USER + userId);
   return {
     props: {
-      books, fullName, image, userId,
+      session, books, fullName, image, userId,
     },
   };
 }
