@@ -8,6 +8,7 @@ import { getSession } from 'next-auth/client';
 import Image from 'next/image';
 import styles from '../../../styles/Index.module.scss';
 import api from '../../../utils/apiRoutes';
+import slice from '../../../utils/date';
 
 export default function Books({
   session, fullName, image, books, userId,
@@ -54,7 +55,7 @@ export default function Books({
                   <li>
                     <ul>
                       <Link href={`/${userId}/books/${book._id}/`}>
-                        <li className={styles.first__date}>{book.date}</li>
+                        <li className={styles.first__date}>{slice(book.date)}</li>
                       </Link>
                       {loggedUser && bookDelete(book._id)}
                     </ul>
