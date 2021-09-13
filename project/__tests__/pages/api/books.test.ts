@@ -1,20 +1,109 @@
 import Book from '../../../lib/models/bookModel';
-import handle from '../../../utils/error';
+import error from '../../../utils/error';
 import bookIdHandler from '../../../pages/api/book/[bookId]';
 import bookHandler from '../../../pages/api/book/index';
 
-jest.mock('../models/bookModel');
-jest.mock('../../utils/error');
+jest.mock('../../../lib/models/bookModel');
+jest.mock('../../../utils/error');
+
+describe('Given a "handler" function', () => {
+  describe('When is invoked', () => {
+    const res: any = { status: jest.fn(), send: jest.fn() };
+    describe("If 'req.method' is GET", () => {
+      const req: any = { method: 'GET', query: { bookId: '' } };
+      describe('And resolves', () => {
+        test('Then "res.send" is called', async () => {
+          (Book.findById as jest.Mock)
+            .mockReturnValue({
+              populate: jest.fn().mockResolvedValue({}),
+            });
+          await bookIdHandler(req, res);
+
+          expect(res.send).toHaveBeenCalled();
+        });
+      });
+      describe('And revokes', () => {
+        test('Then "error" is called', async () => {
+          (Book.findById as jest.Mock).mockRejectedValue({});
+          await bookIdHandler(req, res);
+
+          expect(res.send).toHaveBeenCalled();
+        });
+      });
+    });
+    describe("If 'req.method' is PUT", () => {
+      const req: any = { method: 'PUT', body: { data: {} } };
+      describe('And resolves', () => {
+        test('Then "res.send" is called', async () => {
+          (Book.findByIdAndUpdate as jest.Mock).mockResolvedValue({});
+          await bookIdHandler(req, res);
+
+          expect(res.send).toHaveBeenCalled();
+        });
+      });
+      describe('And revokes', () => {
+        test('Then "error" is called', async () => {
+          (Book.findByIdAndUpdate as jest.Mock).mockRejectedValue({});
+          await bookIdHandler(req, res);
+
+          expect(error).toHaveBeenCalled();
+        });
+      });
+    });
+    describe("If 'req.method' is DELETE", () => {
+      const req: any = { method: 'DELETE', query: { bookId: '' } };
+      describe('And resolves', () => {
+        test('Then "res.send" is called', async () => {
+          (Book.findByIdAndDelete as jest.Mock).mockResolvedValue({});
+          await bookIdHandler(req, res);
+
+          expect(res.send).toHaveBeenCalled();
+        });
+      });
+      describe('And revokes', () => {
+        test('Then "error" is called', async () => {
+          (Book.findByIdAndDelete as jest.Mock).mockRejectedValue({});
+          await bookIdHandler(req, res);
+
+          expect(error).toHaveBeenCalled();
+        });
+      });
+    });
+  });
+});
+
+describe('Given a "handler" function', () => {
+  describe('When is invoked', () => {
+    const res: any = { status: jest.fn(), send: jest.fn() };
+    describe('If "req.method" is POST', () => {
+      const req: any = { method: 'POST', body: {} };
+      describe('And resolves', () => {
+        test('Then "res.send" is called', async () => {
+          (Book.create as jest.Mock).mockResolvedValue({});
+          await bookHandler(req, res);
+
+          expect(res.send).toHaveBeenCalled();
+        });
+      });
+      describe('And revokes', () => {
+        test('Then "error" is called', async () => {
+          (Book.create as jest.Mock).mockRejectedValue({});
+          await bookHandler(req, res);
+
+          expect(error).toHaveBeenCalled();
+        });
+      });
+    });
+  });
+});
+
+/*
 
 describe('Given a postBook function', () => {
   describe('When is invoked', () => {
-    const req: any = {
-      body: {},
+    const req: any = { body: {},
     };
-    const res: any = {
-      status: jest.fn(),
-      send: jest.fn(),
-    };
+
     describe('And resolves', () => {
       test('Then "res.send" is called', async () => {
         (Book.create as jest.Mock)
@@ -25,7 +114,7 @@ describe('Given a postBook function', () => {
       });
     });
     describe('And revokes', () => {
-      test('Then "handle" is called', async () => {
+      test('Then "error" is called', async () => {
         (Book.create as jest.Mock)
           .mockRejectedValue({});
         await postBook(req, res);
@@ -36,89 +125,4 @@ describe('Given a postBook function', () => {
   });
 });
 
-describe('Given a getBook function', () => {
-  describe('When is invoked', () => {
-    const req: any = { query: { authorId: '' } };
-    const res: any = {
-      status: jest.fn(),
-      send: jest.fn(),
-    };
-    describe('And resolves', () => {
-      test('Then "res.send" is called', async () => {
-        (Book.findById as jest.Mock)
-          .mockResolvedValue({});
-        await getBook(req, res);
-
-        expect(res.send).toHaveBeenCalled();
-      });
-    });
-    describe('And revokes', () => {
-      test('Then "handle" is called', async () => {
-        (Book.findById as jest.Mock)
-          .mockRejectedValue({});
-        await getBook(req, res);
-
-        expect(handle).toHaveBeenCalled();
-      });
-    });
-  });
-});
-
-describe('Given a putBook function', () => {
-  describe('When is invoked', () => {
-    const req: any = {
-      body: {},
-      query: { authorId: '' },
-    };
-    const res: any = {
-      status: jest.fn(),
-      send: jest.fn(),
-    };
-    describe('And resolves', () => {
-      test('Then "res.send" is called', async () => {
-        (Book.findByIdAndUpdate as jest.Mock)
-          .mockResolvedValue({});
-        await putBook(req, res);
-
-        expect(res.send).toHaveBeenCalled();
-      });
-    });
-    describe('And revokes', () => {
-      test('Then "handle" is called', async () => {
-        (Book.findByIdAndUpdate as jest.Mock)
-          .mockRejectedValue({});
-        await putBook(req, res);
-
-        expect(handle).toHaveBeenCalled();
-      });
-    });
-  });
-});
-
-describe('Given a deleteBook function', () => {
-  describe('When is invoked', () => {
-    const req: any = { query: { authorId: '' } };
-    const res: any = {
-      status: jest.fn(),
-      send: jest.fn(),
-    };
-    describe('And resolves', () => {
-      test('Then "res.send" is called', async () => {
-        (Book.findByIdAndDelete as jest.Mock)
-          .mockResolvedValue({});
-        await deleteBook(req, res);
-
-        expect(res.send).toHaveBeenCalled();
-      });
-    });
-    describe('And revokes', () => {
-      test('Then "handle" is called', async () => {
-        (Book.findByIdAndDelete as jest.Mock)
-          .mockRejectedValue({});
-        await deleteBook(req, res);
-
-        expect(handle).toHaveBeenCalled();
-      });
-    });
-  });
-});
+*/

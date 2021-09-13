@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-return */
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connect from '../../../lib/configure/database';
 import request from '../../../utils/methods';
@@ -13,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200);
       res.send(createdBook);
     } catch (error) { handle(error, res); }
-  }
+  } else return;
 };
 
 export default connect(handler);
