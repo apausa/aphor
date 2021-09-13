@@ -10,6 +10,7 @@ import redirect from '../utils/redirect';
 import styles from '../styles/Index.module.scss';
 import write from '../styles/Write.module.scss';
 import api from '../utils/apiRoutes';
+import slice from '../utils/date';
 
 export default function Dashboard({
   id, users, books, image,
@@ -80,7 +81,13 @@ export default function Dashboard({
                 <option value={book._id}>{book.title}</option>
               ))}
             </datalist>
-            <button onClick={onSubmit} className={write.book__button} type="button">Publish.</button>
+            <button
+              onClick={onSubmit}
+              className={write.book__button}
+              type="button"
+            >
+              Publish.
+            </button>
           </fieldset>
         </form>
       </div>
@@ -121,9 +128,25 @@ export default function Dashboard({
                       </Link>
                     </ul>
                   </li>
-                  <Link href={`/${user._id}/books/${book._id}/${story._id}`}>
-                    <li className={styles.first__date}>{story.date}</li>
-                  </Link>
+                  <li>
+                    <ul className={styles.first__information}>
+                      <Link href={`/${user._id}/books/${book._id}/${story._id}`}>
+                        <li className={styles.first__date}>{slice(story.date)}</li>
+                      </Link>
+                      <li className={styles.information__button}>
+                        <button
+                          className={styles.button}
+                          onClick={async () => {
+                            const link = `http://localhost:3000/${user._id}/books/${book._id}/${story._id}`;
+                            await navigator.clipboard.writeText(link);
+                          }}
+                          type="submit"
+                        >
+                          S
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
                 </ul>
               </li>
               <li className={styles.second}>

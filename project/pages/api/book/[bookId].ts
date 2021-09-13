@@ -16,9 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         .populate('stories');
       res.status(200);
       res.send(book);
-    } catch {
-      res.send(null);
-    }
+    } catch { res.send(null); }
   }
   // Updates a book.
   if (req.method === request.PUT) {

@@ -41,6 +41,6 @@ export async function getServerSideProps(context: any) {
   if (!session) return redirect;
   const { params: { params } } = context;
   const query = params[0];
-  const { data } = await axios.post(api.SEARCH + query);
+  const { data } = await axios.post(api.SEARCH, { query });
   return { props: { data } };
 }

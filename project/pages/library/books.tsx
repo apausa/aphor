@@ -8,6 +8,7 @@ import Image from 'next/image';
 import redirect from '../../utils/redirect';
 import styles from '../../styles/Index.module.scss';
 import api from '../../utils/apiRoutes';
+import slice from '../../utils/date';
 
 export default function Books({ users }: any) {
   return (
@@ -34,9 +35,25 @@ export default function Books({ users }: any) {
                       </Link>
                     </ul>
                   </li>
-                  <Link href={`/${user._id}/books/${book._id}/`}>
-                    <li className={styles.first__date}>{book.date}</li>
-                  </Link>
+                  <li>
+                    <ul className={styles.first__information}>
+                      <Link href={`/${user._id}/books/${book._id}/`}>
+                        <li className={styles.first__date}>{slice(book.date)}</li>
+                      </Link>
+                      <li className={styles.information__button}>
+                        <button
+                          className={styles.button}
+                          onClick={async () => {
+                            const link = `http://localhost:3000/${user._id}/books/${book._id}`;
+                            await navigator.clipboard.writeText(link);
+                          }}
+                          type="submit"
+                        >
+                          S
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
                 </ul>
               </li>
             </ul>

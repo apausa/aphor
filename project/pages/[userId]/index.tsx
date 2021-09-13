@@ -1,15 +1,33 @@
+/* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getSession } from 'next-auth/client';
 import axios from 'axios';
 import styles from '../../styles/Index.module.scss';
 import api from '../../utils/apiRoutes';
+import slice from '../../utils/date';
 
 export default function User({
-  books, fullName, image, userId,
+  session, books, fullName, image, userId,
 }: any) {
+  const loggedUser = (session.user.id === userId);
+  const storyDelete = (id: any) => (
+    <li className={styles.information__button}>
+      <button
+        className={styles.button}
+        onClick={async () => {
+          await axios.delete(api.STORY + id);
+          window.location.reload();
+        }}
+        type="submit"
+      >
+        D
+      </button>
+    </li>
+  );
   return (
     <main>
       <ul className={styles.main}>
@@ -40,12 +58,28 @@ export default function User({
                           .
                         </li>
                       </Link>
-
                     </ul>
                   </li>
-                  <Link href={`/${userId}/books/${book._id}/${story._id}`}>
-                    <li className={styles.first__date}>{story.date}</li>
-                  </Link>
+                  <li>
+                    <ul className={styles.first__information}>
+                      <Link href={`/${userId}/books/${book._id}/${story._id}`}>
+                        <li className={styles.first__date}>{slice(story.date)}</li>
+                      </Link>
+                      <li className={styles.information__button}>
+                        <button
+                          className={styles.button}
+                          onClick={async () => {
+                            const link = `http://localhost:3000/${userId}/books/${book._id}/${story._id}`;
+                            await navigator.clipboard.writeText(link);
+                          }}
+                          type="submit"
+                        >
+                          S
+                        </button>
+                      </li>
+                      {loggedUser && storyDelete(story._id)}
+                    </ul>
+                  </li>
                 </ul>
               </li>
               <li className={styles.second}>
@@ -64,11 +98,12 @@ export default function User({
 }
 
 export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
   const { params: { userId } } = context;
   const { data: { books, fullName, image } } = await axios.get(api.USER + userId);
   return {
     props: {
-      books, fullName, image, userId,
+      session, books, fullName, image, userId,
     },
   };
 }

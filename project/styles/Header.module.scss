@@ -31,13 +31,50 @@
     margin-left: 16px;
 }
 
-.other__link {
+.other__linkoff {
     text-decoration: none;
     color: $gray;
 }
 
-.other__link:focus {
+.other__linkoff:hover {
+    color:rgb(0, 0, 255);
+}
+
+.other__linkon {
+    text-decoration: none;
     color: $black;
+}
+
+.user__button {
+    margin-left: 16px;
+    padding: 0px 8px 0px 8px;
+}
+
+.button__on {
+    border-radius: 10px;
+    font-size: 20px;
+    width: 6.5vw;
+    height: 32px;
+    background-color: rgb(0, 0, 255);
+    color: $beige;
+}
+
+.button__on:active {
+    background-color: $black;
+}
+
+.button__off {
+    border-radius: 10px;
+    font-size: 20px;
+    width: 6.5vw;
+    height: 32px;
+    border: 1px solid $gray;
+    color: $gray;
+}
+
+.button__off:active {
+    border: 1px solid rgb(0, 0, 255);
+    color: rgb(0, 0, 255);
 }
 
 .logged {
@@ -50,12 +87,11 @@
 }
 
 .component__input {
-    width: 18.75vw;
+    width: 18vw;
     height: 32px;
     border: 1px solid $gray;
     border-radius: 10px;
     font-size: 18px;
-    font-weight: bold;
     position: relative;
     padding: 6px;
     bottom: 6px;

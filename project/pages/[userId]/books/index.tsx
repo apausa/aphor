@@ -4,13 +4,30 @@
 import React from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import { getSession } from 'next-auth/client';
 import Image from 'next/image';
 import styles from '../../../styles/Index.module.scss';
 import api from '../../../utils/apiRoutes';
+import slice from '../../../utils/date';
 
 export default function Books({
-  fullName, image, books, userId,
+  session, fullName, image, books, userId,
 }: any) {
+  const loggedUser = (session.user.id === userId);
+  const bookDelete = (id: any) => (
+    <li className={styles.information__button}>
+      <button
+        className={styles.button}
+        onClick={async () => {
+          await axios.delete(api.BOOK + id);
+          window.location.reload();
+        }}
+        type="submit"
+      >
+        D
+      </button>
+    </li>
+  );
   return (
     <main>
       <ul className={styles.main}>
@@ -36,9 +53,27 @@ export default function Books({
                       </Link>
                     </ul>
                   </li>
-                  <Link href={`/${userId}/books/${book._id}/`}>
-                    <li className={styles.first__date}>{book.date}</li>
-                  </Link>
+                  <li>
+                    <ul className={styles.first__information}>
+                      <Link href={`/${userId}/books/${book._id}/`}>
+                        <li className={styles.first__date}>{slice(book.date)}</li>
+                      </Link>
+                      <li className={styles.information__button}>
+                        <button
+                          className={styles.button}
+                          onClick={async () => {
+                            const link = `http://localhost:3000/${userId}/books/${book._id}`;
+                            await navigator.clipboard.writeText(link);
+                          }}
+                          type="submit"
+                        >
+                          S
+                        </button>
+                      </li>
+                      {loggedUser && bookDelete(book._id)}
+                    </ul>
+                  </li>
+
                 </ul>
               </li>
             </ul>
@@ -50,11 +85,12 @@ export default function Books({
 }
 
 export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
   const { params: { userId } } = context;
   const { data: { fullName, image, books } } = await axios.get(api.USER + userId);
   return {
     props: {
-      userId, fullName, image, books,
+      session, userId, fullName, image, books,
     },
   };
 }
