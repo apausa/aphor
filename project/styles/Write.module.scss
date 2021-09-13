@@ -67,6 +67,14 @@
     background-color: rgb(0, 0, 255);
 }
 
+.book__button:hover {
+    background-color: $gray;
+}
+
+.book__button:active {
+    background-color: $black;
+}
+
 .image {
     border-radius: 50%;
 }

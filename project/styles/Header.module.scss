@@ -40,6 +40,38 @@
     color: $black;
 }
 
+.user__button {
+    margin-left: 16px;
+    padding: 0px 8px 0px 8px;
+}
+
+.button__on {
+    border-radius: 10px;
+    font-size: 20px;
+    width: 6.5vw;
+    height: 32px;
+    background-color: rgb(0, 0, 255);
+    color: $beige;
+}
+
+.button__on:active {
+    background-color: $black;
+}
+
+.button__off {
+    border-radius: 10px;
+    font-size: 20px;
+    width: 6.5vw;
+    height: 32px;
+    border: 1px solid $gray;
+    color: $gray;
+}
+
+.button__off:active {
+    border: 1px solid rgb(0, 0, 255);
+    color: rgb(0, 0, 255);
+}
+
 .logged {
     list-style: none;
     display: flex;  

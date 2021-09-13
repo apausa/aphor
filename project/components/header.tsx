@@ -53,8 +53,9 @@ export default function Header() {
         </Link>
       </li>
       {!user && session && !reading && (
-        <li>
+        <li className={styles.user__button}>
           <button
+            className={styles.button__off}
             onClick={handleRead}
             type="submit"
           >
@@ -63,8 +64,9 @@ export default function Header() {
         </li>
       )}
       {!user && session && reading && (
-        <li>
+        <li className={styles.user__button}>
           <button
+            className={styles.button__on}
             onClick={handleReading}
             type="submit"
           >
