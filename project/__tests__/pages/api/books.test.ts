@@ -98,7 +98,6 @@ describe('Given a "handler" function', () => {
 });
 
 /*
-
 describe('Given a postBook function', () => {
   describe('When is invoked', () => {
     const req: any = { body: {},
@@ -124,5 +123,4 @@ describe('Given a postBook function', () => {
     });
   });
 });
-
 */
