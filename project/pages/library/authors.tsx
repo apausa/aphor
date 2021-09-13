@@ -16,7 +16,7 @@ export default function Authors({ authors }: any) {
           <li>
             <ul className={styles.author}>
               <li>
-                <ul>
+                <ul className={styles.author__left}>
                   <li><Image className={styles.author__image} src={author.image} width="18" height="18" /></li>
                   <Link href={`/${author._id}`}>
                     <li className={styles.author__name}>
@@ -28,6 +28,7 @@ export default function Authors({ authors }: any) {
               </li>
               <li>
                 <button
+                  className={styles.button}
                   onClick={async () => {
                     const link = `http://localhost:3000/${author._id}`;
                     await navigator.clipboard.writeText(link);
