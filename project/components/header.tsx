@@ -30,7 +30,7 @@ export default function Header() {
     await axios.put(api.USER + session?.user.id, { data });
     setReading(false);
   };
-  // ERROR 500, WHEN NOT IN USER PAGE. If (route.startsWith('/[userId]'))
+  // ERROR 500, WHEN NOT IN USER PAGE.
   useEffect(() => {
     (async () => {
       const { data: { authors } } = await axios.get(api.USER + session?.user.id);
