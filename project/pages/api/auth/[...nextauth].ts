@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
-
+/* istanbul ignore file */
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 import axios from 'axios';

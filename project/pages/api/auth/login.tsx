@@ -4,6 +4,7 @@ import request from '../../../utils/methods';
 import User from '../../../lib/models/userModel';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  // Matches the user.
   if (req.method === request.POST) {
     try {
       const { body: { email, password } } = req;
