@@ -12,11 +12,11 @@ import api from '../utils/apiRoutes';
 export default function Header() {
   const [session, loading] = useSession();
   const router = useRouter();
+  const [reading, setReading] = useState(false);
   const { route, query: { userId } } = useRouter();
   const handleSearch = async ({ which, target: { value } }: any) => {
     if (which === 13 && value) router.push(`/search/${value}`);
   }; // If the user 'follows'.
-  const [reading, setReading] = useState(false);
   const handleRead = async () => {
     const { data } = await axios.get(api.USER + session?.user.id);
     data.authors.unshift(userId);
@@ -29,9 +29,9 @@ export default function Header() {
     data.authors.splice(index, 1);
     await axios.put(api.USER + session?.user.id, { data });
     setReading(false);
-  };
-  // ERROR 500, WHEN NOT IN USER PAGE.
+  }; // User page, logic.
   useEffect(() => {
+    if (!session && !route.startsWith('/[userId]')) return;
     (async () => {
       const { data: { authors } } = await axios.get(api.USER + session?.user.id);
       const author = !!(authors.find(({ _id }: any) => _id === userId));

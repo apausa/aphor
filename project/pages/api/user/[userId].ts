@@ -26,7 +26,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         });
       res.status(200);
       res.send(user);
-    } catch { res.send(null); }
+    } catch (error) { handle(error, res); }
   }
   // Updates an user.
   if (req.method === request.PUT) {
