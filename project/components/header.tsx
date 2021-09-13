@@ -17,6 +17,7 @@ export default function Header() {
   const handleSearch = async ({ which, target: { value } }: any) => {
     if (which === 13 && value) router.push(`/search/${value}`);
   }; // If the user 'follows'.
+  const user = (session?.user.id === userId);
   const handleRead = async () => {
     const { data } = await axios.get(api.USER + session?.user.id);
     data.authors.unshift(userId);
@@ -31,7 +32,7 @@ export default function Header() {
     setReading(false);
   }; // User page, logic.
   useEffect(() => {
-    if (!session && !route.startsWith('/[userId]')) return;
+    if (user && !session && (route.startsWith('/[userId]') === false)) return;
     (async () => {
       const { data: { authors } } = await axios.get(api.USER + session?.user.id);
       const author = !!(authors.find(({ _id }: any) => _id === userId));
@@ -39,21 +40,19 @@ export default function Header() {
     })();
   }, [reading]);
   // User page, structure.
-  const userPage = () => {
-    const user = (session?.user.id === userId);
-    return (
-      <ul className={styles.page__user}>
-        <li>
-          <Link href={`/${userId}`}>
-            <a className={styles.user__main}>Profile</a>
-          </Link>
-        </li>
-        <li className={styles.user__other}>
-          <Link href={`/${userId}/books`}>
-            <a className={styles.other__link}>Books</a>
-          </Link>
-        </li>
-        {!user && session && !reading && (
+  const userPage = () => (
+    <ul className={styles.page__user}>
+      <li>
+        <Link href={`/${userId}`}>
+          <a className={styles.user__main}>Profile</a>
+        </Link>
+      </li>
+      <li className={styles.user__other}>
+        <Link href={`/${userId}/books`}>
+          <a className={styles.other__link}>Books</a>
+        </Link>
+      </li>
+      {!user && session && !reading && (
         <li>
           <button
             onClick={handleRead}
@@ -62,8 +61,8 @@ export default function Header() {
             Read
           </button>
         </li>
-        )}
-        {!user && session && reading && (
+      )}
+      {!user && session && reading && (
         <li>
           <button
             onClick={handleReading}
@@ -72,10 +71,9 @@ export default function Header() {
             Reading
           </button>
         </li>
-        )}
-      </ul>
-    );
-  }; // Not found page, structure.
+      )}
+    </ul>
+  ); // Not found page, structure.
   const notFoundPage = () => (
     <ul className={styles.page__dashboard}>
       <li>404, not found.</li>

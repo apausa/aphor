@@ -57,12 +57,27 @@ export default function User({
                           .
                         </li>
                       </Link>
-
                     </ul>
                   </li>
-                  <Link href={`/${userId}/books/${book._id}/${story._id}`}>
-                    <li className={styles.first__date}>{slice(story.date)}</li>
-                  </Link>
+                  <li>
+                    <ul>
+                      <Link href={`/${userId}/books/${book._id}/${story._id}`}>
+                        <li className={styles.first__date}>{slice(story.date)}</li>
+                      </Link>
+                      {loggedUser && storyDelete(story._id)}
+                      <li>
+                        <button
+                          onClick={async () => {
+                            const link = `http://localhost:3000/${userId}/books/${book._id}/${story._id}`;
+                            await navigator.clipboard.writeText(link);
+                          }}
+                          type="submit"
+                        >
+                          Share.
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
                 </ul>
               </li>
               <li className={styles.second}>
@@ -72,23 +87,6 @@ export default function User({
                   </a>
                 </Link>
               </li>
-              <li>
-                <ul>
-                  {loggedUser && storyDelete(story._id)}
-                  <li>
-                    <button
-                      onClick={async () => {
-                        const link = `http://localhost:3000/${userId}/books/${book._id}/${story._id}`;
-                        await navigator.clipboard.writeText(link);
-                      }}
-                      type="submit"
-                    >
-                      Share.
-                    </button>
-                  </li>
-                </ul>
-              </li>
-
             </ul>
           </li>
         )))}

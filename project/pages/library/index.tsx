@@ -44,9 +44,24 @@ export default function Library({ users }: any) {
 
                     </ul>
                   </li>
-                  <Link href={`/${user._id}/books/${book._id}/${story._id}`}>
-                    <li className={styles.first__date}>{slice(story.date)}</li>
-                  </Link>
+                  <li>
+                    <ul>
+                      <Link href={`/${user._id}/books/${book._id}/${story._id}`}>
+                        <li className={styles.first__date}>{slice(story.date)}</li>
+                      </Link>
+                      <li>
+                        <button
+                          onClick={async () => {
+                            const link = `http://localhost:3000/${user._id}/books/${book._id}/${story._id}`;
+                            await navigator.clipboard.writeText(link);
+                          }}
+                          type="submit"
+                        >
+                          Share.
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
                 </ul>
               </li>
               <li className={styles.second}>
@@ -55,17 +70,6 @@ export default function Library({ users }: any) {
                     {story.body}
                   </a>
                 </Link>
-              </li>
-              <li>
-                <button
-                  onClick={async () => {
-                    const link = `http://localhost:3000/${user._id}/books/${book._id}/${story._id}`;
-                    await navigator.clipboard.writeText(link);
-                  }}
-                  type="submit"
-                >
-                  Share.
-                </button>
               </li>
             </ul>
           </li>

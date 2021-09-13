@@ -15,15 +15,17 @@ export default function Authors({ authors }: any) {
         {authors.map((author: any) => (
           <li>
             <ul className={styles.author}>
-              <li><Image className={styles.author__image} src={author.image} width="18" height="18" /></li>
-              <Link href={`/${author._id}`}>
-                <li className={styles.author__name}>
-                  {author.fullName}
-                  .
-                </li>
-              </Link>
-            </ul>
-            <ul>
+              <li>
+                <ul>
+                  <li><Image className={styles.author__image} src={author.image} width="18" height="18" /></li>
+                  <Link href={`/${author._id}`}>
+                    <li className={styles.author__name}>
+                      {author.fullName}
+                      .
+                    </li>
+                  </Link>
+                </ul>
+              </li>
               <li>
                 <button
                   onClick={async () => {

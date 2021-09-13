@@ -59,9 +59,25 @@ export default function Story({
                 </Link>
               </ul>
             </li>
-            <Link href={`/${userId}/books/${bookId}/${storyId}`}>
-              <li className={styles.first__date}>{slice(date)}</li>
-            </Link>
+            <li>
+              <ul>
+                <Link href={`/${userId}/books/${bookId}/${storyId}`}>
+                  <li className={styles.first__date}>{slice(date)}</li>
+                </Link>
+                {loggedUser && storyDelete(storyId)}
+                <li>
+                  <button
+                    onClick={async () => {
+                      const link = `http://localhost:3000/${userId}/books/${bookId}/${storyId}`;
+                      await navigator.clipboard.writeText(link);
+                    }}
+                    type="submit"
+                  >
+                    Share.
+                  </button>
+                </li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li className={styles.second}>
@@ -70,22 +86,6 @@ export default function Story({
               {body}
             </a>
           </Link>
-        </li>
-        <li>
-          <ul>
-            {loggedUser && storyDelete(storyId)}
-            <li>
-              <button
-                onClick={async () => {
-                  const link = `http://localhost:3000/${userId}/books/${bookId}/${storyId}`;
-                  await navigator.clipboard.writeText(link);
-                }}
-                type="submit"
-              >
-                Share.
-              </button>
-            </li>
-          </ul>
         </li>
       </ul>
     </main>

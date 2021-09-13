@@ -60,9 +60,25 @@ export default function Book({
                       </Link>
                     </ul>
                   </li>
-                  <Link href={`/${userId}/books/${bookId}/${story._id}`}>
-                    <li className={styles.first__date}>{slice(story.date)}</li>
-                  </Link>
+                  <li>
+                    <ul>
+                      <Link href={`/${userId}/books/${bookId}/${story._id}`}>
+                        <li className={styles.first__date}>{slice(story.date)}</li>
+                      </Link>
+                      {loggedUser && storyDelete(story._id)}
+                      <li>
+                        <button
+                          onClick={async () => {
+                            const link = `http://localhost:3000/${userId}/books/${bookId}/${story._id}`;
+                            await navigator.clipboard.writeText(link);
+                          }}
+                          type="submit"
+                        >
+                          Share.
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
                 </ul>
               </li>
               <li className={styles.second}>
@@ -71,22 +87,6 @@ export default function Book({
                     {story.body}
                   </a>
                 </Link>
-              </li>
-              <li>
-                <ul>
-                  {loggedUser && storyDelete(story._id)}
-                  <li>
-                    <button
-                      onClick={async () => {
-                        const link = `http://localhost:3000/${userId}/books/${bookId}/${story._id}`;
-                        await navigator.clipboard.writeText(link);
-                      }}
-                      type="submit"
-                    >
-                      Share.
-                    </button>
-                  </li>
-                </ul>
               </li>
             </ul>
           </li>
