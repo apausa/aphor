@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 /* eslint-disable no-underscore-dangle */
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connect from '../../../lib/configure/database';

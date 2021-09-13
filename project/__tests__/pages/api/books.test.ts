@@ -1,8 +1,7 @@
-/*
-import Book from '../lib/models/bookModel';
-import handle from '../utils/error';
-import bookIdHandler from '../pages/api/books/[bookId]';
-import bookHandler from '../pages/api/books/index';
+import Book from '../../../lib/models/bookModel';
+import handle from '../../../utils/error';
+import bookIdHandler from '../../../pages/api/book/[bookId]';
+import bookHandler from '../../../pages/api/book/index';
 
 jest.mock('../models/bookModel');
 jest.mock('../../utils/error');
@@ -123,5 +122,3 @@ describe('Given a deleteBook function', () => {
     });
   });
 });
-
-*/
