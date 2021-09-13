@@ -31,12 +31,17 @@
     margin-left: 16px;
 }
 
-.other__link {
+.other__linkoff {
     text-decoration: none;
     color: $gray;
 }
 
-.other__link:focus {
+.other__linkoff:hover {
+    color:rgb(0, 0, 255);
+}
+
+.other__linkon {
+    text-decoration: none;
     color: $black;
 }
 

@@ -49,7 +49,14 @@ export default function Header() {
       </li>
       <li className={styles.user__other}>
         <Link href={`/${userId}/books`}>
-          <a className={styles.other__link}>Books</a>
+          <a className={
+            (route.startsWith('/[userId]/books'))
+              ? styles.other__linkon
+              : styles.other__linkoff
+          }
+          >
+            Books
+          </a>
         </Link>
       </li>
       {!user && session && !reading && (
