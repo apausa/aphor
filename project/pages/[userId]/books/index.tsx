@@ -15,15 +15,16 @@ export default function Books({
 }: any) {
   const loggedUser = (session.user.id === userId);
   const bookDelete = (id: any) => (
-    <li>
+    <li className={styles.information__button}>
       <button
+        className={styles.button}
         onClick={async () => {
           await axios.delete(api.BOOK + id);
           window.location.reload();
         }}
         type="submit"
       >
-        Delete.
+        D
       </button>
     </li>
   );
@@ -53,22 +54,23 @@ export default function Books({
                     </ul>
                   </li>
                   <li>
-                    <ul>
+                    <ul className={styles.first__information}>
                       <Link href={`/${userId}/books/${book._id}/`}>
                         <li className={styles.first__date}>{slice(book.date)}</li>
                       </Link>
-                      {loggedUser && bookDelete(book._id)}
-                      <li>
+                      <li className={styles.information__button}>
                         <button
+                          className={styles.button}
                           onClick={async () => {
                             const link = `http://localhost:3000/${userId}/books/${book._id}`;
                             await navigator.clipboard.writeText(link);
                           }}
                           type="submit"
                         >
-                          Share.
+                          S
                         </button>
                       </li>
+                      {loggedUser && bookDelete(book._id)}
                     </ul>
                   </li>
 

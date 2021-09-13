@@ -34,7 +34,7 @@ export default function Authors({ authors }: any) {
                   }}
                   type="submit"
                 >
-                  Share.
+                  S
                 </button>
               </li>
             </ul>

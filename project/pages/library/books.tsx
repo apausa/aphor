@@ -36,19 +36,20 @@ export default function Books({ users }: any) {
                     </ul>
                   </li>
                   <li>
-                    <ul>
+                    <ul className={styles.first__information}>
                       <Link href={`/${user._id}/books/${book._id}/`}>
                         <li className={styles.first__date}>{slice(book.date)}</li>
                       </Link>
-                      <li>
+                      <li className={styles.information__button}>
                         <button
+                          className={styles.button}
                           onClick={async () => {
                             const link = `http://localhost:3000/${user._id}/books/${book._id}`;
                             await navigator.clipboard.writeText(link);
                           }}
                           type="submit"
                         >
-                          Share.
+                          S
                         </button>
                       </li>
                     </ul>

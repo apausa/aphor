@@ -18,15 +18,16 @@ export default function Story({
     .filter((story: any) => story._id === storyId)[0];
   const loggedUser = (session.user.id === userId);
   const storyDelete = (id: any) => (
-    <li>
+    <li className={styles.information__button}>
       <button
+        className={styles.button}
         onClick={async () => {
           await axios.delete(api.STORY + id);
           window.location.reload();
         }}
         type="submit"
       >
-        Delete.
+        D
       </button>
     </li>
   );
@@ -60,22 +61,23 @@ export default function Story({
               </ul>
             </li>
             <li>
-              <ul>
+              <ul className={styles.first__information}>
                 <Link href={`/${userId}/books/${bookId}/${storyId}`}>
                   <li className={styles.first__date}>{slice(date)}</li>
                 </Link>
-                {loggedUser && storyDelete(storyId)}
-                <li>
+                <li className={styles.information__button}>
                   <button
+                    className={styles.button}
                     onClick={async () => {
                       const link = `http://localhost:3000/${userId}/books/${bookId}/${storyId}`;
                       await navigator.clipboard.writeText(link);
                     }}
                     type="submit"
                   >
-                    Share.
+                    S
                   </button>
                 </li>
+                {loggedUser && storyDelete(storyId)}
               </ul>
             </li>
           </ul>
