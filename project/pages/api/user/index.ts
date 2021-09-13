@@ -5,7 +5,6 @@ import User from '../../../lib/models/userModel';
 import handle from '../../../utils/error';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  // Creates an author.
   if (req.method === request.POST) {
     const { body } = req;
     try {
