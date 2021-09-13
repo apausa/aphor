@@ -112,13 +112,29 @@ export default function Header() {
       </li>
       <li className={styles.user__other}>
         <Link href="/library/books">
-          <a className={styles.other__link}>Books</a>
+          <a className={
+            (route.startsWith('/library/books'))
+              ? styles.other__linkon
+              : styles.other__linkoff
+          }
+          >
+            Books
+
+          </a>
         </Link>
 
       </li>
       <li className={styles.user__other}>
         <Link href="/library/authors">
-          <a className={styles.other__link}>Authors</a>
+          <a className={
+            (route.startsWith('/library/authors'))
+              ? styles.other__linkon
+              : styles.other__linkoff
+          }
+          >
+            Authors
+
+          </a>
         </Link>
 
       </li>
