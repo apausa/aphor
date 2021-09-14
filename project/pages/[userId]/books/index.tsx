@@ -1,19 +1,23 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import { getSession } from 'next-auth/client';
 import Image from 'next/image';
 import styles from '../../../styles/Index.module.scss';
 import api from '../../../utils/apiRoutes';
-import slice from '../../../utils/date';
+import slice from '../../../utils/slice';
+import redirect from '../../../utils/redirect';
 
 export default function Books({
   session, fullName, image, books, userId,
 }: any) {
-  const loggedUser = (session.user.id === userId);
+  const [loggedUser, setLoggedUser] = useState(false);
+  useEffect(() => {
+    if (session.user.id === userId) setLoggedUser(true);
+  }, []);
   const bookDelete = (id: any) => (
     <li className={styles.information__button}>
       <button
@@ -38,7 +42,7 @@ export default function Books({
                 <ul className={styles.first}>
                   <li>
                     <ul className={styles.first__information}>
-                      <li><Image className={styles.information__image} src={image} width="18" height="18" /></li>
+                      <li><Image alt="profile" className={styles.information__image} src={image} width="18" height="18" /></li>
                       <Link href={`/${userId}`}>
                         <li className={styles.information__name}>
                           {fullName}
@@ -86,6 +90,7 @@ export default function Books({
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
+  if (!session) return redirect;
   const { params: { userId } } = context;
   const { data: { fullName, image, books } } = await axios.get(api.USER + userId);
   return {

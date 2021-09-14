@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export default {
   STORY: 'http://localhost:3000/api/story/',
   USER: 'http://localhost:3000/api/user/',

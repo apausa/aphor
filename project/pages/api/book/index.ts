@@ -1,11 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import connect from '../../../lib/configure/database';
+import connect from '../../../lib/configure/connection';
 import request from '../../../utils/methods';
 import Book from '../../../lib/models/bookModel';
-import handle from '../../../utils/error';
+import handle from '../../../utils/handle';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  // Creates a book.
   if (req.method === request.POST) {
     const { body } = req;
     try {

@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import connect from '../../../lib/configure/database';
+import connect from '../../../lib/configure/connection';
 import request from '../../../utils/methods';
 import Story from '../../../lib/models/storyModel';
-import handle from '../../../utils/error';
+import handle from '../../../utils/handle';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === request.POST) {

@@ -8,7 +8,7 @@ import Image from 'next/image';
 import redirect from '../../utils/redirect';
 import styles from '../../styles/Index.module.scss';
 import api from '../../utils/apiRoutes';
-import slice from '../../utils/date';
+import slice from '../../utils/slice';
 
 export default function Library({ users }: any) {
   return (
@@ -21,7 +21,15 @@ export default function Library({ users }: any) {
                 <ul className={styles.first}>
                   <li>
                     <ul className={styles.first__information}>
-                      <li><Image className={styles.information__image} src={user.image} width="18" height="18" /></li>
+                      <li>
+                        <Image
+                          className={styles.information__image}
+                          alt="profile"
+                          src={user.image}
+                          width="18"
+                          height="18"
+                        />
+                      </li>
                       <Link href={`/${user._id}`}>
                         <li className={styles.information__name}>
                           {user.fullName}

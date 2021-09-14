@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/client';
+import { useSession, signOut } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -32,7 +32,7 @@ export default function Header() {
     setReading(false);
   }; // User page, logic.
   useEffect(() => {
-    if (user && !session && (route.startsWith('/[userId]') === false)) return;
+    if ((!session) || (user && (route.startsWith('/[userId]') === false))) return;
     (async () => {
       const { data: { authors } } = await axios.get(api.USER + session?.user.id);
       const author = !!(authors.find(({ _id }: any) => _id === userId));
@@ -59,7 +59,7 @@ export default function Header() {
           </a>
         </Link>
       </li>
-      {!user && session && !reading && (
+      {!user && !reading && (
         <li className={styles.user__button}>
           <button
             className={styles.button__off}
@@ -70,16 +70,27 @@ export default function Header() {
           </button>
         </li>
       )}
-      {!user && session && reading && (
+      {!user && reading && (
         <li className={styles.user__button}>
           <button
             className={styles.button__on}
-            onClick={handleReading}
+            onClick={(handleReading)}
             type="submit"
           >
             Reading
           </button>
         </li>
+      )}
+      {user && (
+      <li className={styles.user__button}>
+        <button
+          className={styles.button__off}
+          onClick={() => signOut()}
+          type="submit"
+        >
+          Sign out
+        </button>
+      </li>
       )}
     </ul>
   ); // Not found page, structure.
@@ -95,7 +106,7 @@ export default function Header() {
   ); // Dashboard page, structure.
   const dashboardPage = () => (
     <ul className={styles.page__dashboard}>
-      <li>
+      <li data-testid="dashboard">
         <Link href="/">
           <a className={styles.dashboard__link}>Dashboard</a>
         </Link>
@@ -108,7 +119,6 @@ export default function Header() {
         <Link href="/library">
           <a className={styles.user__main}>Library</a>
         </Link>
-
       </li>
       <li className={styles.user__other}>
         <Link href="/library/books">
@@ -119,10 +129,8 @@ export default function Header() {
           }
           >
             Books
-
           </a>
         </Link>
-
       </li>
       <li className={styles.user__other}>
         <Link href="/library/authors">
@@ -176,14 +184,11 @@ export default function Header() {
         </Link>
       </li>
     </ul>
-  ); // Logged out user, structure.
-  const loggedOut = () => (
-    <Link href="/api/auth/signin"><a>Sign in</a></Link>
   );
   return (
     <header>
       <ul className={styles.main}>
-        <li>
+        <li data-testid="icon">
           <Link href="/">
             <a>
               <Image
@@ -197,14 +202,13 @@ export default function Header() {
         </li>
         <li className={styles.page}>
           {session && (route.startsWith('/search')) && searchPage()}
-          {session && (route === '/404') && notFoundPage()}
-          {session && (route === '/') && dashboardPage()}
           {session && (route.startsWith('/[userId]')) && userPage()}
           {session && (route.startsWith('/library')) && libraryPage()}
+          {session && (route === '/404') && notFoundPage()}
+          {session && (route === '/') && dashboardPage()}
         </li>
         <li>
           {session && loggedIn()}
-          {!session && loggedOut()}
         </li>
       </ul>
     </header>
