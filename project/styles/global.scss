@@ -20,5 +20,24 @@ header {
 
 main {
     margin: 81px 30.2vw 0vw 25vw;
+    width: 44.8vw;
 }
+
+@media (max-width: 1439px) {
+    main {
+        margin-left: auto;
+        margin-right: auto;
+        width: 645.12px;
+    }
+}
+
+@media (max-width: 661.12px) {
+    main {
+        margin-left: auto;
+        margin-right: auto;
+        width: 97.51984126984127vw;
+    }
+}
+
+
 

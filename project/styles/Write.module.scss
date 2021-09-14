@@ -1,49 +1,62 @@
 @import 'colors';
 
-.write {
-    display: flex;
+.main {
     border-bottom: 1px solid black;
-    padding: 0px 8px 16px 8px;
 }
 
-.write__form {
+.form {
+    width: inherit;
+}
+
+.fieldset__top {
     margin-left: 8px;
+    margin-bottom: 8px;
 }
 
-.form__story{
-    width: 604px;
-    margin-bottom: 16px;
-    display: flex;  
-    flex-direction: column;
+.top__information {
+    display: flex;
 }
 
-.story__title {
+.information__image {
+    border-radius: 50%;
+}
+
+.information__title {
     margin-bottom: 4px;
+    margin-left: 8px;
     font-size: 18px;
+    width: 605.11px;
     color: rgb(0, 0, 255);
     font-weight: bold;
 }
 
-.story__title:focus {
+.information__title:focus {
     outline: none;
 }
 
-.story__body {
+.top__textarea {
+    margin-left: 26px;
+    width: 605.11px;
     font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
     font-size: 16px;
+    text-align: justify;
+    text-justify: inter-word;
     resize: none;
+    height: 64px;
 }
 
-.story__body:focus {
+.top__textarea:focus {
     outline: none;
 }
 
-.form__book{
+.fieldset__bottom {
+    margin: 0px 8px 16px 32px;
     display: flex;
     justify-content: space-between;
 }
 
-.book__title {
+.bottom__book {
+    width: 256px;
     border: 1px solid $gray;
     border-radius: 8px;
     height: 28px;
@@ -52,13 +65,13 @@
     border: 1px solid $gray; 
 }
 
-.book__title:focus {
+.bottom__book:focus {
     outline: none;
     border: 1px solid rgb(0, 0, 255);
 }
 
-.book__button {
-    width: 6.5vw;
+.bottom__publish {
+    width: 80px;
     height: 32px;
     color: $beige;
     border-radius: 8px;
@@ -67,14 +80,10 @@
     background-color: rgb(0, 0, 255);
 }
 
-.book__button:hover {
+.bottom__publish:hover {
     background-color: $gray;
 }
 
-.book__button:active {
+.bottom__publish:active {
     background-color: $black;
-}
-
-.image {
-    border-radius: 50%;
 }

@@ -38,43 +38,49 @@ export default function Dashboard({
   };
   return (
     <main>
-      <div className={write.write}>
-        <Link href={`/${id}`}>
-          <a>
-            <Image
-              alt="profile"
-              className={write.image}
-              src={image}
-              width="18"
-              height="18"
-            />
-          </a>
-        </Link>
-        <form className={write.write__form}>
-          <fieldset className={write.form__story}>
-            <input
-              type="text"
-              value={storyTitle}
-              className={write.story__title}
-              onChange={handleStoryTitle}
-              placeholder="Title"
-              required
-            />
-            <textarea
-              value={storyBody}
-              className={write.story__body}
-              onChange={handleStoryBody}
-              placeholder="Write your story!"
-              required
-            />
+      <div className={write.main}>
+        <form className={write.form}>
+          <fieldset className={write.fieldset__top}>
+            <div className={write.top__information}>
+              <Link href={`/${id}`}>
+                <a>
+                  <Image
+                    className={write.information__image}
+                    alt="profile"
+                    src={image}
+                    width="18"
+                    height="18"
+                  />
+                </a>
+              </Link>
+              <div>
+                <input
+                  className={write.information__title}
+                  type="text"
+                  value={storyTitle}
+                  onChange={handleStoryTitle}
+                  placeholder="Title"
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <textarea
+                value={storyBody}
+                className={write.top__textarea}
+                onChange={handleStoryBody}
+                placeholder="Write your story!"
+                required
+              />
+            </div>
           </fieldset>
-          <fieldset className={write.form__book}>
+          <fieldset className={write.fieldset__bottom}>
             <input
+              className={write.bottom__book}
               list="bookId"
               value={bookId}
-              className={write.book__title}
               onChange={handleBookId}
-              placeholder="Book title."
+              placeholder="Book."
               required
             />
             <datalist id="bookId">
@@ -83,8 +89,8 @@ export default function Dashboard({
               ))}
             </datalist>
             <button
+              className={write.bottom__publish}
               onClick={onSubmit}
-              className={write.book__button}
               type="button"
             >
               Publish.
