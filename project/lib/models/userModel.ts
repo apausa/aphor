@@ -8,7 +8,7 @@ const user = new Schema({
   about: String,
   password: String,
   email: String,
-  image: { type: String, default: 'https://placehold.it/32x32' },
+  image: { type: String, default: 'http://placehold.it/32x32' },
   books: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
   authors: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
