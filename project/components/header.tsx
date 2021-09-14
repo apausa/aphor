@@ -185,6 +185,11 @@ export default function Header() {
       </li>
     </ul>
   );
+  const signInPage = () => (
+    <ul className={styles.page__dashboard}>
+      <li>Welcome!</li>
+    </ul>
+  );
   return (
     <header>
       <ul className={styles.main}>
@@ -206,6 +211,7 @@ export default function Header() {
           {session && (route === '/') && dashboardPage()}
           {session && (route.startsWith('/[userId]')) && userPage()}
           {session && (route.startsWith('/library')) && libraryPage()}
+          {!session && (route === '/auth/signin') && signInPage()}
         </li>
         <li>
           {session && loggedIn()}
