@@ -106,7 +106,7 @@ export default function Header() {
   ); // Dashboard page, structure.
   const dashboardPage = () => (
     <ul className={styles.page__dashboard}>
-      <li>
+      <li data-testid="dashboard">
         <Link href="/">
           <a className={styles.dashboard__link}>Dashboard</a>
         </Link>
@@ -185,11 +185,6 @@ export default function Header() {
       </li>
     </ul>
   );
-  const signInPage = () => (
-    <ul className={styles.page__dashboard}>
-      <li>Welcome!</li>
-    </ul>
-  );
   return (
     <header>
       <ul className={styles.main}>
@@ -206,15 +201,14 @@ export default function Header() {
           </Link>
         </li>
         <li className={styles.page}>
-          {session && (route.startsWith('/search')) && searchPage()}
-          {session && (route === '/404') && notFoundPage()}
-          {session && (route === '/') && dashboardPage()}
-          {session && (route.startsWith('/[userId]')) && userPage()}
-          {session && (route.startsWith('/library')) && libraryPage()}
-          {!session && (route === '/auth/signin') && signInPage()}
+          {(route.startsWith('/search')) && searchPage()}
+          {(route.startsWith('/[userId]')) && userPage()}
+          {(route.startsWith('/library')) && libraryPage()}
+          {(route === '/404') && notFoundPage()}
+          {(route === '/') && dashboardPage()}
         </li>
         <li>
-          {session && loggedIn()}
+          {loggedIn()}
         </li>
       </ul>
     </header>
