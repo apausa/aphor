@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import connect from '../../../lib/configure/database';
+import connect from '../../../lib/configure/connection';
 import request from '../../../utils/methods';
 import User from '../../../lib/models/userModel';
 import handle from '../../../utils/error';
