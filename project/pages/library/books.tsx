@@ -8,7 +8,7 @@ import Image from 'next/image';
 import redirect from '../../utils/redirect';
 import styles from '../../styles/Index.module.scss';
 import api from '../../utils/apiRoutes';
-import slice from '../../utils/date';
+import slice from '../../utils/slice';
 
 export default function Books({ users }: any) {
   return (

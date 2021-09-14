@@ -1,5 +1,5 @@
 import Book from '../../../lib/models/bookModel';
-import error from '../../../utils/error';
+import error from '../../../utils/handle';
 import bookIdHandler from '../../../pages/api/book/[bookId]';
 import bookHandler from '../../../pages/api/book/index';
 

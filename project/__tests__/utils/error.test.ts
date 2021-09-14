@@ -1,4 +1,4 @@
-import handle from '../../utils/error';
+import handle from '../../utils/handle';
 
 describe('Given a handleError function', () => {
   describe('When is invoked', () => {

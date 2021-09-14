@@ -1,5 +1,5 @@
 import User from '../../../lib/models/userModel';
-import error from '../../../utils/error';
+import error from '../../../utils/handle';
 import searchHandler from '../../../pages/api/search/index';
 
 jest.mock('../../../lib/models/userModel');

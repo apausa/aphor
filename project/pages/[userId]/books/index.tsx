@@ -8,7 +8,7 @@ import { getSession } from 'next-auth/client';
 import Image from 'next/image';
 import styles from '../../../styles/Index.module.scss';
 import api from '../../../utils/apiRoutes';
-import slice from '../../../utils/date';
+import slice from '../../../utils/slice';
 import redirect from '../../../utils/redirect';
 
 export default function Books({

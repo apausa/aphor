@@ -1,5 +1,5 @@
 import Story from '../../../lib/models/storyModel';
-import error from '../../../utils/error';
+import error from '../../../utils/handle';
 import storyIdHandler from '../../../pages/api/story/[storyId]';
 import storyHandler from '../../../pages/api/story/index';
 

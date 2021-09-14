@@ -1,5 +1,5 @@
 import User from '../../../lib/models/userModel';
-import error from '../../../utils/error';
+import error from '../../../utils/handle';
 import userIdHandler from '../../../pages/api/user/[userId]';
 import userHandler from '../../../pages/api/user/index';
 
