@@ -10,9 +10,7 @@ const options: any = {
 
 // Maintains a cached connection across hot reloads.
 const connection = (handler: any) => async (req: any, res: any) => {
-  if (!cached) {
-    await mongoose.connect(uri, options);
-  }
+  if (!cached) mongoose.connect(uri, options);
   return handler(req, res);
 };
 

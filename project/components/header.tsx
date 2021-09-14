@@ -164,7 +164,7 @@ export default function Header() {
           <a>
             <Image
               className={styles.image}
-              src="http://placehold.it/32x32"
+              src="https://placehold.it/32x32"
               width="32"
               height="32"
             />
@@ -193,7 +193,7 @@ export default function Header() {
             <a>
               <Image
                 className={styles.image}
-                src="http://placehold.it/32x32"
+                src="https://placehold.it/32x32"
                 width="32"
                 height="32"
               />
