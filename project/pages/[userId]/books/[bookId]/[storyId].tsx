@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,15 +8,19 @@ import { getSession } from 'next-auth/client';
 import styles from '../../../../styles/Index.module.scss';
 import api from '../../../../utils/apiRoutes';
 import slice from '../../../../utils/date';
+import redirect from '../../../../utils/redirect';
 
 export default function Story({
   session, books, fullName, image, userId, bookId, storyId,
 }: any) {
+  const [loggedUser, setLoggedUser] = useState(false);
+  useEffect(() => {
+    if (session.user.id === userId) setLoggedUser(true);
+  }, []);
   const something = books
     .filter((book: any) => book._id === bookId)[0];
   const { title, date, body } = something.stories
     .filter((story: any) => story._id === storyId)[0];
-  const loggedUser = (session.user.id === userId);
   const storyDelete = (id: any) => (
     <li className={styles.information__button}>
       <button
@@ -96,6 +100,7 @@ export default function Story({
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
+  if (!session) return redirect;
   const { params: { userId, bookId, storyId } } = context;
   const { data: { books, fullName, image } } = await axios
     .get(api.USER + userId);
