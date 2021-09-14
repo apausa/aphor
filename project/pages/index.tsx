@@ -42,6 +42,7 @@ export default function Dashboard({
         <Link href={`/${id}`}>
           <a>
             <Image
+              alt="profile"
               className={write.image}
               src={image}
               width="18"
@@ -101,6 +102,7 @@ export default function Dashboard({
                     <ul className={styles.first__information}>
                       <li>
                         <Image
+                          alt="profile"
                           className={styles.information__image}
                           src={user.image}
                           width="18"

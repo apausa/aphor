@@ -21,7 +21,15 @@ export default function Search({ data }: any) {
         {data.map((author: any) => (
           <li>
             <ul className={styles.author}>
-              <li><Image className={styles.author__image} src={author.image} width="18" height="18" /></li>
+              <li>
+                <Image
+                  alt="profile"
+                  className={styles.author__image}
+                  src={author.image}
+                  width="18"
+                  height="18"
+                />
+              </li>
               <Link href={`/${author._id}`}>
                 <li className={styles.author__name}>
                   {author.fullName}

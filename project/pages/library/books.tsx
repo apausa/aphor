@@ -21,7 +21,16 @@ export default function Books({ users }: any) {
                 <ul className={styles.first}>
                   <li>
                     <ul className={styles.first__information}>
-                      <li><Image className={styles.information__image} src={user.image} width="18" height="18" /></li>
+                      <li>
+                        <Image
+                          alt="profile"
+                          className={styles.information__image}
+                          src={user.image}
+                          width="18"
+                          height="18"
+                        />
+
+                      </li>
                       <Link href={`/${user._id}`}>
                         <li className={styles.information__name}>
                           {user.fullName}
