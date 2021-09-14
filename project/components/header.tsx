@@ -201,14 +201,14 @@ export default function Header() {
           </Link>
         </li>
         <li className={styles.page}>
-          {(route.startsWith('/search')) && searchPage()}
-          {(route.startsWith('/[userId]')) && userPage()}
-          {(route.startsWith('/library')) && libraryPage()}
-          {(route === '/404') && notFoundPage()}
-          {(route === '/') && dashboardPage()}
+          {session && (route.startsWith('/search')) && searchPage()}
+          {session && (route.startsWith('/[userId]')) && userPage()}
+          {session && (route.startsWith('/library')) && libraryPage()}
+          {session && (route === '/404') && notFoundPage()}
+          {session && (route === '/') && dashboardPage()}
         </li>
         <li>
-          {loggedIn()}
+          {session && loggedIn()}
         </li>
       </ul>
     </header>
