@@ -4,7 +4,7 @@ import bookIdHandler from '../../../pages/api/book/[bookId]';
 import bookHandler from '../../../pages/api/book/index';
 
 jest.mock('../../../lib/models/bookModel');
-jest.mock('../../../utils/error');
+jest.mock('../../../utils/handle');
 
 describe('Given a "handler" function', () => {
   describe('When is invoked', () => {

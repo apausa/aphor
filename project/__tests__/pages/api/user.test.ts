@@ -4,7 +4,7 @@ import userIdHandler from '../../../pages/api/user/[userId]';
 import userHandler from '../../../pages/api/user/index';
 
 jest.mock('../../../lib/models/userModel');
-jest.mock('../../../utils/error');
+jest.mock('../../../utils/handle');
 
 describe('Given a "handler" function', () => {
   describe('When is invoked', () => {

@@ -4,7 +4,7 @@ import storyIdHandler from '../../../pages/api/story/[storyId]';
 import storyHandler from '../../../pages/api/story/index';
 
 jest.mock('../../../lib/models/storyModel');
-jest.mock('../../../utils/error');
+jest.mock('../../../utils/handle');
 
 describe('Given a "handler" function', () => {
   describe('When is invoked', () => {

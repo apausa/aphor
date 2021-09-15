@@ -3,9 +3,16 @@ module.exports = {
   collectCoverageFrom: [
     '**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
+    '!**/_app.tsx',
     '!**/*.config.js',
     '!**/node_modules/**',
     '!**/.next/**',
+    '!**/components/**',
+    '!**/pages/[userId]/**',
+    '!**/pages/library/**',
+    '!**/pages/search/**',
+    '!**/pages/404.tsx/**',
+    '!**/.scannerwork/**',
     '!**/coverage/**',
   ],
   moduleNameMapper: {

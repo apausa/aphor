@@ -3,7 +3,7 @@ import error from '../../../utils/handle';
 import searchHandler from '../../../pages/api/search/index';
 
 jest.mock('../../../lib/models/userModel');
-jest.mock('../../../utils/error');
+jest.mock('../../../utils/handle');
 
 describe('Given a "handler" function', () => {
   describe('When is invoked', () => {

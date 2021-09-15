@@ -164,7 +164,8 @@ export default function Header() {
           <a>
             <Image
               className={styles.image}
-              src="http://placehold.it/32x32"
+              alt="library"
+              src="https://i.ibb.co/nMKDCbG/library.png"
               width="32"
               height="32"
             />
@@ -176,6 +177,7 @@ export default function Header() {
           <a>
             <Image
               className={styles.image}
+              alt="profile"
               src={`${session?.user.image}`}
               width="32"
               height="32"
@@ -193,7 +195,8 @@ export default function Header() {
             <a>
               <Image
                 className={styles.image}
-                src="http://placehold.it/32x32"
+                alt="dashboard"
+                src="https://i.ibb.co/6WtdfhK/dashboard.png"
                 width="32"
                 height="32"
               />
