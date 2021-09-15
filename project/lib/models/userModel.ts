@@ -5,7 +5,6 @@ const { model, models, Schema } = mongoose;
 const user = new Schema({
   userName: String,
   fullName: String,
-  about: String,
   password: String,
   email: String,
   image: { type: String, default: 'http://placehold.it/32x32' },
