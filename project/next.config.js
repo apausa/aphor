@@ -3,6 +3,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['ibb.co'],
+    domains: ['media-exp1.licdn.com', 'i.ibb.co'],
   },
 };

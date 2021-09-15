@@ -164,7 +164,7 @@ export default function Header() {
           <a>
             <Image
               className={styles.image}
-              src="https://ibb.co/Qvx6dfg"
+              src="https://i.ibb.co/nMKDCbG/library.png"
               width="32"
               height="32"
             />
@@ -193,7 +193,7 @@ export default function Header() {
             <a>
               <Image
                 className={styles.image}
-                src="https://ibb.co/pLKm9DH"
+                src="https://i.ibb.co/6WtdfhK/dashboard.png"
                 width="32"
                 height="32"
               />
