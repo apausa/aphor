@@ -164,7 +164,7 @@ export default function Header() {
           <a>
             <Image
               className={styles.image}
-              src="/../public/book.svg"
+              src="/../public/library.png"
               width="32"
               height="32"
             />
@@ -193,7 +193,7 @@ export default function Header() {
             <a>
               <Image
                 className={styles.image}
-                src="/../public/favicon.ico"
+                src="/../public/dashboard.png"
                 width="32"
                 height="32"
               />
