@@ -53,14 +53,6 @@ export default function Book({
                       <Link href={`/${userId}/books/${bookId}`}>
                         <li className={styles.information__book}>
                           {title}
-                          {' '}
-                          /
-                        </li>
-                      </Link>
-                      <Link href={`/${userId}/books/${bookId}/${story._id}`}>
-                        <li className={styles.information__story}>
-                          {story.title}
-                          .
                         </li>
                       </Link>
                     </ul>
