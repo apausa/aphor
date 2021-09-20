@@ -1,2 +1,2 @@
 # Skylab Final Project
-Rocking on Next.
+This is a MERN Stack application, developed with the Nexj.js framework.
