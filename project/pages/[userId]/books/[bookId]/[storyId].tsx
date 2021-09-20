@@ -19,7 +19,7 @@ export default function Story({
   }, []);
   const something = books
     .filter((book: any) => book._id === bookId)[0];
-  const { title, date, body } = something.stories
+  const { date, body } = something.stories
     .filter((story: any) => story._id === storyId)[0];
   const storyDelete = (id: any) => (
     <li className={styles.information__button}>
@@ -54,12 +54,6 @@ export default function Story({
                     {something.title}
                     {' '}
                     /
-                  </li>
-                </Link>
-                <Link href={`/${userId}/books/${bookId}/${storyId}`}>
-                  <li className={styles.information__story}>
-                    {title}
-                    .
                   </li>
                 </Link>
               </ul>
