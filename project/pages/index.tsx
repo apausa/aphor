@@ -15,15 +15,13 @@ import slice from '../utils/slice';
 export default function Dashboard({
   id, users, books, image,
 }: any) {
-  const [storyTitle, setStoryTitle] = useState('');
   const [storyBody, setstoryBody] = useState('');
   const [bookId, setBookId] = useState('');
-  const handleStoryTitle = (event: any) => setStoryTitle(event.target.value);
   const handleStoryBody = (event: any) => setstoryBody(event.target.value);
   const handleBookId = (event: any) => setBookId(event.target.value);
   const onSubmit = async () => {
     const createdStory = await axios.post(api.STORY,
-      { storyTitle, storyBody });
+      { storyBody });
     const { data } = await axios.get(api.BOOK + bookId);
     if (data) {
       data.stories.unshift(createdStory.data._id);
@@ -53,16 +51,6 @@ export default function Dashboard({
                   />
                 </a>
               </Link>
-              <div>
-                <input
-                  className={write.information__title}
-                  type="text"
-                  value={storyTitle}
-                  onChange={handleStoryTitle}
-                  placeholder="Title"
-                  required
-                />
-              </div>
             </div>
             <div>
               <textarea
@@ -124,14 +112,6 @@ export default function Dashboard({
                       <Link href={`/${user._id}/books/${book._id}`}>
                         <li className={styles.information__book}>
                           {book.title}
-                          {' '}
-                          /
-                        </li>
-                      </Link>
-                      <Link href={`/${user._id}/books/${book._id}/${story._id}`}>
-                        <li className={styles.information__story}>
-                          {story.title}
-                          .
                         </li>
                       </Link>
                     </ul>

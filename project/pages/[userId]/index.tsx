@@ -52,14 +52,6 @@ export default function User({
                       <Link href={`/${userId}/books/${book._id}`}>
                         <li className={styles.information__book}>
                           {book.title}
-                          {' '}
-                          /
-                        </li>
-                      </Link>
-                      <Link href={`/${userId}/books/${book._id}/${story._id}`}>
-                        <li className={styles.information__story}>
-                          {story.title}
-                          .
                         </li>
                       </Link>
                     </ul>
