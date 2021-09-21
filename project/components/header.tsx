@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
-import { useSession, signOut } from 'next-auth/client';
+import { useSession, signOut, signIn } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -63,7 +63,9 @@ export default function Header() {
         <li className={styles.user__button}>
           <button
             className={styles.button__off}
-            onClick={handleRead}
+            onClick={(session)
+              ? handleRead
+              : (() => signIn())}
             type="submit"
           >
             Read
@@ -187,6 +189,17 @@ export default function Header() {
       </li>
     </ul>
   );
+  const loggedOut = () => (
+    <li className={styles.user__button}>
+      <button
+        onClick={() => signIn()}
+        className={styles.button__on}
+        type="submit"
+      >
+        Sign in
+      </button>
+    </li>
+  );
   return (
     <header>
       <ul className={styles.main}>
@@ -204,13 +217,14 @@ export default function Header() {
           </Link>
         </li>
         <li className={styles.page}>
-          {session && (route.startsWith('/search')) && searchPage()}
-          {session && (route.startsWith('/[userId]')) && userPage()}
-          {session && (route.startsWith('/library')) && libraryPage()}
-          {session && (route === '/404') && notFoundPage()}
           {session && (route === '/') && dashboardPage()}
+          {(route.startsWith('/[userId]')) && userPage()}
+          {session && (route.startsWith('/library')) && libraryPage()}
+          {session && (route.startsWith('/search')) && searchPage()}
+          {(route === '/404') && notFoundPage()}
         </li>
         <li>
+          {!session && loggedOut()}
           {session && loggedIn()}
         </li>
       </ul>

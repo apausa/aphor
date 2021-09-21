@@ -8,18 +8,18 @@ import { getSession } from 'next-auth/client';
 import styles from '../../../../styles/Index.module.scss';
 import api from '../../../../utils/apiRoutes';
 import slice from '../../../../utils/slice';
-import redirect from '../../../../utils/redirect';
 
 export default function Story({
   session, books, fullName, image, userId, bookId, storyId,
 }: any) {
   const [loggedUser, setLoggedUser] = useState(false);
   useEffect(() => {
+    if (!session) return;
     if (session.user.id === userId) setLoggedUser(true);
   }, []);
   const something = books
     .filter((book: any) => book._id === bookId)[0];
-  const { title, date, body } = something.stories
+  const { date, body } = something.stories
     .filter((story: any) => story._id === storyId)[0];
   const storyDelete = (id: any) => (
     <li className={styles.information__button}>
@@ -54,12 +54,6 @@ export default function Story({
                     {something.title}
                     {' '}
                     /
-                  </li>
-                </Link>
-                <Link href={`/${userId}/books/${bookId}/${storyId}`}>
-                  <li className={styles.information__story}>
-                    {title}
-                    .
                   </li>
                 </Link>
               </ul>
@@ -100,7 +94,6 @@ export default function Story({
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
-  if (!session) return redirect;
   const { params: { userId, bookId, storyId } } = context;
   const { data: { books, fullName, image } } = await axios
     .get(api.USER + userId);

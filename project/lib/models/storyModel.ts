@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 const { model, models, Schema } = mongoose;
 
 const story = new Schema({
-  title: String,
   body: String,
   date: { type: Date, default: new Date() },
 });

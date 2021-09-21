@@ -9,13 +9,13 @@ import Image from 'next/image';
 import styles from '../../../styles/Index.module.scss';
 import api from '../../../utils/apiRoutes';
 import slice from '../../../utils/slice';
-import redirect from '../../../utils/redirect';
 
 export default function Books({
   session, fullName, image, books, userId,
 }: any) {
   const [loggedUser, setLoggedUser] = useState(false);
   useEffect(() => {
+    if (!session) return;
     if (session.user.id === userId) setLoggedUser(true);
   }, []);
   const bookDelete = (id: any) => (
@@ -90,7 +90,6 @@ export default function Books({
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
-  if (!session) return redirect;
   const { params: { userId } } = context;
   const { data: { fullName, image, books } } = await axios.get(api.USER + userId);
   return {

@@ -9,13 +9,13 @@ import axios from 'axios';
 import styles from '../../styles/Index.module.scss';
 import api from '../../utils/apiRoutes';
 import slice from '../../utils/slice';
-import redirect from '../../utils/redirect';
 
 export default function User({
   session, books, fullName, image, userId,
 }: any) {
   const [loggedUser, setLoggedUser] = useState(false);
   useEffect(() => {
+    if (!session) return;
     if (session.user.id === userId) setLoggedUser(true);
   }, []);
   const storyDelete = (id: any) => (
@@ -52,14 +52,6 @@ export default function User({
                       <Link href={`/${userId}/books/${book._id}`}>
                         <li className={styles.information__book}>
                           {book.title}
-                          {' '}
-                          /
-                        </li>
-                      </Link>
-                      <Link href={`/${userId}/books/${book._id}/${story._id}`}>
-                        <li className={styles.information__story}>
-                          {story.title}
-                          .
                         </li>
                       </Link>
                     </ul>
@@ -103,7 +95,6 @@ export default function User({
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
-  if (!session) return redirect;
   const { params: { userId } } = context;
   const { data: { books, fullName, image } } = await axios.get(api.USER + userId);
   return {
