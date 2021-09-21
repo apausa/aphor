@@ -11,15 +11,13 @@ import api from '../../../../utils/apiRoutes';
 import slice from '../../../../utils/slice';
 
 export default function Book({
-  session, books, fullName, image, userId, bookId,
+  session, userId, bookId, stories, title, fullName, image,
 }: any) {
   const [loggedUser, setLoggedUser] = useState(false);
   useEffect(() => {
     if (!session) return;
     if (session.user.id === userId) setLoggedUser(true);
   }, []);
-  const { stories, title } = books
-    .filter((book: any) => book._id === bookId)[0];
   const storyDelete = (id: any) => (
     <li className={styles.information__button}>
       <button
@@ -101,9 +99,12 @@ export async function getServerSideProps(context: any) {
   const { data } = await axios.get(api.USER + userId);
   if (!data) return { redirect: { destination: '/404' } };
   const { books, fullName, image } = data;
+  const book = books.filter(({ _id }: any) => _id === bookId)[0];
+  if (!book) return { redirect: { destination: '/404' } };
+  const { stories, title } = book;
   return {
     props: {
-      session, userId, bookId, books, fullName, image,
+      session, userId, bookId, stories, title, fullName, image,
     },
   };
 }

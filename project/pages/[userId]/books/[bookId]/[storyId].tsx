@@ -10,17 +10,13 @@ import api from '../../../../utils/apiRoutes';
 import slice from '../../../../utils/slice';
 
 export default function Story({
-  session, books, fullName, image, userId, bookId, storyId,
+  session, userId, bookId, storyId, fullName, image, title, date, body,
 }: any) {
   const [loggedUser, setLoggedUser] = useState(false);
   useEffect(() => {
     if (!session) return;
     if (session.user.id === userId) setLoggedUser(true);
   }, []);
-  const something = books
-    .filter((book: any) => book._id === bookId)[0];
-  const { date, body } = something.stories
-    .filter((story: any) => story._id === storyId)[0];
   const storyDelete = (id: any) => (
     <li className={styles.information__button}>
       <button
@@ -51,7 +47,7 @@ export default function Story({
                 </Link>
                 <Link href={`/${userId}/books/${bookId}`}>
                   <li className={styles.information__book}>
-                    {something.title}
+                    {title}
                     {' '}
                     /
                   </li>
@@ -98,9 +94,15 @@ export async function getServerSideProps(context: any) {
   const { data } = await axios.get(api.USER + userId);
   if (!data) return { redirect: { destination: '/404' } };
   const { books, fullName, image } = data;
+  const book = books.filter(({ _id }: any) => _id === bookId)[0];
+  if (!book) return { redirect: { destination: '/404' } };
+  const { stories, title } = book;
+  const story = stories.filter(({ _id }: any) => _id === storyId)[0];
+  if (!story) return { redirect: { destination: '/404' } };
+  const { date, body } = story;
   return {
     props: {
-      session, userId, bookId, storyId, books, fullName, image,
+      session, userId, bookId, storyId, fullName, image, title, date, body,
     },
   };
 }
