@@ -95,7 +95,6 @@ export default function User({
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
-  if (!session) return redirect;
   const { params: { userId } } = context;
   const { data: { books, fullName, image } } = await axios.get(api.USER + userId);
   return {

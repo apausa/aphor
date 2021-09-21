@@ -8,7 +8,6 @@ import { getSession } from 'next-auth/client';
 import styles from '../../../../styles/Index.module.scss';
 import api from '../../../../utils/apiRoutes';
 import slice from '../../../../utils/slice';
-import redirect from '../../../../utils/redirect';
 
 export default function Book({
   session, books, fullName, image, userId, bookId,
@@ -96,7 +95,6 @@ export default function Book({
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
-  if (!session) return redirect;
   const { params: { userId, bookId } } = context;
   const { data: { books, fullName, image } } = await axios.get(api.USER + userId);
   return {
