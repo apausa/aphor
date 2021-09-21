@@ -11,7 +11,7 @@ import api from '../../../utils/apiRoutes';
 import slice from '../../../utils/slice';
 
 export default function Books({
-  session, fullName, image, books, userId,
+  session, userId, fullName, image, books,
 }: any) {
   const [loggedUser, setLoggedUser] = useState(false);
   useEffect(() => {
@@ -77,7 +77,6 @@ export default function Books({
                       {loggedUser && bookDelete(book._id)}
                     </ul>
                   </li>
-
                 </ul>
               </li>
             </ul>
@@ -91,7 +90,9 @@ export default function Books({
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
   const { params: { userId } } = context;
-  const { data: { fullName, image, books } } = await axios.get(api.USER + userId);
+  const { data } = await axios.get(api.USER + userId);
+  if (!data) return { redirect: { destination: '/404' } };
+  const { fullName, image, books } = data;
   return {
     props: {
       session, userId, fullName, image, books,

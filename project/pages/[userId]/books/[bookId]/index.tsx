@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
@@ -97,7 +98,9 @@ export default function Book({
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
   const { params: { userId, bookId } } = context;
-  const { data: { books, fullName, image } } = await axios.get(api.USER + userId);
+  const { data } = await axios.get(api.USER + userId);
+  if (!data) return { redirect: { destination: '/404' } };
+  const { books, fullName, image } = data;
   return {
     props: {
       session, userId, bookId, books, fullName, image,

@@ -95,8 +95,9 @@ export default function Story({
 export async function getServerSideProps(context: any) {
   const session = await getSession(context);
   const { params: { userId, bookId, storyId } } = context;
-  const { data: { books, fullName, image } } = await axios
-    .get(api.USER + userId);
+  const { data } = await axios.get(api.USER + userId);
+  if (!data) return { redirect: { destination: '/404' } };
+  const { books, fullName, image } = data;
   return {
     props: {
       session, userId, bookId, storyId, books, fullName, image,

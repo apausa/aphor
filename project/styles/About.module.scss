@@ -1,0 +1,28 @@
+.about {
+    margin: 16px 8px 4px 8px;
+    border-bottom: 1px solid black;
+    list-style: none;
+}
+
+.about__information {
+    list-style: none;
+    display: flex;
+    font-size: 18px;
+}
+
+.information__image {
+    border-radius: 50%;
+}
+
+.information__name {
+    margin-left: 8px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.about__text {
+    margin: 4px 8px 16px 24px;
+    font-size: 16px;
+    text-align: justify;
+    text-justify: inter-word;
+}
