@@ -39,7 +39,7 @@ export default function Dashboard({
       <div className={write.main}>
         <form className={write.form}>
           <fieldset className={write.fieldset__top}>
-            <div className={write.top__information}>
+            <div>
               <Link href={`/${id}`}>
                 <a>
                   <Image
