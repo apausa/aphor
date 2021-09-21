@@ -14,6 +14,7 @@ export default function Book({
 }: any) {
   const [loggedUser, setLoggedUser] = useState(false);
   useEffect(() => {
+    if (!session) return;
     if (session.user.id === userId) setLoggedUser(true);
   }, []);
   const { stories, title } = books

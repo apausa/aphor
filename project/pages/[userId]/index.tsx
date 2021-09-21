@@ -9,13 +9,13 @@ import axios from 'axios';
 import styles from '../../styles/Index.module.scss';
 import api from '../../utils/apiRoutes';
 import slice from '../../utils/slice';
-import redirect from '../../utils/redirect';
 
 export default function User({
   session, books, fullName, image, userId,
 }: any) {
   const [loggedUser, setLoggedUser] = useState(false);
   useEffect(() => {
+    if (!session) return;
     if (session.user.id === userId) setLoggedUser(true);
   }, []);
   const storyDelete = (id: any) => (

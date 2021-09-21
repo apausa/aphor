@@ -15,6 +15,7 @@ export default function Books({
 }: any) {
   const [loggedUser, setLoggedUser] = useState(false);
   useEffect(() => {
+    if (!session) return;
     if (session.user.id === userId) setLoggedUser(true);
   }, []);
   const bookDelete = (id: any) => (
