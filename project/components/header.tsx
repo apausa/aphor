@@ -190,13 +190,13 @@ export default function Header() {
     </ul>
   );
   const loggedOut = () => (
-    <li className={styles.logged}>
+    <li className={styles.user__button}>
       <button
         onClick={() => signIn()}
+        className={styles.button__on}
         type="submit"
       >
         Sign in
-
       </button>
     </li>
   );
