@@ -11,9 +11,6 @@
 .fieldset__top {
     margin-left: 8px;
     margin-bottom: 8px;
-}
-
-.top__information {
     display: flex;
 }
 
@@ -21,22 +18,9 @@
     border-radius: 50%;
 }
 
-.information__title {
-    margin-bottom: 4px;
-    margin-left: 8px;
-    font-size: 18px;
-    width: 605.11px;
-    color: rgb(0, 0, 255);
-    font-weight: bold;
-}
-
-.information__title:focus {
-    outline: none;
-}
-
 .top__textarea {
-    margin-left: 26px;
-    width: 605.11px;
+    margin-left: 8px;
+    width: 604px;
     font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
     font-size: 16px;
     text-align: justify;
