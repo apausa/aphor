@@ -1,2 +1,2 @@
-# Skylab Final Project
-This is a MERN Stack application, developed with the Nexj.js framework.
+# Aphor
+Aphor is a social network built on Next.js, where users can update books on real time. 
