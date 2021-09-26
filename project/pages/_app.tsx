@@ -12,14 +12,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider session={pageProps.session}>
       <Head>
-        <title>Project</title>
+        <title>Aphor</title>
         <meta name="description" content="Description" />
         <meta property="og:title" content="Aphor" />
         <meta property="og:description" content="Description" />
-        <meta property="og:image" content="" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="http://localhost:3000/" />
-        <link rel="favicon" href="favicon.ico" />
+        <link rel="favicon" href="/favicon.ico" />
       </Head>
       <Header />
       <Component {...pageProps} />
