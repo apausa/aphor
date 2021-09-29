@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
@@ -16,7 +15,6 @@ export default function Header() {
   const [reading, setReading] = useState(false);
   const [query, setQuery] = useState('');
   const { route, query: { userId } } = useRouter();
-
   const handleSearch = ({ target: { value } }: any) => setQuery(value);
   const handleKeyPress = async ({ which, target: { value } }: any) => {
     if (which === 13 && value) {
@@ -33,8 +31,8 @@ export default function Header() {
   }; // If the user 'unfollows'.
   const handleReading = async () => {
     const { data } = await axios.get(api.USER + session?.user.id);
-    const index = data.authors.indexOf(userId);
-    data.authors.splice(index, 1);
+    const index = data.authors.indexOf(userId) - 1;
+    data.authors.splice(index, 1); /// /////
     await axios.put(api.USER + session?.user.id, { data });
     setReading(false);
   }; // User page, logic.
