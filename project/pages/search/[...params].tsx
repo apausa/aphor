@@ -29,7 +29,7 @@ export default function Search({ data }: any) {
                   height="18"
                 />
               </li>
-              <Link href={`/${author._id}`}>
+              <Link href={`/${author._id}`} passHref>
                 <li className={styles.author__name}>
                   {author.fullName}
                   .

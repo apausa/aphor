@@ -39,13 +39,13 @@ export default function Story({
             <li>
               <ul className={styles.first__information}>
                 <li><Image alt="profile" className={styles.information__image} src={image} width="18" height="18" /></li>
-                <Link href={`/${userId}`}>
+                <Link href={`/${userId}`} passHref>
                   <li className={styles.information__name}>
                     {fullName}
                     .
                   </li>
                 </Link>
-                <Link href={`/${userId}/books/${bookId}`}>
+                <Link href={`/${userId}/books/${bookId}`} passHref>
                   <li className={styles.information__book}>
                     {title}
                   </li>
@@ -54,7 +54,7 @@ export default function Story({
             </li>
             <li>
               <ul className={styles.first__information}>
-                <Link href={`/${userId}/books/${bookId}/${storyId}`}>
+                <Link href={`/${userId}/books/${bookId}/${storyId}`} passHref>
                   <li className={styles.first__date}>{slice(date)}</li>
                 </Link>
                 <li className={styles.information__button}>

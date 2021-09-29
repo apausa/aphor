@@ -31,13 +31,13 @@ export default function Books({ users }: any) {
                         />
 
                       </li>
-                      <Link href={`/${user._id}`}>
+                      <Link href={`/${user._id}`} passHref>
                         <li className={styles.information__name}>
                           {user.fullName}
                           .
                         </li>
                       </Link>
-                      <Link href={`/${user._id}/books/${book._id}`}>
+                      <Link href={`/${user._id}/books/${book._id}`} passHref>
                         <li className={styles.information__book}>
                           {book.title}
                         </li>
@@ -46,7 +46,7 @@ export default function Books({ users }: any) {
                   </li>
                   <li>
                     <ul className={styles.first__information}>
-                      <Link href={`/${user._id}/books/${book._id}/`}>
+                      <Link href={`/${user._id}/books/${book._id}/`} passHref>
                         <li className={styles.first__date}>{slice(book.date)}</li>
                       </Link>
                       <li className={styles.information__button}>

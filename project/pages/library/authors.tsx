@@ -27,7 +27,7 @@ export default function Authors({ authors }: any) {
                     />
 
                   </li>
-                  <Link href={`/${author._id}`}>
+                  <Link href={`/${author._id}`} passHref>
                     <li className={styles.author__name}>
                       {author.fullName}
                       .
