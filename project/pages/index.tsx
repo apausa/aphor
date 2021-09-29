@@ -1,5 +1,3 @@
-/* eslint-disable no-alert */
-/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-underscore-dangle */
@@ -22,7 +20,6 @@ export default function Dashboard({
   const handleStoryBody = (event: any) => setstoryBody(event.target.value);
   const handleBookId = (event: any) => setBookId(event.target.value);
   const onSubmit = async () => {
-    alert(storyBody);
     const createdStory = await axios.post(api.STORY,
       { storyBody });
     const { data } = await axios.get(api.BOOK + bookId);
