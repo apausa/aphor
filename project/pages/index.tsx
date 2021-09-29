@@ -43,7 +43,7 @@ export default function Dashboard({
               <Link href={`/${id}`}>
                 <a>
                   <Image
-                    className={write.information__image}
+                    className={write.top__image}
                     alt="profile"
                     src={image}
                     width="18"

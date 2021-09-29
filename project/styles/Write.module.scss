@@ -14,7 +14,7 @@
     display: flex;
 }
 
-.information__image {
+.top__image {
     border-radius: 50%;
 }
 
@@ -23,14 +23,21 @@
     width: 604px;
     font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
     font-size: 16px;
+    line-height: 1.5;
     text-align: justify;
     text-justify: inter-word;
     resize: none;
-    height: 64px;
+    height: 128px;
 }
 
 .top__textarea:focus {
     outline: none;
+}
+
+.top__textarea:after {
+    content: " |";
+    animation: blink 1s infinite;
+    animation-timing-function: step-end;
 }
 
 .fieldset__bottom {
