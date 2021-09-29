@@ -13,10 +13,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider session={pageProps.session}>
       <Head>
         <title>Aphor</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content="Description" />
+        <meta name="description" content="Aphor is a Fullstack social network built on Next.js, where users can write books in real time, like aphorisms, poems and short stories." />
         <meta property="og:title" content="Aphor" />
-        <meta property="og:description" content="Description" />
+        <meta property="og:description" content="Aphor is a Fullstack social network built on Next.js, where users can write books in real time, like aphorisms, poems and short stories." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="http://localhost:3000/" />
       </Head>
