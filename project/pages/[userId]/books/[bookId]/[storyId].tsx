@@ -48,8 +48,6 @@ export default function Story({
                 <Link href={`/${userId}/books/${bookId}`}>
                   <li className={styles.information__book}>
                     {title}
-                    {' '}
-                    /
                   </li>
                 </Link>
               </ul>
