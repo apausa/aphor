@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
@@ -10,14 +11,19 @@ import styles from '../styles/Header.module.scss';
 import api from '../utils/apiRoutes';
 
 export default function Header() {
-  const [session, loading] = useSession();
   const router = useRouter();
-  // Reading defaults to false everytime the user logs in.
+  const [session, loading] = useSession();
   const [reading, setReading] = useState(false);
+  const [query, setQuery] = useState('');
   const { route, query: { userId } } = useRouter();
-  const handleSearch = async ({ which, target: { value } }: any) => {
-    if (which === 13 && value) router.push(`/search/${value}`);
-  }; // If the user 'follows'.
+
+  const handleSearch = ({ target: { value } }: any) => setQuery(value);
+  const handleKeyPress = async ({ which, target: { value } }: any) => {
+    if (which === 13 && value) {
+      router.push(`/search/${value}`);
+      setQuery('');
+    }
+  };
   const user = (session?.user.id === userId);
   const handleRead = async () => {
     const { data } = await axios.get(api.USER + session?.user.id);
@@ -159,7 +165,9 @@ export default function Header() {
           type="search"
           name="q"
           placeholder="Search"
-          onKeyPress={handleSearch}
+          value={query}
+          onChange={handleSearch}
+          onKeyPress={handleKeyPress}
         />
       </li>
       <li className={styles.logged__component}>
