@@ -1,4 +1,5 @@
 {
+    "root": true,
     "env": {
         "browser": true,
         "es2021": true,
@@ -17,7 +18,7 @@
             "jsx": true
         },
         "ecmaVersion": 12,
-        "project": "tsconfig.json",
+        "project": "./project/tsconfig.json",
         // Build: "project": "tsconfig.json"
         // Dev: "project": "./project/tsconfig.json"
         "sourceType": "module"
