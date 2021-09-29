@@ -12,6 +12,7 @@ import api from '../utils/apiRoutes';
 export default function Header() {
   const [session, loading] = useSession();
   const router = useRouter();
+  // Reading defaults to false everytime the user logs in.
   const [reading, setReading] = useState(false);
   const { route, query: { userId } } = useRouter();
   const handleSearch = async ({ which, target: { value } }: any) => {
@@ -38,7 +39,7 @@ export default function Header() {
       const author = !!(authors.find(({ _id }: any) => _id === userId));
       setReading(author);
     })();
-  }, [reading]);
+  }, [reading, []]);
   // User page, structure.
   const userPage = () => (
     <ul className={styles.page__user}>
