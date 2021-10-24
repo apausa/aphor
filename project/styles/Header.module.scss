@@ -48,7 +48,7 @@
 .component__input {
     width: 256px;
     height: 32px;
-    border: 1px solid $pantoneCoolGray4C;
+    border: 1px solid $pantoneCoolGray8C;
     color: $pantoneNeutralBlackC;
     border-radius: 10px;
     font-size: 18px;
@@ -58,12 +58,12 @@
 }
 
 .component__input:hover {
-    border: 1px solid $pantoneCoolGray8C;
+    border: 1px solid $pantoneNeutralBlackC;
 }
 
 .component__input:focus {
     outline: none;
-    border: 1px solid $pantoneCoolGray8C;
+    border: 1px solid $pantoneNeutralBlackC;
 }
 
 .component__input::placeholder {
