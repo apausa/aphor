@@ -6,7 +6,7 @@
 
 .story {
     list-style: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $pantoneCoolGray4C;
 }
 
 .first {
@@ -16,70 +16,70 @@
     justify-content: space-between;
 }
 
+// Top. 
+
 .first__information {
     list-style: none;
     display: flex;
     font-size: 18px;
+    .information__image {
+        border-radius: 50%;
+    }
+    .information__name {
+        margin-left: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        color: $pantoneNeutralBlackC;
+    }
+    .information__button {
+        margin-left: 8px;
+    }
+    .information__book {
+        margin-left: 4px;
+        text-decoration: none;
+        font-size: 18px;
+        color: $pantoneCoolGray8C;
+    }
 }
 
 .first__date {
     margin-left: 8px;
     font-size: 18px;
-    color: $gray;
-}
-
-.information__image {
-    border-radius: 50%;
-}
-
-.information__button {
-    margin-left: 8px;
+    color: $pantoneCoolGray8C;
 }
 
 .button {
-    background-color: $gray;
-    color: $beige;
+    background-color: $pantoneCoolGray8C;
+    color: $pantoneCoolGray1C;
     border-radius: 50%;
     width: 18px;
     height: 18px;
+} 
+
+.button:active {
+    background-color: $pantoneNeutralBlackC;
 }
 
-.button:hover {
-    background-color:rgb(0, 0, 255);
-}
-
-
-.information__name {
-    margin-left: 8px;
-    font-size: 18px;
-    font-weight: bold;
+.information__book:active {
+    color: $pantoneNeutralBlackC;
 }
 
 .information__name:hover {
-    color:rgb(0, 0, 255);
+    color: $pantoneBlue072C;
 }
 
-.information__book {
-    margin-left: 4px;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-.information__book:hover {
-    color:rgb(0, 0, 255);
-}
+// Bottom.
 
 .second {
     margin: 0px 8px 16px 32px;
     font-size: 16px;
     line-height: 1.5;
-    text-align: justify;
-    text-justify: inter-word;
     white-space: pre-wrap;
+    .second__element {
+        text-decoration: none;
+        color: $pantoneNeutralBlackC;
+        font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+    }
 }
 
-.second__element {
-    text-decoration: none;
-    color: $black;
-    font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-}
+// Selection. 

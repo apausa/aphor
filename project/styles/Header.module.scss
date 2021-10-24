@@ -1,12 +1,19 @@
 @import 'colors';
 
+// General.
+
 .main {
     display: flex; 
     margin: 16px 12.5vw 8px 12.5vw;
     font-size: 32px;
-    color: $black;
+    color: $pantoneNeutralBlackC;
     list-style: none;
     justify-content: space-between;
+}
+
+
+.image {
+    border-radius: 50%;
 }
 
 .page {
@@ -15,81 +22,36 @@
     margin-left: 12.5vw;
 }
 
-.page__user {
+// Dashboard.
+
+.page__dashboard {
     list-style: none;
-    display: flex;
     margin-left: 8px;
-}
-
-.user__main {
-    text-decoration: none;
-    color: $black;
+    color: $pantoneNeutralBlackC;
     font-weight: bold;
+    .dashboard__link {
+        text-decoration: none;
+        color: $pantoneNeutralBlackC;
+        font-weight: bold;
+    }
 }
 
-.user__other {
-    margin-left: 16px;
-}
 
-.other__linkoff {
-    text-decoration: none;
-    color: $gray;
-}
-
-.other__linkoff:hover {
-    color:rgb(0, 0, 255);
-}
-
-.other__linkon {
-    text-decoration: none;
-    color: $black;
-}
-
-.user__button {
-    margin-left: 16px;
-    padding: 0px 8px 0px 8px;
-}
-
-.button__on {
-    border-radius: 10px;
-    font-size: 20px;
-    width: 80px;
-    height: 32px;
-    background-color: rgb(0, 0, 255);
-    color: $beige;
-}
-
-.button__on:active {
-    background-color: $black;
-}
-
-.button__off {
-    border-radius: 10px;
-    font-size: 20px;
-    width: 80px;
-    height: 32px;
-    border: 1px solid $gray;
-    color: $gray;
-}
-
-.button__off:active {
-    border: 1px solid rgb(0, 0, 255);
-    color: rgb(0, 0, 255);
-}
+// Input.
 
 .logged {
     list-style: none;
-    display: flex;  
-}
-
-.logged__component {
-    margin-right: 16px;
+    display: flex; 
+    .logged__component {
+        margin-right: 16px;
+    } 
 }
 
 .component__input {
     width: 256px;
     height: 32px;
-    border: 1px solid $gray;
+    border: 1px solid $pantoneCoolGray4C;
+    color: $pantoneNeutralBlackC;
     border-radius: 10px;
     font-size: 18px;
     position: relative;
@@ -97,24 +59,79 @@
     bottom: 6px;
 }
 
+.component__input:hover {
+    border: 1px solid $pantoneCoolGray8C;
+}
+
 .component__input:focus {
     outline: none;
-    border: 1px solid rgb(0, 0, 255);
+    border: 1px solid $pantoneCoolGray8C;
 }
 
-.image {
-    border-radius: 50%;
+.component__input::placeholder {
+    color: $pantoneCoolGray8C;
 }
 
-.page__dashboard {
+// User.
+
+.page__user {
     list-style: none;
+    display: flex;
     margin-left: 8px;
-    color: $black;
-    font-weight: bold;
+    .user__main {
+        text-decoration: none;
+        color: $pantoneNeutralBlackC;
+    }
+    .user__other {
+        margin-left: 16px;
+    }
+    .user__button {
+        margin-left: 16px;
+        padding: 0px 8px 0px 8px;
+    }
 }
 
-.dashboard__link {
+.other__linkon {
     text-decoration: none;
-    color: $black;
+    color: $pantoneNeutralBlackC;
+}
+
+.other__linkoff {
+    text-decoration: none;
+    color: $pantoneCoolGray8C;
+}
+
+.other__linkoff:hover {
+    color: $pantoneNeutralBlackC;
+}
+
+
+.button__on {
+    border-radius: 10px;
+    font-size: 16px;
     font-weight: bold;
+    width: 80px;
+    height: 32px;
+    background-color: $pantoneBlue072C;
+    color: $pantoneCoolGray1C;
+}
+
+.button__off {
+    border-radius: 10px;
+    font-size: 16px;
+    width: 80px;
+    height: 32px;
+    font-weight: bold;
+    border: 1px solid $pantoneCoolGray8C;
+    color: $pantoneCoolGray8C;
+}
+
+.button__off:hover {
+    border: 1px solid $pantoneNeutralBlackC;
+    color: $pantoneNeutralBlackC;
+}
+
+.button__off:active {
+    border: 1px solid $pantoneNeutralBlackC;
+    color: $pantoneNeutralBlackC;
 }
