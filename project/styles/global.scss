@@ -1,12 +1,16 @@
-@import 'colors';
+@import 'variables';
 
 *, *::after, *::before {
     margin: 0;
     padding: 0;
     border: 0;
     font-size: 100%;
-    background-color: $beige;
+    background-color: $pantoneCoolGray1C;
     font-family:'Times New Roman', Times, serif;
+}
+
+::selection{
+    background-color: $pantoneCoolGray4C;
 }
 
 header { 
@@ -14,7 +18,7 @@ header {
     width: 100vw;
     top: 0px;
     z-index: 1;
-    border-bottom: 1px solid $black;
+    border-bottom: 1px solid $pantoneCoolGray8C;
 }
 
 main {
@@ -37,6 +41,3 @@ main {
         width: 97.51984126984127vw;
     }
 }
-
-
-

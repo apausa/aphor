@@ -115,7 +115,7 @@ export default function Header() {
     <ul className={styles.page__dashboard}>
       <li data-testid="dashboard">
         <Link href="/">
-          <a className={styles.dashboard__link}>Dashboard</a>
+          <a className={styles.dashboard__link}>Aphor</a>
         </Link>
       </li>
     </ul>
