@@ -1,5 +1,5 @@
 # Aphor
 
-Created a social network from scratch for users to write collections of poems and short stories; using Next.js (React.js and Node.js) and TypeScript. As part of a Full Stack Web Development course.
+Social network for users to write collections of poems and short stories; in Next.js (React.js and Node.js) and TypeScript. As part of a Full Stack Web Development course.
 
-Implementing custom authentication with NextAuth.js and own database with MongoDB. Also, styled components with SCSS and unit-tested code with Jest.
+Implements custom  NextAuth.js authentication and MongoDB database. Also, SCSS styles and Jest tests. 
